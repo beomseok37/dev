@@ -12,7 +12,7 @@ import {
 const Redux: NextPage = () => {
   return (
     <Page
-      header="box"
+      header="redux"
       pageContentList={[
         { content: REDUX_COUNT_CONTENT, done: true },
         { content: REDUX_TODO_LIST_CONTENT, done: true },

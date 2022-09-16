@@ -15,7 +15,7 @@ import { SubTitle } from 'src/styles/pages/react-hooks';
 const ReactHooks: NextPage = () => {
   return (
     <Page
-      header="box"
+      header="react hooks"
       pageContentList={[{ content: REACT_HOOKS_PAGE_CONTENT, done: true }]}
     >
       <Row justifyContent="space-around">

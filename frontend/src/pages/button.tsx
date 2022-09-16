@@ -11,7 +11,7 @@ import { ButtonGroup } from 'src/styles/pages';
 const ButtonPage: NextPage = () => {
   return (
     <Page
-      header="box"
+      header="button"
       pageContentList={[{ content: BUTTON_PAGE_CONTENT, done: true }]}
     >
       <AppBlock>
