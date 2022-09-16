@@ -4,6 +4,7 @@ import SideBarColorType from './sideBarColor';
 import TodoType from './toDo';
 import CounterType from './counter';
 import PageContentType from './pageContent';
+import ArrowDirection from './arrowDirection';
 
 export type {
   ButtonColorType,
@@ -12,4 +13,5 @@ export type {
   TodoType,
   CounterType,
   PageContentType,
+  ArrowDirection,
 };
