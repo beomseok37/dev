@@ -39,19 +39,19 @@ Temporary Items
 
 ### NextJS ###
 # Dependencies
-/node_modules
-/.pnp
+node_modules/**
+.pnp
 .pnp.js
 
 # Testing
 /coverage
 
 # Next.js
-/.next/
+**/.next/**
 /out/
 
 # Production
-/build
+build
 
 # Misc
 *.pem
