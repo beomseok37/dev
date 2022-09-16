@@ -1,5 +1,4 @@
 import { ReactElement, useEffect, useRef } from 'react';
-
 import {
   DIRECTION,
   DIRECTION_TERM,
@@ -61,7 +60,6 @@ const calculateSX = (currentDirection: number, currentLoopIndex: number) => {
 
 function MiniMe(): ReactElement {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const character = new Image();
 
   const position: any = {};
   const draw: any = {};
@@ -75,6 +73,7 @@ function MiniMe(): ReactElement {
   draw.canvas = null;
   draw.ctx = null;
   draw.frameCount = 0;
+  draw.character = null;
 
   function keyDownHandler(e: KeyboardEvent) {
     keyPress[e.key] = true;
@@ -181,7 +180,7 @@ function MiniMe(): ReactElement {
 
     draw.ctx.fillStyle = '#FFF';
     drawFrame(
-      character,
+      draw.character!,
       calculateSX(position.currentDirection, position.currentLoopIndex),
       SRC_POSITION.Y,
       position.x,
@@ -197,9 +196,12 @@ function MiniMe(): ReactElement {
     draw.canvas.height = 562;
     draw.ctx = draw.canvas.getContext('2d');
     draw.ctx.textAlign = 'center';
-    character.src = '/image/character.png';
+    // character.src = '/image/character.png';
     draw.ctx.font = 'bold';
-    character.onload = () => {
+    draw.character = document.createElement('img');
+    draw.character.setAttribute('src', '/image/character.png');
+
+    draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
     };
     window.addEventListener('keydown', keyDownHandler);
