@@ -185,7 +185,7 @@ function MiniMe(): ReactElement {
       SRC_POSITION.Y,
       position.x,
       position.y,
-      'temp'
+      'me'
     );
     window.requestAnimationFrame(moveLoop);
   };
@@ -199,7 +199,7 @@ function MiniMe(): ReactElement {
     // character.src = '/image/character.png';
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
-    draw.character.setAttribute('src', '/image/character.png');
+    draw.character.setAttribute('src', '/image/character1.png');
 
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
