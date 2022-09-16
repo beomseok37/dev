@@ -26,7 +26,6 @@ const getColorKor = (color: string) => {
 };
 
 const getMovieGenreKor = (movie: string) => {
-  console.log('getMovieGenreKor');
   switch (movie) {
     case 'Marriage Story':
       return '드라마';

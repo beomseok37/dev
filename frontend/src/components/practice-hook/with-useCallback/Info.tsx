@@ -5,7 +5,6 @@ interface props {
   movie: string;
 }
 const getColorKor = (color: string) => {
-  console.log('getColorKor');
   switch (color) {
     case 'red':
       return '빨강';
@@ -27,7 +26,6 @@ const getColorKor = (color: string) => {
 };
 
 const getMovieGenreKor = (movie: string) => {
-  console.log('getMovieGenreKor');
   switch (movie) {
     case 'Marriage Story':
       return '드라마';

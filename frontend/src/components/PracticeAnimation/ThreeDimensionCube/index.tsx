@@ -25,7 +25,6 @@ function ThreeDimensionCube(): ReactElement {
         setFrontAngle('90');
         break;
       default:
-        console.log('wrong input');
         break;
     }
   };
