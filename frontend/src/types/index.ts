@@ -5,6 +5,7 @@ import TodoType from './toDo';
 import CounterType from './counter';
 import PageContentType from './pageContent';
 import ArrowDirection from './arrowDirection';
+import UserType from './user';
 
 export type {
   ButtonColorType,
@@ -14,4 +15,5 @@ export type {
   CounterType,
   PageContentType,
   ArrowDirection,
+  UserType,
 };
