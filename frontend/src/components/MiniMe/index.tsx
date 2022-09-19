@@ -1,4 +1,7 @@
 import { ReactElement, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import CharacterSelector from 'src/components/CharacterSelector';
+
 import {
   DIRECTION,
   DIRECTION_TERM,
@@ -9,6 +12,8 @@ import {
   FRAME_LIMIT,
   CYCLE_LOOP,
 } from 'src/constant/miniMe';
+
+import { selectUser } from 'src/redux/reducer/user';
 
 import { ArrowDirection } from 'src/types';
 
@@ -59,6 +64,7 @@ const calculateSX = (currentDirection: number, currentLoopIndex: number) => {
 // };
 
 function MiniMe(): ReactElement {
+  const user = useSelector(selectUser);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const position: any = {};
@@ -185,7 +191,7 @@ function MiniMe(): ReactElement {
       SRC_POSITION.Y,
       position.x,
       position.y,
-      'me'
+      user.username
     );
     window.requestAnimationFrame(moveLoop);
   };
@@ -199,7 +205,7 @@ function MiniMe(): ReactElement {
     // character.src = '/image/character.png';
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
-    draw.character.setAttribute('src', '/image/character1.png');
+    draw.character.setAttribute('src', user.character);
 
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
@@ -215,8 +221,9 @@ function MiniMe(): ReactElement {
 
   return (
     <Wrapper>
+      <CharacterSelector />
       <CanvasWrapper>
-        <canvas ref={canvasRef}>minime</canvas>;
+        <canvas ref={canvasRef} />;
       </CanvasWrapper>
     </Wrapper>
   );
