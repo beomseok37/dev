@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "sourceRoot": "./src/",
+    "experimentalDecorators": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
