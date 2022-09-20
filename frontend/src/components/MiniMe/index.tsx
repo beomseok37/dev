@@ -202,7 +202,6 @@ function MiniMe(): ReactElement {
     draw.canvas.height = 562;
     draw.ctx = draw.canvas.getContext('2d');
     draw.ctx.textAlign = 'center';
-    // character.src = '/image/character.png';
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
     draw.character.setAttribute('src', user.character);
@@ -218,6 +217,28 @@ function MiniMe(): ReactElement {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    draw.canvas = canvasRef.current;
+    draw.canvas.width = 576;
+    draw.canvas.height = 562;
+    draw.ctx = draw.canvas.getContext('2d');
+    draw.ctx.textAlign = 'center';
+    draw.ctx.font = 'bold';
+    draw.character = document.createElement('img');
+    draw.character.setAttribute('src', user.character);
+    draw.character.onload = () => {
+      window.requestAnimationFrame(moveLoop);
+    };
+    window.addEventListener('keydown', keyDownHandler);
+    window.addEventListener('keyup', keyUpHandler);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      window.removeEventListener('keydown', keyDownHandler);
+      window.removeEventListener('keyup', keyUpHandler);
+    };
+  }, [user]);
 
   return (
     <Wrapper>
