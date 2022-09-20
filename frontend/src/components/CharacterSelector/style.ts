@@ -16,8 +16,8 @@ const ToggleButtonWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   position: absolute;
-  left: 2.5px;
-  width: 75px;
+  left: 6px;
+  width: 68px;
   height: 80px;
   overflow: hidden;
 `;

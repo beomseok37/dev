@@ -31,6 +31,7 @@ function CharacterSelector(): ReactElement {
             width="80px"
             height="100%"
             position="relative"
+            alignItems="center"
             onClick={() => {
               if (user.character !== CHARACTERURL1) {
                 dispatch(changeCharacter(1));
@@ -47,7 +48,7 @@ function CharacterSelector(): ReactElement {
             <ImageWrapper>
               <Image
                 src={CHARACTERURL1}
-                width="1200px"
+                width="1100px"
                 height="80px"
                 layout="fixed"
               />
@@ -57,6 +58,7 @@ function CharacterSelector(): ReactElement {
             width="80px"
             height="100%"
             position="relative"
+            alignItems="center"
             onClick={() => {
               if (user.character !== CHARACTERURL2) {
                 dispatch(changeCharacter(2));
@@ -73,7 +75,7 @@ function CharacterSelector(): ReactElement {
             <ImageWrapper>
               <Image
                 src={CHARACTERURL2}
-                width="1200px"
+                width="1100px"
                 height="80px"
                 layout="fixed"
               />
