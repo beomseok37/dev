@@ -9,6 +9,8 @@ interface props {
   color: ButtonColorType;
   outline: boolean;
   fullWidth: boolean;
+  leftMargin: boolean;
+  margin: string;
 }
 
 const Button = styled.button<props>`
@@ -56,8 +58,8 @@ const Button = styled.button<props>`
     background: darken($blue, 10%);
   }
 
-  margin-left: 1rem;
-
+  ${({ leftMargin }) => leftMargin && 'margin-left: 1rem;'}
+  margin: ${({ margin }) => margin};
   box-shadow: 1px 1px 1px 1px #0d5594;
   &:hover {
     cursor: pointer;
