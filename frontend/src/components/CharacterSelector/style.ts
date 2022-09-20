@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
 const Title = styled.p`
-  width: 100%;
-  height: 20px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  height: 20px;
   color: #fff;
 `;
 
