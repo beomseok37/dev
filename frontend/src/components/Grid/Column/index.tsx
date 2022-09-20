@@ -13,6 +13,11 @@ interface props {
   padding?: string;
   position?: string;
   onClick?: () => void;
+  border?: string;
+  borderLeft?: string;
+  borderRight?: string;
+  borderTop?: string;
+  borderBottom?: string;
 }
 
 function Column({
@@ -26,6 +31,11 @@ function Column({
   padding,
   position,
   onClick,
+  border,
+  borderLeft,
+  borderRight,
+  borderTop,
+  borderBottom,
 }: props): ReactElement {
   return (
     <Wrapper
@@ -38,6 +48,11 @@ function Column({
       padding={padding!}
       position={position!}
       onClick={onClick!}
+      border={border!}
+      borderLeft={borderLeft!}
+      borderRight={borderRight!}
+      borderTop={borderTop!}
+      borderBottom={borderBottom!}
     >
       {children}
     </Wrapper>
@@ -54,6 +69,11 @@ Column.defaultProps = {
   padding: 'unset',
   position: 'unset',
   onClick: () => {},
+  border: 'unset',
+  borderLeft: 'unset',
+  borderRight: 'unset',
+  borderTop: 'unset',
+  borderBottom: 'unset',
 };
 
 export default Column;
