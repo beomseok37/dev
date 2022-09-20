@@ -1,6 +1,10 @@
 import { ReactElement, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+
 import CharacterSelector from 'src/components/CharacterSelector';
+import UsernameSelector from 'src/components/UsernameSelector';
+import Column from 'src/components/Grid/Column';
+import Row from 'src/components/Grid/Row';
 
 import {
   DIRECTION,
@@ -17,7 +21,7 @@ import { selectUser } from 'src/redux/reducer/user';
 
 import { ArrowDirection } from 'src/types';
 
-import { Wrapper, CanvasWrapper } from './style';
+import { CanvasWrapper } from './style';
 
 // const chooseBuildDirection = (x: number, y: number, direction: number) => {
 //   if (direction === DIRECTION.FRONT) {
@@ -82,10 +86,14 @@ function MiniMe(): ReactElement {
   draw.character = null;
 
   function keyDownHandler(e: KeyboardEvent) {
-    keyPress[e.key] = true;
+    if (document.activeElement?.tagName !== 'INPUT') {
+      keyPress[e.key] = true;
+    }
   }
   const keyUpHandler = (e: KeyboardEvent) => {
-    keyPress[e.key] = false;
+    if (document.activeElement?.tagName !== 'INPUT') {
+      keyPress[e.key] = false;
+    }
   };
 
   const drawFrame = (
@@ -196,7 +204,7 @@ function MiniMe(): ReactElement {
     window.requestAnimationFrame(moveLoop);
   };
 
-  useEffect(() => {
+  const initDraw = () => {
     draw.canvas = canvasRef.current;
     draw.canvas.width = 576;
     draw.canvas.height = 562;
@@ -209,44 +217,46 @@ function MiniMe(): ReactElement {
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
     };
+  };
+
+  const addWindowEventListener = () => {
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
+  };
+
+  const removeWindowEventListener = () => {
+    window.removeEventListener('keydown', keyDownHandler);
+    window.removeEventListener('keyup', keyUpHandler);
+  };
+
+  useEffect(() => {
+    initDraw();
+    addWindowEventListener();
     return () => {
-      window.removeEventListener('keydown', keyDownHandler);
-      window.removeEventListener('keyup', keyUpHandler);
+      removeWindowEventListener();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    draw.canvas = canvasRef.current;
-    draw.canvas.width = 576;
-    draw.canvas.height = 562;
-    draw.ctx = draw.canvas.getContext('2d');
-    draw.ctx.textAlign = 'center';
-    draw.ctx.font = 'bold';
-    draw.character = document.createElement('img');
-    draw.character.setAttribute('src', user.character);
-    draw.character.onload = () => {
-      window.requestAnimationFrame(moveLoop);
-    };
-    window.addEventListener('keydown', keyDownHandler);
-    window.addEventListener('keyup', keyUpHandler);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    initDraw();
+    addWindowEventListener();
     return () => {
-      window.removeEventListener('keydown', keyDownHandler);
-      window.removeEventListener('keyup', keyUpHandler);
+      removeWindowEventListener();
     };
-  }, [user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, draw, keyDownHandler, keyUpHandler]);
 
   return (
-    <Wrapper>
-      <CharacterSelector />
+    <Column width="100%" alignItems="center">
+      <Row>
+        <CharacterSelector />
+        <UsernameSelector />
+      </Row>
       <CanvasWrapper>
-        <canvas ref={canvasRef} />;
+        <canvas ref={canvasRef} tabIndex={0} />;
       </CanvasWrapper>
-    </Wrapper>
+    </Column>
   );
 }
 
