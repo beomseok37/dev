@@ -1,7 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
 
-import { SideBarColorType } from 'src/types';
-
 import { Wrapper } from './style';
 
 interface props {
@@ -11,8 +9,10 @@ interface props {
   justifyContent?: string;
   alignItems?: string;
   transition?: boolean;
-  background?: SideBarColorType;
+  background?: string;
   padding?: string;
+  position?: string;
+  onClick?: () => void;
 }
 
 function Column({
@@ -24,6 +24,8 @@ function Column({
   transition,
   background,
   padding,
+  position,
+  onClick,
 }: props): ReactElement {
   return (
     <Wrapper
@@ -34,6 +36,8 @@ function Column({
       transition={transition!}
       background={background!}
       padding={padding!}
+      position={position!}
+      onClick={onClick!}
     >
       {children}
     </Wrapper>
@@ -48,6 +52,8 @@ Column.defaultProps = {
   transition: false,
   background: 'unset',
   padding: 'unset',
+  position: 'unset',
+  onClick: () => {},
 };
 
 export default Column;
