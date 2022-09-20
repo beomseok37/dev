@@ -23,8 +23,8 @@ function CharacterSelector(): ReactElement {
   const dispatch = useDispatch();
 
   return (
-    <Row width="576px" height="110px" background="#506EA5">
-      <Column height="120px">
+    <Row width="400px" height="110px" background="#506EA5">
+      <Column height="120px" alignItems="center">
         <Title>choose character</Title>
         <Row>
           <Column

@@ -38,7 +38,9 @@ function ReduxTodoList(): ReactElement {
           onChange={handleChange}
           value={todoInput}
         />
-        <Button onClick={handleAddTodo}>add</Button>
+        <Button onClick={handleAddTodo} leftMargin>
+          add
+        </Button>
       </Row>
       <Row padding="4px">
         <P>총 할 일:</P>
@@ -56,7 +58,7 @@ function ReduxTodoList(): ReactElement {
         <P>다한 일:</P>
         <Number done>{todoList.filter((todo) => todo.check).length}</Number>
         <P>개</P>
-        <Button color="pink" size="medium" onClick={handleRemoveAll}>
+        <Button color="pink" size="medium" onClick={handleRemoveAll} leftMargin>
           removeAll
         </Button>
       </Row>

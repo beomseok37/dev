@@ -33,7 +33,7 @@ function ThreeDimensionCube(): ReactElement {
     <Column>
       <Row>
         {sideList.map((side) => (
-          <Button key={side} onClick={() => handleClick(side)}>
+          <Button key={side} onClick={() => handleClick(side)} leftMargin>
             {side}
           </Button>
         ))}

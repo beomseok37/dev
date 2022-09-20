@@ -12,6 +12,8 @@ interface props {
   fullWidth?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   onMouseMove?: MouseEventHandler<HTMLButtonElement>;
+  leftMargin?: boolean;
+  margin?: string;
 }
 
 const MyButton = ({
@@ -20,6 +22,8 @@ const MyButton = ({
   color,
   outline,
   fullWidth,
+  leftMargin,
+  margin,
   ...rest
 }: props): React.ReactElement => {
   return (
@@ -29,6 +33,8 @@ const MyButton = ({
       color={color!}
       outline={outline!}
       fullWidth={fullWidth!}
+      leftMargin={leftMargin!}
+      margin={margin!}
       aria-label="my-button"
       {...rest}
     >
@@ -44,6 +50,8 @@ MyButton.defaultProps = {
   fullWidth: false,
   onClick: () => {},
   onMouseMove: () => {},
+  leftMargin: false,
+  margin: 'unset',
 };
 
 export default MyButton;

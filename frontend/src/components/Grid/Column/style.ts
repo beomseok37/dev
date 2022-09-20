@@ -9,6 +9,11 @@ interface props {
   background: string;
   padding: string;
   position: string;
+  border: string;
+  borderLeft: string;
+  borderRight: string;
+  borderTop: string;
+  borderBottom: string;
 }
 
 const Wrapper = styled.div<props>`
@@ -23,6 +28,11 @@ const Wrapper = styled.div<props>`
   background: ${({ background }) => background};
   padding: ${({ padding }) => padding};
   position: ${({ position }) => position};
+  border: ${({ border }) => border};
+  border-left: ${({ borderLeft }) => borderLeft};
+  border-right: ${({ borderRight }) => borderRight};
+  border-top: ${({ borderTop }) => borderTop};
+  border-bottom: ${({ borderBottom }) => borderBottom};
 `;
 
 // eslint-disable-next-line import/prefer-default-export
