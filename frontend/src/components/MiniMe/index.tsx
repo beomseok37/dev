@@ -1,4 +1,7 @@
 import { ReactElement, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import CharacterSelector from 'src/components/CharacterSelector';
+
 import {
   DIRECTION,
   DIRECTION_TERM,
@@ -9,6 +12,8 @@ import {
   FRAME_LIMIT,
   CYCLE_LOOP,
 } from 'src/constant/miniMe';
+
+import { selectUser } from 'src/redux/reducer/user';
 
 import { ArrowDirection } from 'src/types';
 
@@ -59,6 +64,7 @@ const calculateSX = (currentDirection: number, currentLoopIndex: number) => {
 // };
 
 function MiniMe(): ReactElement {
+  const user = useSelector(selectUser);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const position: any = {};
@@ -185,7 +191,7 @@ function MiniMe(): ReactElement {
       SRC_POSITION.Y,
       position.x,
       position.y,
-      'me'
+      user.username
     );
     window.requestAnimationFrame(moveLoop);
   };
@@ -196,10 +202,9 @@ function MiniMe(): ReactElement {
     draw.canvas.height = 562;
     draw.ctx = draw.canvas.getContext('2d');
     draw.ctx.textAlign = 'center';
-    // character.src = '/image/character.png';
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
-    draw.character.setAttribute('src', '/image/character1.png');
+    draw.character.setAttribute('src', user.character);
 
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
@@ -213,10 +218,33 @@ function MiniMe(): ReactElement {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    draw.canvas = canvasRef.current;
+    draw.canvas.width = 576;
+    draw.canvas.height = 562;
+    draw.ctx = draw.canvas.getContext('2d');
+    draw.ctx.textAlign = 'center';
+    draw.ctx.font = 'bold';
+    draw.character = document.createElement('img');
+    draw.character.setAttribute('src', user.character);
+    draw.character.onload = () => {
+      window.requestAnimationFrame(moveLoop);
+    };
+    window.addEventListener('keydown', keyDownHandler);
+    window.addEventListener('keyup', keyUpHandler);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      window.removeEventListener('keydown', keyDownHandler);
+      window.removeEventListener('keyup', keyUpHandler);
+    };
+  }, [user]);
+
   return (
     <Wrapper>
+      <CharacterSelector />
       <CanvasWrapper>
-        <canvas ref={canvasRef}>minime</canvas>;
+        <canvas ref={canvasRef} />;
       </CanvasWrapper>
     </Wrapper>
   );
