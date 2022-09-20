@@ -39,7 +39,6 @@ const ToggleButton = styled.button<ToggleButtonProps>`
 const IconCSS = css`
   &:hover {
     transform: rotate(0.1turn);
-    transition: all ease 0.5s;
   }
   transition: all ease 0.5s;
 `;

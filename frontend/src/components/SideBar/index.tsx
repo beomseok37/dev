@@ -36,7 +36,7 @@ function SideBar(): ReactElement {
       width={isOpen ? SIDE_BAR_OPEN_WIDTH : SIDE_BAR_CLOSE_WIDTH}
       height={SIDE_BAR_HEIGHT}
       alignItems="center"
-      background="sideBar"
+      background="#506EA5"
       transition
     >
       <ButtonWrapper>
