@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node ./src/app.ts",
-    "pm2": "pm2 start yarn --name \"backend\" -- start"
+    "start": "ts-node src/app.ts",
+    "pm2": "pm2 start yarn --name \"backend\" -- start",
+    "dev": "nodemon src/app.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
