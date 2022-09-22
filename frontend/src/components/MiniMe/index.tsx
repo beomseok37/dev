@@ -1,8 +1,10 @@
 import { ReactElement, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import CharacterSelector from 'src/components/CharacterSelector';
+import { ArrowDirection, SocketUserInfoType } from 'src/types';
+
 import UsernameSelector from 'src/components/UsernameSelector';
+import CharacterSelector from 'src/components/CharacterSelector';
 import Column from 'src/components/Grid/Column';
 import Row from 'src/components/Grid/Row';
 
@@ -17,9 +19,9 @@ import {
   CYCLE_LOOP,
 } from 'src/constant/miniMe';
 
-import { selectUser } from 'src/redux/reducer/user';
+import socket from 'src/socket';
 
-import { ArrowDirection } from 'src/types';
+import { selectUser } from 'src/redux/reducer/user';
 
 import { CanvasWrapper } from './style';
 
@@ -55,6 +57,46 @@ const calculateSX = (currentDirection: number, currentLoopIndex: number) => {
   );
 };
 
+const makeSocketUserInfo = (
+  socketID: string,
+  username: string,
+  x: number,
+  y: number,
+  character: string,
+  currentLoopIndex: number,
+  currentDirection: number
+) => {
+  return {
+    socketID,
+    username,
+    x,
+    y,
+    character,
+    currentLoopIndex,
+    currentDirection,
+  };
+};
+
+const makeUserInitializationByUsername = (
+  user: SocketUserInfoType,
+  username: string
+) => {
+  return {
+    ...user,
+    username,
+  };
+};
+
+const makeUserInitializationByCharacter = (
+  user: SocketUserInfoType,
+  character: string
+) => {
+  return {
+    ...user,
+    character,
+  };
+};
+
 // const userInfo = (
 //   socketId,
 //   userId,
@@ -74,6 +116,7 @@ function MiniMe(): ReactElement {
   const position: any = {};
   const draw: any = {};
   const keyPress: any = {};
+  const otherUsers: SocketUserInfoType[] = [];
 
   position.x = 250;
   position.y = 250;
@@ -95,6 +138,11 @@ function MiniMe(): ReactElement {
       keyPress[e.key] = false;
     }
   };
+
+  // const logoutHandler = (e: Event) => {
+  //   e.preventDefault();
+  //   socket.emit('informDisconnect', socket.id);
+  // };
 
   const drawFrame = (
     image: HTMLImageElement,
@@ -156,18 +204,18 @@ function MiniMe(): ReactElement {
           position.currentLoopIndex = 0;
         }
       }
-      // socket.emit(
-      //   'move',
-      //   userInfo(
-      //     socket.id,
-      //     user,
-      //     x,
-      //     y,
-      //     charSrc,
-      //     currentLoopIndex,
-      //     currentDirection
-      //   )
-      // );
+      socket.emit(
+        'move',
+        makeSocketUserInfo(
+          socket.id,
+          user.username,
+          position.x,
+          position.y,
+          user.character,
+          position.currentLoopIndex,
+          position.currentDirection
+        )
+      );
     } else {
       position.currentLoopIndex = 0;
     }
@@ -179,22 +227,22 @@ function MiniMe(): ReactElement {
     // });
 
     draw.ctx.fillStyle = '#111';
-    // users.forEach((user) => {
-    //   const otherCharacter = new Image();
-    //   otherCharacter.src = user.src;
-    //   drawFrame(
-    //     otherCharacter,
-    //     calculateSX(user.currentDirection, user.currentLoopIndex),
-    //     SRC_POSITION.Y,
-    //     user.x,
-    //     user.y,
-    //     user.userId
-    //   );
-    // });
+    otherUsers.forEach((otherUser) => {
+      const otherCharacter = document.createElement('img');
+      otherCharacter.src = otherUser.character;
+      drawFrame(
+        otherCharacter,
+        calculateSX(otherUser.currentDirection, otherUser.currentLoopIndex),
+        SRC_POSITION.Y,
+        otherUser.x,
+        otherUser.y,
+        otherUser.username
+      );
+    });
 
     draw.ctx.fillStyle = '#FFF';
     drawFrame(
-      draw.character!,
+      draw.character,
       calculateSX(position.currentDirection, position.currentLoopIndex),
       SRC_POSITION.Y,
       position.x,
@@ -212,7 +260,7 @@ function MiniMe(): ReactElement {
     draw.ctx.textAlign = 'center';
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
-    draw.character.setAttribute('src', user.character);
+    draw.character.src = user.character;
 
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);
@@ -232,20 +280,103 @@ function MiniMe(): ReactElement {
   useEffect(() => {
     initDraw();
     addWindowEventListener();
+    console.log('mount');
+    console.log(socket.id);
+    socket.on('requestUserInfo', (requestUser) => {
+      console.log('request from', requestUser.socketID);
+      socket.emit(
+        'sendMyInfo',
+        makeSocketUserInfo(
+          socket.id,
+          user.username,
+          position.x,
+          position.y,
+          user.character,
+          position.currentLoopIndex,
+          position.currentDirection
+        ),
+        requestUser.socketID
+      );
+      otherUsers.push(requestUser);
+    });
+
+    socket.on('responseConnectedUserInfo', (connectedUser) => {
+      console.log(connectedUser.socketID);
+      otherUsers.push(connectedUser);
+    });
+
+    socket.on('move', (socketUserInfo: SocketUserInfoType) => {
+      Array(otherUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (otherUsers[index].socketID === socketUserInfo.socketID) {
+            otherUsers[index] = socketUserInfo;
+          }
+        });
+    });
+
+    socket.on('broadcastDisconnect', (socketID) => {
+      console.log('broadcast disconnect', socketID);
+      let userIndex = 0;
+      Array(otherUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (otherUsers[index].socketID === socketID) {
+            userIndex = index;
+          }
+        });
+      otherUsers.splice(userIndex, 1);
+    });
+
+    socket.on('changeCharacter', (socketID, character) => {
+      Array(otherUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (otherUsers[index].socketID === socketID) {
+            otherUsers[index] = makeUserInitializationByCharacter(
+              otherUsers[index],
+              character
+            );
+          }
+        });
+    });
+
+    socket.on('changeUsername', (socketID, username) => {
+      Array(otherUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (otherUsers[index].socketID === socketID) {
+            otherUsers[index] = makeUserInitializationByUsername(
+              otherUsers[index],
+              username
+            );
+          }
+        });
+    });
+
     return () => {
       removeWindowEventListener();
+      socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   useEffect(() => {
-    initDraw();
-    addWindowEventListener();
     return () => {
-      removeWindowEventListener();
+      socket.emit('informDisconnect', socket.id);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, draw, keyDownHandler, keyUpHandler]);
+  }, []);
+
+  // useEffect(() => {
+  //   initDraw();
+  //   addWindowEventListener();
+
+  //   return () => {
+  //     removeWindowEventListener();
+  //     socket.removeAllListeners();
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [user]);
 
   return (
     <Column width="100%" alignItems="center">
