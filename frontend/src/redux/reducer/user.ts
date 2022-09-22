@@ -10,7 +10,7 @@ import {
   CHARACTERURL3,
   CHARACTERURL4,
   CHARACTERURL5,
-} from 'src/constant/charater';
+} from 'src/constant/character';
 
 interface StateType {
   user: UserType;
