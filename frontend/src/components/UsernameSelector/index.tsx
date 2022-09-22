@@ -5,6 +5,8 @@ import Column from 'src/components/Grid/Column';
 import Input from 'src/components/base/Input';
 import Button from 'src/components/base/Button';
 
+import socket from 'src/socket';
+
 import { selectUser, changeUsername } from 'src/redux/reducer/user';
 
 import { Title } from './style';
@@ -19,6 +21,7 @@ function UsernameSelector(): ReactElement {
 
   const handleClick = () => {
     dispatch(changeUsername(username));
+    socket.emit('changeUsername', socket.id, username);
   };
 
   return (

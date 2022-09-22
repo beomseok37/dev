@@ -12,7 +12,9 @@ import {
   CHARACTERURL3,
   CHARACTERURL4,
   CHARACTERURL5,
-} from 'src/constant/charater';
+} from 'src/constant/character';
+
+import socket from 'src/socket';
 
 import { selectUser, changeCharacter } from 'src/redux/reducer/user';
 
@@ -35,6 +37,7 @@ function CharacterSelector(): ReactElement {
             onClick={() => {
               if (user.character !== CHARACTERURL1) {
                 dispatch(changeCharacter(1));
+                socket.emit('changeCharacter', socket.id, CHARACTERURL1);
               }
             }}
           >
@@ -62,6 +65,7 @@ function CharacterSelector(): ReactElement {
             onClick={() => {
               if (user.character !== CHARACTERURL2) {
                 dispatch(changeCharacter(2));
+                socket.emit('changeCharacter', socket.id, CHARACTERURL2);
               }
             }}
           >
