@@ -11,6 +11,7 @@ const socket: Socket<ServerToClientType, ClientToServerType> = io(
 );
 
 socket.on('connect', () => {
+  console.log('client socket connected');
   socket.emit('requestConnectedUserInfo', {
     socketID: socket.id,
     username: 'me',
