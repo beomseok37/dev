@@ -7,7 +7,7 @@ const socketURL = process.env.REACT_APP_SOCKET_URL;
 const socket: Socket<ServerToClientType, ClientToServerType> = io(socketURL, {
   reconnectionDelayMax: 10000,
   withCredentials: true,
-  path: 'socket.io',
+  path: '/socket.io',
   transports: ['websocket'],
   secure: true,
 });
