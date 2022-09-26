@@ -2,13 +2,17 @@ import { io, Socket } from 'socket.io-client';
 import { DIRECTION } from 'src/constant/miniMe';
 import { ServerToClientType, ClientToServerType } from 'src/types';
 
-const socket: Socket<ServerToClientType, ClientToServerType> = io(
-  'http://localhost:8000',
-  {
-    reconnectionDelayMax: 10000,
-    withCredentials: true,
-  }
-);
+const socketURL = process.env.REACT_APP_SOCKET_URL;
+
+const socket: Socket<ServerToClientType, ClientToServerType> = io(socketURL, {
+  reconnectionDelayMax: 10000,
+  withCredentials: true,
+  path: 'socket.io',
+  transports: ['websocket'],
+  secure: true,
+});
+
+socket.connect();
 
 socket.on('connect', () => {
   console.log('client socket connected');
