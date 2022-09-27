@@ -2,7 +2,7 @@ import { io, Socket } from 'socket.io-client';
 import { DIRECTION } from 'src/constant/miniMe';
 import { ServerToClientType, ClientToServerType } from 'src/types';
 
-const socketURL = process.env.REACT_APP_SOCKET_URL;
+const socketURL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 const socket: Socket<ServerToClientType, ClientToServerType> = io(socketURL, {
   reconnectionDelayMax: 10000,
