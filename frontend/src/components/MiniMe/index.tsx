@@ -280,10 +280,7 @@ function MiniMe(): ReactElement {
   useEffect(() => {
     initDraw();
     addWindowEventListener();
-    console.log('mount');
-    console.log(socket.id);
     socket.on('requestUserInfo', (requestUser) => {
-      console.log('request from', requestUser.socketID);
       socket.emit(
         'sendMyInfo',
         makeSocketUserInfo(
@@ -301,7 +298,6 @@ function MiniMe(): ReactElement {
     });
 
     socket.on('responseConnectedUserInfo', (connectedUser) => {
-      console.log(connectedUser.socketID);
       otherUsers.push(connectedUser);
     });
 
