@@ -97,18 +97,6 @@ const makeUserInitializationByCharacter = (
   };
 };
 
-// const userInfo = (
-//   socketId,
-//   userId,
-//   x,
-//   y,
-//   src,
-//   currentLoopIndex,
-//   currentDirection
-// ) => {
-//   return { socketId, userId, x, y, src, currentLoopIndex, currentDirection };
-// };
-
 function MiniMe(): ReactElement {
   const user = useSelector(selectUser);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -128,21 +116,16 @@ function MiniMe(): ReactElement {
   draw.frameCount = 0;
   draw.character = null;
 
-  function keyDownHandler(e: KeyboardEvent) {
+  const keyDownHandler = (e: KeyboardEvent) => {
     if (document.activeElement?.tagName !== 'INPUT') {
       keyPress[e.key] = true;
     }
-  }
+  };
   const keyUpHandler = (e: KeyboardEvent) => {
     if (document.activeElement?.tagName !== 'INPUT') {
       keyPress[e.key] = false;
     }
   };
-
-  // const logoutHandler = (e: Event) => {
-  //   e.preventDefault();
-  //   socket.emit('informDisconnect', socket.id);
-  // };
 
   const drawFrame = (
     image: HTMLImageElement,
@@ -312,7 +295,6 @@ function MiniMe(): ReactElement {
     });
 
     socket.on('broadcastDisconnect', (socketID) => {
-      console.log('broadcast disconnect', socketID);
       let userIndex = 0;
       Array(otherUsers.length)
         .fill('')
@@ -356,12 +338,6 @@ function MiniMe(): ReactElement {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  useEffect(() => {
-    return () => {
-      socket.emit('informDisconnect', socket.id);
-    };
-  }, []);
 
   // useEffect(() => {
   //   initDraw();
