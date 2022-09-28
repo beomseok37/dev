@@ -7,5 +7,4 @@ export default interface ClientToServerType {
   changeUsername: (socketID: string, username: string) => void;
   requestConnectedUserInfo: (user: SocketUserInfoType) => void;
   sendMyInfo: (user: SocketUserInfoType, socketID: string) => void;
-  informDisconnect: (socketID: string) => void;
 }
