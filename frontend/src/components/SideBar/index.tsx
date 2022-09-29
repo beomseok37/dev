@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Link from 'next/link';
 import { ReactElement, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
@@ -12,14 +12,7 @@ import {
 
 import { ButtonWrapper, ToggleButton, IconCSS, Anchor } from './style';
 
-const menuList = [
-  'button',
-  'box',
-  'redux',
-  'react-hooks',
-  'animation',
-  'dropdown-menu',
-];
+const menuList = ['base', 'redux', 'react-hooks', 'animation', 'dropdown-menu'];
 
 function SideBar(): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +21,6 @@ function SideBar(): ReactElement {
     setIsOpen(!isOpen);
   };
 
-  const handleRoute = (path: string) => {
-    Router.push(`${path}`);
-  };
   return (
     <Column
       width={isOpen ? SIDE_BAR_OPEN_WIDTH : SIDE_BAR_CLOSE_WIDTH}
@@ -48,9 +38,9 @@ function SideBar(): ReactElement {
       {isOpen && (
         <>
           {menuList.map((menu) => (
-            <Anchor key={menu} onClick={() => handleRoute(menu)}>
-              {menu}
-            </Anchor>
+            <Link key={menu} href={`/${menu}`}>
+              <Anchor>{menu}</Anchor>
+            </Link>
           ))}
         </>
       )}
