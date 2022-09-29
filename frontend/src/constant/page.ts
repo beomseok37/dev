@@ -7,6 +7,7 @@ const REDUX_TODO_LIST_CONTENT = `redux를 이용해 todo list 만들기`;
 const REACT_HOOKS_PAGE_CONTENT = `react-hooks인 useMemo와 useCallback을 공부하는 페이지입니다.`;
 const ANIMIATION_PAGE_CONTENT = `transform, translate 공부`;
 const DROPDOWN_MENU_PAGE_CONTENT = `dropdown list 만들어보기`;
+const BASE_PAGE_CONTENT = `여러 컴포넌트들을 시도해보는 페이지 입니다.`;
 export {
   BOX_PAGE_CONTENT,
   BUTTON_PAGE_CONTENT,
@@ -15,4 +16,5 @@ export {
   REACT_HOOKS_PAGE_CONTENT,
   ANIMIATION_PAGE_CONTENT,
   DROPDOWN_MENU_PAGE_CONTENT,
+  BASE_PAGE_CONTENT,
 };
