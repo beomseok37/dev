@@ -108,19 +108,14 @@ const makeSocketUserInfo = (
 function MiniMe(): ReactElement {
   const user = useSelector(selectUser);
   const connectedUsers = useSelector(selectConnectedUsers);
-  const position = { ...useSelector(selectPosition) };
+  const position = JSON.parse(JSON.stringify(useSelector(selectPosition)));
+
   const dispatch = useDispatch();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // const position: any = { ...positionState };
   const draw: any = {};
   const keyPress: any = {};
-
-  // position.x = 250;
-  // position.y = 250;
-  // position.currentDirection = DIRECTION.FRONT;
-  // position.currentLoopIndex = 0;
 
   draw.canvas = null;
   draw.ctx = null;
