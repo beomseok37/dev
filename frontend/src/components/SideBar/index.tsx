@@ -12,7 +12,7 @@ import {
 
 import { ButtonWrapper, ToggleButton, IconCSS, Anchor } from './style';
 
-const menuList = ['base', 'redux', 'react-hooks', 'animation', 'dropdown-menu'];
+const menuList = ['home', 'base', 'redux', 'react-hooks', 'animation'];
 
 function SideBar(): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ function SideBar(): ReactElement {
       {isOpen && (
         <>
           {menuList.map((menu) => (
-            <Link key={menu} href={`/${menu}`}>
+            <Link key={menu} href={menu === 'home' ? '/' : `/${menu}`}>
               <Anchor>{menu}</Anchor>
             </Link>
           ))}
