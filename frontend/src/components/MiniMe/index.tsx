@@ -338,7 +338,7 @@ function MiniMe(): ReactElement {
         <UsernameSelector />
       </Row>
       <CanvasWrapper>
-        <canvas ref={canvasRef} tabIndex={0} />;
+        <canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
     </Column>
   );
