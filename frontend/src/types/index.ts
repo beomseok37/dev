@@ -9,6 +9,7 @@ import UserType from './user';
 import SocketUserInfoType from './socketUserInfo';
 import ServerToClientType from './serverToClient';
 import ClientToServerType from './clientToServer';
+import PositionType from './position';
 
 export type {
   ButtonColorType,
@@ -22,4 +23,5 @@ export type {
   SocketUserInfoType,
   ServerToClientType,
   ClientToServerType,
+  PositionType,
 };
