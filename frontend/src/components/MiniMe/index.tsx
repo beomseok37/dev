@@ -220,7 +220,7 @@ function MiniMe(): ReactElement {
     //   ctx.drawImage(newObject, object.x, object.y);
     // });
 
-    draw.ctx.fillStyle = '#111';
+    draw.ctx.fillStyle = '#41A541';
     connectedUsers.forEach((otherUser) => {
       const otherCharacter = document.createElement('img');
       otherCharacter.src = otherUser.character;
@@ -234,7 +234,7 @@ function MiniMe(): ReactElement {
       );
     });
 
-    draw.ctx.fillStyle = '#FFF';
+    draw.ctx.fillStyle = '#FFEB46';
     drawFrame(
       draw.character,
       calculateSX(position.currentDirection, position.currentLoopIndex),
