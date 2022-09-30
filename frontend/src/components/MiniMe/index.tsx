@@ -250,6 +250,18 @@ function MiniMe(): ReactElement {
     };
   };
 
+  const checkIndex = (socketID: string) => {
+    let userIndex = connectedUsers.length;
+    Array(connectedUsers.length)
+      .fill('')
+      .forEach((sth, index) => {
+        if (connectedUsers[index].socketID === socketID) {
+          userIndex = index;
+        }
+      });
+    return userIndex;
+  };
+
   const addWindowEventListener = () => {
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
@@ -289,7 +301,12 @@ function MiniMe(): ReactElement {
           ),
           requestUser.socketID
         );
-        connectedUsers.push(requestUser);
+        const index = checkIndex(requestUser.socketID);
+        if (index === connectedUsers.length) {
+          connectedUsers.push(requestUser);
+        } else {
+          connectedUsers[index] = requestUser;
+        }
       });
 
       socket.on('responseConnectedUserInfo', (connectedUser) => {
@@ -297,13 +314,7 @@ function MiniMe(): ReactElement {
       });
 
       socket.on('move', (socketUserInfo: SocketUserInfoType) => {
-        Array(connectedUsers.length)
-          .fill('')
-          .forEach((sth, index) => {
-            if (connectedUsers[index].socketID === socketUserInfo.socketID) {
-              connectedUsers[index] = socketUserInfo;
-            }
-          });
+        connectedUsers[checkIndex(socketUserInfo.socketID)] = socketUserInfo;
       });
 
       socket.on('broadcastDisconnect', (socketID) => {
