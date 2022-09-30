@@ -4,13 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from 'src/redux/store';
 import { UserType } from 'src/types';
 
-import {
-  CHARACTERURL1,
-  CHARACTERURL2,
-  CHARACTERURL3,
-  CHARACTERURL4,
-  CHARACTERURL5,
-} from 'src/constant/character';
+import { CHARACTERURL1 } from 'src/constant/character';
 
 interface StateType {
   user: UserType;
@@ -27,26 +21,8 @@ export const userSlice = createSlice({
     changeUsername: (state, action: PayloadAction<string>) => {
       state.user.username = action.payload;
     },
-    changeCharacter: (state, action: PayloadAction<number>) => {
-      switch (action.payload) {
-        case 1:
-          state.user.character = CHARACTERURL1;
-          break;
-        case 2:
-          state.user.character = CHARACTERURL2;
-          break;
-        case 3:
-          state.user.character = CHARACTERURL3;
-          break;
-        case 4:
-          state.user.character = CHARACTERURL4;
-          break;
-        case 5:
-          state.user.character = CHARACTERURL5;
-          break;
-        default:
-          break;
-      }
+    changeCharacter: (state, action: PayloadAction<string>) => {
+      state.user.character = action.payload;
     },
   },
 });
