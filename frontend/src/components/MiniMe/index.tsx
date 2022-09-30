@@ -20,9 +20,8 @@ import socket from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
 import CharacterSetModal from 'src/components/CharacterSetModal';
-import Button from 'src/components/base/Button';
 
-import { CanvasWrapper } from './style';
+import { CanvasWrapper, Button } from './style';
 
 // const chooseBuildDirection = (x: number, y: number, direction: number) => {
 //   if (direction === DIRECTION.FRONT) {
@@ -346,12 +345,10 @@ function MiniMe(): ReactElement {
 
   return isSelected ? (
     <Column width="700px" alignItems="center" padding="40px">
-      <Button onClick={handleOpenSelectModal} fullWidth>
-        update character
-      </Button>
       <CanvasWrapper>
         <canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
+      <Button onClick={handleOpenSelectModal}>change avatar</Button>
     </Column>
   ) : (
     <CharacterSetModal handleSave={handleSave} />
