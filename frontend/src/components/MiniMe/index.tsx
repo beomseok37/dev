@@ -264,82 +264,66 @@ function MiniMe(): ReactElement {
     if (isSelected) {
       initDraw();
       addWindowEventListener();
-    }
 
-    socket.connect();
-
-    socket.on('connect', () => {
       socket.emit('requestConnectedUserInfo', {
         socketID: socket.id,
-        username: 'me',
+        username: user.username,
         x: 250,
         y: 250,
-        character: '/image/character1.png',
+        character: user.character,
         currentLoopIndex: DIRECTION.FRONT,
         currentDirection: 0,
       });
-    });
 
-    socket.on('requestUserInfo', (requestUser) => {
-      socket.emit(
-        'sendMyInfo',
-        makeSocketUserInfo(
-          socket.id,
-          user.username,
-          position.x,
-          position.y,
-          user.character,
-          position.currentLoopIndex,
-          position.currentDirection
-        ),
-        requestUser.socketID
-      );
-      connectedUsers.push(requestUser);
-    });
+      socket.on('requestUserInfo', (requestUser) => {
+        socket.emit(
+          'sendMyInfo',
+          makeSocketUserInfo(
+            socket.id,
+            user.username,
+            position.x,
+            position.y,
+            user.character,
+            position.currentLoopIndex,
+            position.currentDirection
+          ),
+          requestUser.socketID
+        );
+        connectedUsers.push(requestUser);
+      });
 
-    socket.on('responseConnectedUserInfo', (connectedUser) => {
-      connectedUsers.push(connectedUser);
-    });
+      socket.on('responseConnectedUserInfo', (connectedUser) => {
+        connectedUsers.push(connectedUser);
+      });
 
-    socket.on('move', (socketUserInfo: SocketUserInfoType) => {
-      Array(connectedUsers.length)
-        .fill('')
-        .forEach((sth, index) => {
-          if (connectedUsers[index].socketID === socketUserInfo.socketID) {
-            connectedUsers[index] = socketUserInfo;
-          }
-        });
-    });
+      socket.on('move', (socketUserInfo: SocketUserInfoType) => {
+        Array(connectedUsers.length)
+          .fill('')
+          .forEach((sth, index) => {
+            if (connectedUsers[index].socketID === socketUserInfo.socketID) {
+              connectedUsers[index] = socketUserInfo;
+            }
+          });
+      });
 
-    socket.on('broadcastDisconnect', (socketID) => {
-      let userIndex = 0;
-      Array(connectedUsers.length)
-        .fill('')
-        .forEach((sth, index) => {
-          if (connectedUsers[index].socketID === socketID) {
-            userIndex = index;
-          }
-        });
-      connectedUsers.splice(userIndex, 1);
-    });
-
+      socket.on('broadcastDisconnect', (socketID) => {
+        let userIndex = 0;
+        Array(connectedUsers.length)
+          .fill('')
+          .forEach((sth, index) => {
+            if (connectedUsers[index].socketID === socketID) {
+              userIndex = index;
+            }
+          });
+        connectedUsers.splice(userIndex, 1);
+      });
+    }
     return () => {
       removeWindowEventListener();
       socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSelected]);
-
-  // useEffect(() => {
-  //   initDraw();
-  //   addWindowEventListener();
-
-  //   return () => {
-  //     removeWindowEventListener();
-  //     socket.removeAllListeners();
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [user]);
 
   const handleSave = () => {
     setIsSelected(true);
