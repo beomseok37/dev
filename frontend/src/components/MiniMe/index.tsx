@@ -1,9 +1,10 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
 import Column from 'src/components/Grid/Column';
+import CharacterSetModal from 'src/components/CharacterSetModal';
 
 import {
   DIRECTION,
@@ -19,7 +20,7 @@ import {
 import socket from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
-import CharacterSetModal from 'src/components/CharacterSetModal';
+import { changeUsernameInChat, chatIn } from 'src/redux/reducer/chat';
 
 import { CanvasWrapper, Button } from './style';
 
@@ -97,6 +98,7 @@ const makeSocketUserInfo = (
 
 function MiniMe(): ReactElement {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isSelected, setIsSelected] = useState(false);
 
@@ -312,7 +314,7 @@ function MiniMe(): ReactElement {
         connectedUsers.push(connectedUser);
       });
 
-      socket.on('move', (socketUserInfo: SocketUserInfoType) => {
+      socket.on('move', (socketUserInfo) => {
         connectedUsers[checkIndex(socketUserInfo.socketID)] = socketUserInfo;
       });
 
@@ -326,6 +328,14 @@ function MiniMe(): ReactElement {
             }
           });
         connectedUsers.splice(userIndex, 1);
+      });
+
+      socket.on('broadcastMessage', (socketID, who, message) => {
+        dispatch(chatIn({ who, message, socketID }));
+      });
+
+      socket.on('broadcastChangeUsername', (socketID, who) => {
+        dispatch(changeUsernameInChat({ socketID, who }));
       });
     }
     return () => {

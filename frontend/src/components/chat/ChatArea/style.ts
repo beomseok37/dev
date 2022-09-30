@@ -1,18 +1,81 @@
 import styled from '@emotion/styled';
 
-interface Props {
+interface WrapperProps {
   open: boolean;
 }
 
-const Wrapper = styled.div<Props>`
+interface ChatProps {
+  isMine: boolean;
+}
+
+const Wrapper = styled.div<WrapperProps>`
+  display: flex;
+  flex-direction: column;
   position: fixed;
   right: ${({ open }) => (open ? '0' : '-300px')};
   width: 300px;
   height: 100%;
-  border-left: ${({ open }) => (open ? '1px solid #000' : 'unset')};
+  background: #506ea5;
   width: 300px;
   transition: all ease 1s;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export { Wrapper };
+const ChatListWrapper = styled.div`
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+`;
+
+const Button = styled.button`
+  color: #fff;
+  width: 45px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-image: linear-gradient(45deg, #323c73 50%, #506ea5 50%);
+  background-position: 100%;
+  background-size: 400%;
+  &:hover {
+    cursor: pointer;
+    background-position: 0;
+    transition: background ease-in-out 0.3s;
+  }
+`;
+const ChatWrapper = styled.div<ChatProps>`
+  position: relative;
+  display: flex;
+  justify-content: ${({ isMine }) => (isMine ? 'flex-end' : 'flex-start')};
+  ${({ isMine }) => (isMine ? 'padding-right:25px' : 'padding-left:15px')};
+  width: 300px;
+  box-sizing: border-box;
+  margin: 10px 0;
+`;
+
+const Chat = styled.p<ChatProps>`
+  padding: 8px;
+  background: #fff;
+  color: #000;
+  border-radius: 6px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    ${({ isMine }) =>
+      isMine
+        ? `
+    right:19px;
+    border-left: 7px solid #fff;
+    border-bottom: 7px solid transparent;
+    `
+        : `
+    left: 8px;
+    border-right: 7px solid #fff;
+    border-bottom: 7px solid transparent;
+    `}
+  }
+`;
+
+export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat };
