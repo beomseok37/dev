@@ -30,14 +30,6 @@ io.on('connection', (socket) => {
     console.log('fromClientResponse', socketID);
     io.to(socketID).emit('responseConnectedUserInfo', user);
   });
-  socket.on('changeCharacter', (socketID, character) => {
-    console.log('characterChange', socketID);
-    socket.broadcast.emit('changeCharacter', socketID, character);
-  });
-  socket.on('changeUsername', (socketID, username) => {
-    console.log('changeUsername', socketID);
-    socket.broadcast.emit('changeUsername', socketID, username);
-  });
   socket.on('disconnect', () => {
     console.log('disconnect');
     socket.broadcast.emit('broadcastDisconnect', socket.id);
