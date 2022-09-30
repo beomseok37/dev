@@ -1,42 +1,32 @@
-import { ChangeEvent, ReactElement, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { ChangeEvent, Dispatch, ReactElement, SetStateAction } from 'react';
 
+import Row from 'src/components/Grid/Row';
 import Column from 'src/components/Grid/Column';
 import Input from 'src/components/base/Input';
-import Button from 'src/components/base/Button';
-
-import socket from 'src/socket';
-
-import { selectUser, changeUsername } from 'src/redux/reducer/user';
 
 import { Title } from './style';
 
-function UsernameSelector(): ReactElement {
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  const [username, setUsername] = useState(user.username);
+interface Props {
+  usernameBind: [string, Dispatch<SetStateAction<string>>];
+}
+
+function UsernameSelector({ usernameBind }: Props): ReactElement {
+  const [username, setUsername] = usernameBind;
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
   };
 
-  const handleClick = () => {
-    dispatch(changeUsername(username));
-    socket.emit('changeUsername', socket.id, username);
-  };
-
   return (
-    <Column
-      width="176px"
-      background="#506EA5"
-      alignItems="center"
-      borderLeft="1px solid white"
-    >
-      <Title>input username</Title>
-      <Input value={username} onChange={handleChange} />
-      <Button onClick={handleClick} margin="8px">
-        save
-      </Button>
-    </Column>
+    <Row width="500px" alignItems="center">
+      <Column width="100px" height="100%" borderRight="1px solid #fff">
+        <Title>input</Title>
+        <Title>username</Title>
+      </Column>
+      <Row padding="0 0 0 20px">
+        <Input value={username} onChange={handleChange} width="150px" />
+      </Row>
+    </Row>
   );
 }
 

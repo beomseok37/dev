@@ -1,12 +1,9 @@
-import { ReactElement, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { ReactElement, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
-import UsernameSelector from 'src/components/UsernameSelector';
-import CharacterSelector from 'src/components/CharacterSelector';
 import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
 
 import {
   DIRECTION,
@@ -22,15 +19,9 @@ import {
 import socket from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
-import {
-  selectConnectedUsers,
-  login,
-  logout,
-  move,
-  changeCharacter,
-  changeUsername,
-} from 'src/redux/reducer/connectedUsers';
-import { selectPosition, savePosition } from 'src/redux/reducer/position';
+import CharacterSetModal from 'src/components/CharacterSetModal';
+import Button from 'src/components/base/Button';
+
 import { CanvasWrapper } from './style';
 
 // const chooseBuildDirection = (x: number, y: number, direction: number) => {
@@ -107,15 +98,18 @@ const makeSocketUserInfo = (
 
 function MiniMe(): ReactElement {
   const user = useSelector(selectUser);
-  const connectedUsers = useSelector(selectConnectedUsers);
-  const position = JSON.parse(JSON.stringify(useSelector(selectPosition)));
-
-  const dispatch = useDispatch();
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isSelected, setIsSelected] = useState(false);
 
+  const position: any = {};
   const draw: any = {};
   const keyPress: any = {};
+  const connectedUsers: SocketUserInfoType[] = [];
+
+  position.x = 250;
+  position.y = 250;
+  position.currentDirection = DIRECTION.FRONT;
+  position.currentLoopIndex = 0;
 
   draw.canvas = null;
   draw.ctx = null;
@@ -267,8 +261,25 @@ function MiniMe(): ReactElement {
   };
 
   useEffect(() => {
-    initDraw();
-    addWindowEventListener();
+    if (isSelected) {
+      initDraw();
+      addWindowEventListener();
+    }
+
+    socket.connect();
+
+    socket.on('connect', () => {
+      socket.emit('requestConnectedUserInfo', {
+        socketID: socket.id,
+        username: 'me',
+        x: 250,
+        y: 250,
+        character: '/image/character1.png',
+        currentLoopIndex: DIRECTION.FRONT,
+        currentDirection: 0,
+      });
+    });
+
     socket.on('requestUserInfo', (requestUser) => {
       socket.emit(
         'sendMyInfo',
@@ -283,34 +294,33 @@ function MiniMe(): ReactElement {
         ),
         requestUser.socketID
       );
-
-      dispatch(savePosition(position));
-      dispatch(login(requestUser));
+      connectedUsers.push(requestUser);
     });
 
     socket.on('responseConnectedUserInfo', (connectedUser) => {
-      dispatch(savePosition(position));
-      dispatch(login(connectedUser));
+      connectedUsers.push(connectedUser);
     });
 
     socket.on('move', (socketUserInfo: SocketUserInfoType) => {
-      dispatch(savePosition(position));
-      dispatch(move(socketUserInfo));
+      Array(connectedUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (connectedUsers[index].socketID === socketUserInfo.socketID) {
+            connectedUsers[index] = socketUserInfo;
+          }
+        });
     });
 
     socket.on('broadcastDisconnect', (socketID) => {
-      dispatch(savePosition(position));
-      dispatch(logout(socketID));
-    });
-
-    socket.on('changeCharacter', (socketID, character) => {
-      dispatch(savePosition(position));
-      dispatch(changeCharacter({ socketID, character }));
-    });
-
-    socket.on('changeUsername', (socketID, username) => {
-      dispatch(savePosition(position));
-      dispatch(changeUsername({ socketID, username }));
+      let userIndex = 0;
+      Array(connectedUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (connectedUsers[index].socketID === socketID) {
+            userIndex = index;
+          }
+        });
+      connectedUsers.splice(userIndex, 1);
     });
 
     return () => {
@@ -318,7 +328,7 @@ function MiniMe(): ReactElement {
       socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, connectedUsers]);
+  }, [isSelected]);
 
   // useEffect(() => {
   //   initDraw();
@@ -331,16 +341,25 @@ function MiniMe(): ReactElement {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [user]);
 
-  return (
-    <Column width="100%" alignItems="center">
-      <Row>
-        <CharacterSelector />
-        <UsernameSelector />
-      </Row>
+  const handleSave = () => {
+    setIsSelected(true);
+  };
+
+  const handleOpenSelectModal = () => {
+    setIsSelected(false);
+  };
+
+  return isSelected ? (
+    <Column width="700px" alignItems="center" padding="40px">
+      <Button onClick={handleOpenSelectModal} fullWidth>
+        update character
+      </Button>
       <CanvasWrapper>
         <canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
     </Column>
+  ) : (
+    <CharacterSetModal handleSave={handleSave} />
   );
 }
 
