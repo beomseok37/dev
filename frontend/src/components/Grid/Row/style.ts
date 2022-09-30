@@ -26,11 +26,14 @@ const Wrapper = styled.div<props>`
   padding: ${({ padding }) => padding};
   background: ${({ background }) => background};
   position: ${({ position }) => position};
-  border: ${({ border }) => border};
-  border-left: ${({ borderLeft }) => borderLeft};
-  border-right: ${({ borderRight }) => borderRight};
-  border-top: ${({ borderTop }) => borderTop};
-  border-bottom: ${({ borderBottom }) => borderBottom};
+  border-left: ${({ border, borderLeft }) =>
+    border !== 'unset' ? border : borderLeft};
+  border-right: ${({ border, borderRight }) =>
+    border !== 'unset' ? border : borderRight};
+  border-top: ${({ border, borderTop }) =>
+    border !== 'unset' ? border : borderTop};
+  border-bottom: ${({ border, borderBottom }) =>
+    border !== 'unset' ? border : borderBottom};
 `;
 
 // eslint-disable-next-line import/prefer-default-export
