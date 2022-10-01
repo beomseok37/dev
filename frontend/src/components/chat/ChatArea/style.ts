@@ -14,11 +14,11 @@ const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   position: fixed;
-  right: ${({ open }) => (open ? '0' : '-300px')};
-  width: 300px;
+  right: ${({ open }) => (open ? '0' : '-400px')};
+  width: 400px;
   height: 100%;
   background: #506ea5;
-  width: 300px;
+  // width: 300px;
   transition: all ease 1s;
 `;
 
@@ -51,7 +51,7 @@ const ChatWrapper = styled.div<ChatProps>`
   display: flex;
   justify-content: ${({ isMine }) => (isMine ? 'flex-end' : 'flex-start')};
   ${({ isMine }) => (isMine ? 'padding-right:25px' : 'padding-left:10px')};
-  width: 300px;
+  width: 400px;
   box-sizing: border-box;
   margin: 10px 0;
 `;
@@ -61,13 +61,16 @@ const Chat = styled.p<ChatProps>`
   background: #fff;
   color: #000;
   border-radius: 6px;
+  width: fit-content;
+  max-width: 250px;
+  word-break: break-all;
   ${({ isMine, checkSameUser }) =>
     !isMine ? (checkSameUser ? 'margin-left:45px;' : 'margin-left:5px;') : ''}
 
   &::after {
     position: absolute;
     content: '';
-    ${({ isMine }) =>
+    ${({ isMine, checkSameUser }) =>
       isMine
         ? `
     right:20px;
@@ -75,7 +78,8 @@ const Chat = styled.p<ChatProps>`
     border-bottom: 7px solid transparent;
     `
         : `
-    left: 50px;
+    left: 49px;
+    ${!checkSameUser && 'top:30px;'}
     border-right: 7px solid #fff;
     border-bottom: 7px solid transparent;
     `}
