@@ -6,7 +6,7 @@ import Page from 'src/components/Page';
 
 import { BUTTON_PAGE_CONTENT } from 'src/constant/page';
 
-import { ButtonGroup } from 'src/styles/pages';
+import { ButtonGroup, FloatButton } from 'src/styles/pages';
 
 const ButtonPage: NextPage = () => {
   return (
@@ -61,6 +61,7 @@ const ButtonPage: NextPage = () => {
           </Button>
         </ButtonGroup>
       </AppBlock>
+      <FloatButton>float button</FloatButton>
     </Page>
   );
 };

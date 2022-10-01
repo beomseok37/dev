@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Input from 'src/components/base/Input';
 import Row from 'src/components/Grid/Row';
-import CharacterImage from 'src/components/chat/CharacterImage';
+import CharacterImage from 'src/components/CharacterImage';
 import Column from 'src/components/Grid/Column';
 
 import { selectChatList, chatIn } from 'src/redux/reducer/chat';

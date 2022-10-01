@@ -34,6 +34,7 @@ const Wrapper = styled.div<props>`
     border !== 'unset' ? border : borderTop};
   border-bottom: ${({ border, borderBottom }) =>
     border !== 'unset' ? border : borderBottom};
+  box-sizing: border-box;
 `;
 
 // eslint-disable-next-line import/prefer-default-export
