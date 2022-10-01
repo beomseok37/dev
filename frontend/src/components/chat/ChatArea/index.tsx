@@ -52,7 +52,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
     if (chatListRef.current) {
       chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
     }
-  }, []);
+  }, [chatList]);
 
   useEffect(() => {
     if (open) {
