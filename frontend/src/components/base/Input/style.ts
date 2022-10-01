@@ -10,6 +10,10 @@ const StyledInput = styled.input<props>`
   border: 1px solid #666;
   width: ${({ width }) => width};
   font-size: 16px;
+
+  &:focus {
+    outline: unset;
+  }
 `;
 
 // eslint-disable-next-line import/prefer-default-export
