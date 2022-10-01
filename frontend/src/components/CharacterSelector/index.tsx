@@ -17,9 +17,13 @@ import { Title, ToggleButtonWrapper, ImageWrapper } from './style';
 
 interface Props {
   characterBind: [string, Dispatch<SetStateAction<string>>];
+  handleFocus: () => void;
 }
 
-function CharacterSelector({ characterBind }: Props): ReactElement {
+function CharacterSelector({
+  characterBind,
+  handleFocus,
+}: Props): ReactElement {
   const [character, setCharacter] = characterBind;
 
   const characterURLList = [
@@ -49,6 +53,7 @@ function CharacterSelector({ characterBind }: Props): ReactElement {
               if (character !== characterURL) {
                 setCharacter(characterURL);
               }
+              handleFocus();
             }}
           >
             <ToggleButtonWrapper>
