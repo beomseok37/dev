@@ -37,7 +37,6 @@ const ChatArea = ({ open }: Props): ReactElement => {
   const user = useSelector(selectUser);
   const chatList = useSelector(selectChatList);
   const dispatch = useDispatch();
-  console.log(chatList);
   const chatListRef = useRef<HTMLDivElement>(null);
   const chatInputRef = useRef<HTMLInputElement>(null);
 

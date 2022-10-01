@@ -8,13 +8,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef(
-  ({ width, placeholder, onChange, value }: Props, ref) => {
+  ({ width, placeholder, onChange, onKeyUp, value }: Props, ref) => {
     return (
       <StyledInput
         type="text"
         width={width!}
         placeholder={placeholder}
         onChange={onChange}
+        onKeyUp={onKeyUp}
         value={value!}
         ref={ref as MutableRefObject<HTMLInputElement>}
       />
