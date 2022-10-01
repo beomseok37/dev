@@ -1,23 +1,26 @@
-import { ReactElement, InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, forwardRef, MutableRefObject } from 'react';
 
 import { StyledInput } from './style';
 
-interface props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   placeholder?: string;
 }
 
-function Input({ width, placeholder, onChange, value }: props): ReactElement {
-  return (
-    <StyledInput
-      type="text"
-      width={width!}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value!}
-    />
-  );
-}
+const Input = forwardRef(
+  ({ width, placeholder, onChange, value }: Props, ref) => {
+    return (
+      <StyledInput
+        type="text"
+        width={width!}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value!}
+        ref={ref as MutableRefObject<HTMLInputElement>}
+      />
+    );
+  }
+);
 
 Input.defaultProps = {
   width: '100px',

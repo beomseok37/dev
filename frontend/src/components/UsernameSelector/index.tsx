@@ -1,4 +1,10 @@
-import { ChangeEvent, Dispatch, ReactElement, SetStateAction } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  forwardRef,
+  SetStateAction,
+  useEffect,
+} from 'react';
 
 import Row from 'src/components/Grid/Row';
 import Column from 'src/components/Grid/Column';
@@ -8,26 +14,38 @@ import { Title } from './style';
 
 interface Props {
   usernameBind: [string, Dispatch<SetStateAction<string>>];
+  handleFocus: () => void;
 }
 
-function UsernameSelector({ usernameBind }: Props): ReactElement {
-  const [username, setUsername] = usernameBind;
+const UsernameSelector = forwardRef(
+  ({ usernameBind, handleFocus }: Props, ref) => {
+    const [username, setUsername] = usernameBind;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  };
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setUsername(e.currentTarget.value);
+    };
 
-  return (
-    <Row width="500px" alignItems="center">
-      <Column width="100px" height="100%" borderRight="1px solid #fff">
-        <Title>input</Title>
-        <Title>username</Title>
-      </Column>
-      <Row padding="0 0 0 20px">
-        <Input value={username} onChange={handleChange} width="150px" />
+    useEffect(() => {
+      handleFocus();
+    }, [handleFocus]);
+
+    return (
+      <Row width="500px" alignItems="center">
+        <Column width="100px" height="100%" borderRight="1px solid #fff">
+          <Title>input</Title>
+          <Title>username</Title>
+        </Column>
+        <Row padding="0 0 0 20px">
+          <Input
+            value={username}
+            onChange={handleChange}
+            width="150px"
+            ref={ref}
+          />
+        </Row>
       </Row>
-    </Row>
-  );
-}
+    );
+  }
+);
 
 export default UsernameSelector;

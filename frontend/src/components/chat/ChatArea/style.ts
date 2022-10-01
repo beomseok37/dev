@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import styled from '@emotion/styled';
 
 interface WrapperProps {
@@ -6,6 +7,7 @@ interface WrapperProps {
 
 interface ChatProps {
   isMine: boolean;
+  checkSameUser?: boolean;
 }
 
 const Wrapper = styled.div<WrapperProps>`
@@ -48,7 +50,7 @@ const ChatWrapper = styled.div<ChatProps>`
   position: relative;
   display: flex;
   justify-content: ${({ isMine }) => (isMine ? 'flex-end' : 'flex-start')};
-  ${({ isMine }) => (isMine ? 'padding-right:25px' : 'padding-left:15px')};
+  ${({ isMine }) => (isMine ? 'padding-right:25px' : 'padding-left:10px')};
   width: 300px;
   box-sizing: border-box;
   margin: 10px 0;
@@ -59,6 +61,8 @@ const Chat = styled.p<ChatProps>`
   background: #fff;
   color: #000;
   border-radius: 6px;
+  ${({ isMine, checkSameUser }) =>
+    !isMine ? (checkSameUser ? 'margin-left:45px;' : 'margin-left:5px;') : ''}
 
   &::after {
     position: absolute;
@@ -66,16 +70,24 @@ const Chat = styled.p<ChatProps>`
     ${({ isMine }) =>
       isMine
         ? `
-    right:19px;
+    right:20px;
     border-left: 7px solid #fff;
     border-bottom: 7px solid transparent;
     `
         : `
-    left: 8px;
+    left: 50px;
     border-right: 7px solid #fff;
     border-bottom: 7px solid transparent;
     `}
   }
 `;
 
-export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat };
+const Who = styled.p`
+  padding: 2px 8px;
+`;
+
+Chat.defaultProps = {
+  checkSameUser: false,
+};
+
+export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat, Who };

@@ -20,7 +20,7 @@ import {
 import socket from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
-import { changeUsernameInChat, chatIn } from 'src/redux/reducer/chat';
+import { changeUserInfoInChat, chatIn } from 'src/redux/reducer/chat';
 
 import { CanvasWrapper, Button } from './style';
 
@@ -330,12 +330,12 @@ function MiniMe(): ReactElement {
         connectedUsers.splice(userIndex, 1);
       });
 
-      socket.on('broadcastMessage', (socketID, who, message) => {
-        dispatch(chatIn({ who, message, socketID }));
+      socket.on('broadcastMessage', (socketID, who, message, character) => {
+        dispatch(chatIn({ who, message, socketID, character }));
       });
 
-      socket.on('broadcastChangeUsername', (socketID, who) => {
-        dispatch(changeUsernameInChat({ socketID, who }));
+      socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
+        dispatch(changeUserInfoInChat({ socketID, who, character }));
       });
     }
     return () => {

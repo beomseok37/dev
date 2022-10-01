@@ -15,6 +15,7 @@ const initialState: StateType = {
 interface ChangeType {
   socketID: string;
   who: string;
+  character: string;
 }
 
 export const chatSlice = createSlice({
@@ -24,10 +25,14 @@ export const chatSlice = createSlice({
     chatIn: (state, action: PayloadAction<ChatType>) => {
       state.chatList.push(action.payload);
     },
-    changeUsernameInChat: (state, action: PayloadAction<ChangeType>) => {
+    changeUserInfoInChat: (state, action: PayloadAction<ChangeType>) => {
       state.chatList = state.chatList.map((chat) => {
         if (chat.socketID === action.payload.socketID) {
-          return { ...chat, who: action.payload.who };
+          return {
+            ...chat,
+            who: action.payload.who,
+            character: action.payload.character,
+          };
         }
         return chat;
       });
@@ -35,7 +40,7 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { chatIn, changeUsernameInChat } = chatSlice.actions;
+export const { chatIn, changeUserInfoInChat } = chatSlice.actions;
 
 export const selectChatList = (state: RootState) => state.chat.chatList;
 
