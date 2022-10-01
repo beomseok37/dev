@@ -5,6 +5,7 @@ import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
 import Column from 'src/components/Grid/Column';
 import CharacterSetModal from 'src/components/CharacterSetModal';
+import CharacterProfile from 'src/components/CharacterProfile';
 
 import {
   DIRECTION,
@@ -22,7 +23,7 @@ import socket from 'src/socket';
 import { selectUser } from 'src/redux/reducer/user';
 import { changeUserInfoInChat, chatIn } from 'src/redux/reducer/chat';
 
-import { CanvasWrapper, Button } from './style';
+import { CanvasWrapper } from './style';
 
 // const chooseBuildDirection = (x: number, y: number, direction: number) => {
 //   if (direction === DIRECTION.FRONT) {
@@ -355,10 +356,10 @@ function MiniMe(): ReactElement {
 
   return isSelected ? (
     <Column width="700px" alignItems="center" padding="40px">
+      <CharacterProfile handleOpenSelectModal={handleOpenSelectModal} />
       <CanvasWrapper>
         <canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
-      <Button onClick={handleOpenSelectModal}>change avatar</Button>
     </Column>
   ) : (
     <CharacterSetModal handleSave={handleSave} />
