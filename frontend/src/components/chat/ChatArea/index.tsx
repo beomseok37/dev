@@ -122,7 +122,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
       </ChatListWrapper>
       <Row>
         <Input
-          width="255px"
+          width="355px"
           value={newChat}
           onChange={handleChange}
           onKeyUp={handleKeyUp}

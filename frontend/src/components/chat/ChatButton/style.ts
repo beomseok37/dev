@@ -8,7 +8,7 @@ interface Props {
 const moveAnimation = css`
   @keyframes moveRight {
     from {
-      transform: translateX(-210px);
+      transform: translateX(-310px);
     }
     to {
       transform: translateX(0);
