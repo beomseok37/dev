@@ -36,5 +36,17 @@ const Wrapper = styled.button<Props>`
   }
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export { Wrapper };
+const Count = styled.p`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  padding: 2px;
+  background: red;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 12px;
+`;
+
+export { Wrapper, Count };
