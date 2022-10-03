@@ -18,7 +18,6 @@ const Wrapper = styled.div<WrapperProps>`
   width: 400px;
   height: 100%;
   background: #506ea5;
-  // width: 300px;
   transition: all ease 1s;
 `;
 
@@ -79,7 +78,7 @@ const Chat = styled.p<ChatProps>`
     `
         : `
     left: 49px;
-    ${!checkSameUser && 'top:30px;'}
+    ${checkSameUser ? 'top:10px;' : 'top:30px;'}
     border-right: 7px solid #fff;
     border-bottom: 7px solid transparent;
     `}
