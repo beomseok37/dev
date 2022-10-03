@@ -6,10 +6,12 @@ import { ChatType } from 'src/types';
 
 interface StateType {
   chatList: ChatType[];
+  newChatCount: number;
 }
 
 const initialState: StateType = {
   chatList: [],
+  newChatCount: 0,
 };
 
 interface ChangeType {
@@ -24,6 +26,7 @@ export const chatSlice = createSlice({
   reducers: {
     chatIn: (state, action: PayloadAction<ChatType>) => {
       state.chatList.push(action.payload);
+      state.newChatCount += 1;
     },
     changeUserInfoInChat: (state, action: PayloadAction<ChangeType>) => {
       state.chatList = state.chatList.map((chat) => {
@@ -37,11 +40,15 @@ export const chatSlice = createSlice({
         return chat;
       });
     },
+    resetCount: (state) => {
+      state.newChatCount = 0;
+    },
   },
 });
 
-export const { chatIn, changeUserInfoInChat } = chatSlice.actions;
+export const { chatIn, changeUserInfoInChat, resetCount } = chatSlice.actions;
 
 export const selectChatList = (state: RootState) => state.chat.chatList;
+export const selectNewChatCount = (state: RootState) => state.chat.newChatCount;
 
 export default chatSlice.reducer;
