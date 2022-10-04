@@ -73,7 +73,8 @@ const ChatArea = ({ open }: Props): ReactElement => {
     const hourMinute = `${hour.toString().length === 1 ? `0${hour}` : hour}:${
       minute.toString().length === 1 ? `0${minute}` : minute
     }`;
-    if (newChat) {
+
+    if (/[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+/.test(newChat)) {
       socket.emit(
         'sendMessage',
         socket.id,
