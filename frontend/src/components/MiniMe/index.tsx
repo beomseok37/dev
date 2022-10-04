@@ -120,13 +120,14 @@ function MiniMe(): ReactElement {
 
   const keyDownHandler = (e: KeyboardEvent) => {
     if (document.activeElement?.tagName !== 'TEXTAREA') {
-      keyPress[e.key] = true;
-      console.log(e.key);
+      const key = e.key === 'ㅋ' ? 'z' : e.key;
+      keyPress[key] = true;
     }
   };
   const keyUpHandler = (e: KeyboardEvent) => {
     if (document.activeElement?.tagName !== 'TEXTAREA') {
-      keyPress[e.key] = false;
+      const key = e.key === 'ㅋ' ? 'z' : e.key;
+      keyPress[key] = false;
     }
   };
 
