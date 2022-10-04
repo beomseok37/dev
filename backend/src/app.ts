@@ -30,8 +30,8 @@ io.on('connection', (socket) => {
     console.log('fromClientResponse', socketID);
     io.to(socketID).emit('responseConnectedUserInfo', user);
   });
-  socket.on('sendMessage', (socketID, who, message, character) => {
-    socket.broadcast.emit('broadcastMessage', socketID, who, message, character);
+  socket.on('sendMessage', (socketID, who, message, character, time) => {
+    socket.broadcast.emit('broadcastMessage', socketID, who, message, character, time);
   });
   socket.on('changeCharacterInfo', (socketID, who, character) => {
     socket.broadcast.emit('broadcastChangedCharacterInfo', socketID, who, character);
