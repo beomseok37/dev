@@ -119,12 +119,12 @@ function MiniMe(): ReactElement {
   draw.character = null;
 
   const keyDownHandler = (e: KeyboardEvent) => {
-    if (document.activeElement?.tagName !== 'INPUT') {
+    if (document.activeElement?.tagName !== 'TEXTAREA') {
       keyPress[e.key] = true;
     }
   };
   const keyUpHandler = (e: KeyboardEvent) => {
-    if (document.activeElement?.tagName !== 'INPUT') {
+    if (document.activeElement?.tagName !== 'TEXTAREA') {
       keyPress[e.key] = false;
     }
   };
@@ -155,6 +155,7 @@ function MiniMe(): ReactElement {
     draw.ctx.clearRect(0, 0, draw.canvas.width, draw.canvas.height);
 
     let hasMoved = true;
+    let hasDanced = false;
 
     if (keyPress.ArrowLeft) {
       position.currentDirection = DIRECTION.LEFT;
@@ -176,13 +177,24 @@ function MiniMe(): ReactElement {
       if (possibleToMove('ArrowDown', position.x, position.y)) {
         position.y += MOVEMENT_SPEED;
       }
+    } else if (keyPress.z) {
+      hasDanced = true;
+      position.currentDirection = DIRECTION.DANCE;
     } else {
       hasMoved = false;
     }
 
     if (hasMoved) {
       draw.frameCount += 1;
-      if (draw.frameCount >= FRAME_LIMIT) {
+      if (hasDanced) {
+        if (draw.frameCount >= FRAME_LIMIT - 4) {
+          draw.frameCount = 0;
+          position.currentLoopIndex += 1;
+          if (position.currentLoopIndex >= CYCLE_LOOP.length) {
+            position.currentLoopIndex = 0;
+          }
+        }
+      } else if (draw.frameCount >= FRAME_LIMIT) {
         draw.frameCount = 0;
         position.currentLoopIndex += 1;
         if (position.currentLoopIndex >= CYCLE_LOOP.length - 1) {

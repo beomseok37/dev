@@ -3,6 +3,7 @@ const DIRECTION = {
   LEFT: 1,
   BACK: 2,
   RIGHT: 3,
+  DANCE: 4,
 };
 
 const SRC_POSITION = {
