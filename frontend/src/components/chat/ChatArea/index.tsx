@@ -7,10 +7,8 @@ import {
   KeyboardEvent,
   useCallback,
 } from 'react';
-import { FiSend } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Input from 'src/components/base/Input';
 import Row from 'src/components/Grid/Row';
 import CharacterImage from 'src/components/CharacterImage';
 import Column from 'src/components/Grid/Column';
@@ -24,10 +22,12 @@ import {
   Wrapper,
   ChatListWrapper,
   Button,
+  ButtonWrapper,
   ChatWrapper,
   Chat,
   Who,
   Time,
+  TextArea,
 } from './style';
 
 interface Props {
@@ -39,7 +39,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
   const chatList = useSelector(selectChatList);
   const dispatch = useDispatch();
   const chatListRef = useRef<HTMLDivElement>(null);
-  const chatInputRef = useRef<HTMLInputElement>(null);
+  const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
   const [newChat, setNewChat] = useState('');
 
@@ -61,7 +61,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
     }
   }, [open, handleFocus]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewChat(e.currentTarget.value);
   };
 
@@ -70,8 +70,8 @@ const ChatArea = ({ open }: Props): ReactElement => {
     const hour = now.getHours();
     const minute = now.getMinutes();
 
-    const hourMinute = `${hour === 0 ? '00' : hour}:${
-      minute === 0 ? '00' : minute
+    const hourMinute = `${hour.toString().length === 1 ? `0${hour}` : hour}:${
+      minute.toString().length === 1 ? `0${minute}` : minute
     }`;
     if (newChat) {
       socket.emit(
@@ -141,17 +141,18 @@ const ChatArea = ({ open }: Props): ReactElement => {
           );
         })}
       </ChatListWrapper>
-      <Row>
-        <Input
-          width="355px"
+      <Row background="#fff">
+        <TextArea
           value={newChat}
           onChange={handleChange}
           onKeyUp={handleKeyUp}
           ref={chatInputRef}
         />
-        <Button onClick={handleClick}>
-          <FiSend size={24} />
-        </Button>
+        <ButtonWrapper>
+          <Button onClick={handleClick} isInputEmpty={newChat === ''}>
+            전송
+          </Button>
+        </ButtonWrapper>
       </Row>
     </Wrapper>
   );

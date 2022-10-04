@@ -10,6 +10,10 @@ interface ChatProps {
   checkSameUser?: boolean;
 }
 
+interface ButtonProps {
+  isInputEmpty: boolean;
+}
+
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
@@ -42,22 +46,36 @@ const ChatListWrapper = styled.div`
   }
 `;
 
-const Button = styled.button`
-  color: #fff;
-  width: 45px;
-  height: 36px;
+const ButtonWrapper = styled.div`
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Button = styled.button<ButtonProps>`
+  ${({ isInputEmpty }) =>
+    isInputEmpty
+      ? `
+    background: #ddd;
+    color:#fff;
+  `
+      : `
+      background:#fef01b;
+      color:#000;
+      &:hover {
+        cursor: pointer;
+      }
+      `}
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background-image: linear-gradient(45deg, #323c73 50%, #506ea5 50%);
-  background-position: 100%;
-  background-size: 400%;
-  &:hover {
-    cursor: pointer;
-    background-position: 0;
-    transition: background ease-in-out 0.3s;
-  }
+  font-weight: normal;
+  font-size: 14px;
 `;
 const ChatWrapper = styled.div<ChatProps>`
   position: relative;
@@ -118,8 +136,31 @@ const Time = styled.p<ChatProps>`
   color: #556677;
 `;
 
+const TextArea = styled.textarea`
+  padding: 8px 0 8px 8px;
+  width: 310px;
+  height: 90px;
+  box-sizing: border-box;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  border: 0;
+  outline: 0;
+  resize: none;
+`;
+
 Chat.defaultProps = {
   checkSameUser: false,
 };
 
-export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat, Who, Time };
+export {
+  Wrapper,
+  ChatListWrapper,
+  Button,
+  ButtonWrapper,
+  ChatWrapper,
+  Chat,
+  Who,
+  Time,
+  TextArea,
+};
