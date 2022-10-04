@@ -144,18 +144,6 @@ const global = css`
   #__next {
     height: 100%;
   }
-
-  ::-webkit-scrollbar {
-    width: 16px;
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 30px;
-    background: #1e3269;
-    box-shadow: inset 3px 3px 6px #3a3a3a, inset -3px -3px 6px #4e4e4e;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #3c5a91;
-  }
 `;
 
 // eslint-disable-next-line import/prefer-default-export
