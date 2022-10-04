@@ -27,6 +27,7 @@ import {
   ChatWrapper,
   Chat,
   Who,
+  Time,
 } from './style';
 
 interface Props {
@@ -65,13 +66,21 @@ const ChatArea = ({ open }: Props): ReactElement => {
   };
 
   const handleClick = () => {
+    const now = new Date();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+
+    const hourMinute = `${hour === 0 ? '00' : hour}:${
+      minute === 0 ? '00' : minute
+    }`;
     if (newChat) {
       socket.emit(
         'sendMessage',
         socket.id,
         user.username,
         newChat,
-        user.character
+        user.character,
+        hourMinute
       );
       dispatch(
         chatIn({
@@ -79,6 +88,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
           who: user.username,
           message: newChat,
           character: user.character,
+          time: hourMinute,
         })
       );
       setNewChat('');
@@ -101,18 +111,29 @@ const ChatArea = ({ open }: Props): ReactElement => {
             index === 0
               ? false
               : chatList[index - 1].socketID === chat.socketID;
+          const lastChat =
+            index === chatList.length - 1 ||
+            (index !== chatList.length - 1 &&
+              chatList[index + 1].time !== chat.time) ||
+            chatList[index + 1].socketID !== chat.socketID;
           return (
             <ChatWrapper key={chat.message + index.toString()} isMine={isMine}>
               {checkSameUser || isMine ? (
                 <Chat isMine={isMine} checkSameUser={checkSameUser}>
                   {chat.message}
+                  {lastChat && <Time isMine={isMine}>{chat.time}</Time>}
                 </Chat>
               ) : (
                 <Row>
                   <CharacterImage character={chat.character} />
                   <Column>
                     <Who>{chat.who}</Who>
-                    <Chat isMine={isMine}>{chat.message}</Chat>
+                    <Row>
+                      <Chat isMine={isMine}>
+                        {chat.message}
+                        {lastChat && <Time isMine={isMine}>{chat.time}</Time>}
+                      </Chat>
+                    </Row>
                   </Column>
                 </Row>
               )}

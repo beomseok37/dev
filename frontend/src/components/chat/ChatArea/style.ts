@@ -17,7 +17,7 @@ const Wrapper = styled.div<WrapperProps>`
   right: ${({ open }) => (open ? '0' : '-400px')};
   width: 400px;
   height: 100%;
-  background: #506ea5;
+  background: #9bbbd4;
   transition: all ease 1s;
 `;
 
@@ -26,6 +26,20 @@ const ChatListWrapper = styled.div`
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 13px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: #ccc;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+    padding: 2px;
+  }
 `;
 
 const Button = styled.button`
@@ -56,8 +70,9 @@ const ChatWrapper = styled.div<ChatProps>`
 `;
 
 const Chat = styled.p<ChatProps>`
+  position: relative;
   padding: 8px;
-  background: #fff;
+  background: #fef01b;
   color: #000;
   border-radius: 6px;
   width: fit-content;
@@ -66,31 +81,45 @@ const Chat = styled.p<ChatProps>`
   ${({ isMine, checkSameUser }) =>
     !isMine ? (checkSameUser ? 'margin-left:45px;' : 'margin-left:5px;') : ''}
 
-  &::after {
-    position: absolute;
-    content: '';
-    ${({ isMine, checkSameUser }) =>
-      isMine
-        ? `
-    right:20px;
-    border-left: 7px solid #fff;
-    border-bottom: 7px solid transparent;
-    `
-        : `
-    left: 49px;
-    ${checkSameUser ? 'top:10px;' : 'top:30px;'}
-    border-right: 7px solid #fff;
-    border-bottom: 7px solid transparent;
-    `}
-  }
+  ${({ isMine, checkSameUser }) =>
+    checkSameUser
+      ? ''
+      : `&::after {
+      position: absolute;
+      content: '';
+      ${
+        isMine
+          ? `
+      right:-6px;
+      top:8px;
+      border-left: 7px solid #fef01b;
+      border-bottom: 7px solid transparent;
+      `
+          : `
+      left: -6px;
+      top: 10px;
+      border-right: 7px solid #fef01b;
+      border-bottom: 7px solid transparent;
+      `
+      }
+    }`}
 `;
 
 const Who = styled.p`
   padding: 2px 8px;
+  font-weight: normal;
+`;
+
+const Time = styled.p<ChatProps>`
+  position: absolute;
+  ${({ isMine }) => (isMine ? 'left:-27px;' : 'right: -25px;')}
+  bottom: 0;
+  font-size: 10px;
+  color: #556677;
 `;
 
 Chat.defaultProps = {
   checkSameUser: false,
 };
 
-export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat, Who };
+export { Wrapper, ChatListWrapper, Button, ChatWrapper, Chat, Who, Time };
