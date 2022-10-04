@@ -109,7 +109,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
     if (e.key === 'Shift') {
       shift = true;
     }
-    if (!shift && e.key === 'Enter') {
+    if (!shift && e.key === 'Enter' && !e.nativeEvent.isComposing) {
       handleClick();
     }
   };
