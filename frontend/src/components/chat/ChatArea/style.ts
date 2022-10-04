@@ -97,6 +97,7 @@ const Chat = styled.div<ChatProps>`
   max-width: 250px;
   word-break: break-all;
   font-weight: normal;
+  white-space: pre-wrap;
   ${({ isMine, checkSameUser }) =>
     !isMine ? (checkSameUser ? 'margin-left:45px;' : 'margin-left:5px;') : ''}
 

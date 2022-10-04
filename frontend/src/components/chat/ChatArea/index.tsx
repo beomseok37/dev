@@ -43,6 +43,8 @@ const ChatArea = ({ open }: Props): ReactElement => {
 
   const [newChat, setNewChat] = useState('');
 
+  let shift = false;
+
   const handleFocus = useCallback(() => {
     if (chatInputRef.current) {
       chatInputRef.current.focus();
@@ -76,7 +78,11 @@ const ChatArea = ({ open }: Props): ReactElement => {
       minute.toString().length === 1 ? `0${minute}` : minute
     }`;
 
-    if (/[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|]+/.test(newChat)) {
+    if (
+      /[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|`|~|!|?|@|#|$|%|^|&|*|(|)|-|_|=|+]+/.test(
+        newChat
+      )
+    ) {
       socket.emit(
         'sendMessage',
         socket.id,
@@ -99,9 +105,18 @@ const ChatArea = ({ open }: Props): ReactElement => {
     }
   };
 
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Shift') {
+      shift = true;
+    }
+    if (!shift && e.key === 'Enter') {
       handleClick();
+    }
+  };
+
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Shift') {
+      shift = false;
     }
   };
 
@@ -149,6 +164,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
           value={newChat}
           onChange={handleChange}
           onKeyUp={handleKeyUp}
+          onKeyDown={handleKeyDown}
           ref={chatInputRef}
         />
         <ButtonWrapper>
