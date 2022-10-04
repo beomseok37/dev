@@ -62,7 +62,9 @@ const ChatArea = ({ open }: Props): ReactElement => {
   }, [open, handleFocus]);
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewChat(e.currentTarget.value);
+    if (e.currentTarget.value !== '\n') {
+      setNewChat(e.currentTarget.value);
+    }
   };
 
   const handleClick = () => {
@@ -74,7 +76,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
       minute.toString().length === 1 ? `0${minute}` : minute
     }`;
 
-    if (/[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+/.test(newChat)) {
+    if (/[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|]+/.test(newChat)) {
       socket.emit(
         'sendMessage',
         socket.id,
