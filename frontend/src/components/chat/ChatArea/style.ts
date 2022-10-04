@@ -87,7 +87,7 @@ const ChatWrapper = styled.div<ChatProps>`
   margin: 10px 0;
 `;
 
-const Chat = styled.p<ChatProps>`
+const Chat = styled.div<ChatProps>`
   position: relative;
   padding: 8px;
   background: #fef01b;
@@ -96,6 +96,7 @@ const Chat = styled.p<ChatProps>`
   width: fit-content;
   max-width: 250px;
   word-break: break-all;
+  font-weight: normal;
   ${({ isMine, checkSameUser }) =>
     !isMine ? (checkSameUser ? 'margin-left:45px;' : 'margin-left:5px;') : ''}
 
