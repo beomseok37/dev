@@ -331,9 +331,12 @@ function MiniMe(): ReactElement {
         connectedUsers.splice(userIndex, 1);
       });
 
-      socket.on('broadcastMessage', (socketID, who, message, character) => {
-        dispatch(chatIn({ who, message, socketID, character }));
-      });
+      socket.on(
+        'broadcastMessage',
+        (socketID, who, message, character, time) => {
+          dispatch(chatIn({ who, message, socketID, character, time }));
+        }
+      );
 
       socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
         dispatch(changeUserInfoInChat({ socketID, who, character }));
