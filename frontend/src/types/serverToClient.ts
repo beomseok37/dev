@@ -10,7 +10,8 @@ export default interface ServerToClientType {
     socketID: string,
     who: string,
     message: string,
-    character: string
+    character: string,
+    time: string
   ) => void;
   broadcastChangedCharacterInfo: (
     socketID: string,
