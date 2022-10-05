@@ -15,7 +15,7 @@ import { ButtonWrapper, ToggleButton, IconCSS, Anchor } from './style';
 const menuList = ['home', 'base', 'redux', 'react-hooks', 'animation'];
 
 function SideBar(): ReactElement {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
