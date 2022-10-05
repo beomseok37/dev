@@ -42,8 +42,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
   const [newChat, setNewChat] = useState('');
-
-  let shift = false;
+  const [shift, setShift] = useState(false);
 
   const handleFocus = useCallback(() => {
     if (chatInputRef.current) {
@@ -64,7 +63,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
   }, [open, handleFocus]);
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.currentTarget.value !== '\n') {
+    if (shift || e.currentTarget.value !== '\n') {
       setNewChat(e.currentTarget.value);
     }
   };
@@ -79,7 +78,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
     }`;
 
     if (
-      /[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|`|~|!|?|@|#|$|%|^|&|*|(|)|-|_|=|+]+/.test(
+      /[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|`|~|!|?|@|#|$|%|^|&|*|(|)|-|_|=|+|\s]+/.test(
         newChat
       )
     ) {
@@ -107,7 +106,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Shift') {
-      shift = true;
+      setShift(true);
     }
     if (!shift && e.key === 'Enter' && !e.nativeEvent.isComposing) {
       handleClick();
@@ -116,7 +115,7 @@ const ChatArea = ({ open }: Props): ReactElement => {
 
   const handleKeyUp = (e: KeyboardEvent) => {
     if (e.key === 'Shift') {
-      shift = false;
+      setShift(false);
     }
   };
 
