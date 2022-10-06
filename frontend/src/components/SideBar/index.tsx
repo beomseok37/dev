@@ -34,7 +34,6 @@ function SideBar(): ReactElement {
           <GiHamburgerMenu size={24} css={IconCSS} />
         </ToggleButton>
       </ButtonWrapper>
-
       {isOpen && (
         <>
           {menuList.map((menu) => (
