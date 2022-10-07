@@ -1,6 +1,54 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+const animationMoema1 = css`
+  @-webkit-keyframes anim-moema-1 {
+    60% {
+      -webkit-transform: scale3d(0.8, 0.8, 1);
+      transform: scale3d(0.8, 0.8, 1);
+    }
+    85% {
+      -webkit-transform: scale3d(1.1, 1.1, 1);
+      transform: scale3d(1.1, 1.1, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  @keyframes anim-moema-1 {
+    60% {
+      -webkit-transform: scale3d(0.8, 0.8, 1);
+      transform: scale3d(0.8, 0.8, 1);
+    }
+    85% {
+      -webkit-transform: scale3d(1.1, 1.1, 1);
+      transform: scale3d(1.1, 1.1, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+`;
+
+const animationMoema2 = css`
+  @-webkit-keyframes anim-moema-2 {
+    to {
+      opacity: 0;
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  @keyframes anim-moema-2 {
+    to {
+      opacity: 0;
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+`;
+
 const floatAnimation = css`
   @keyframes float {
     0% {
@@ -106,4 +154,31 @@ const RotateButton = styled.button`
   }
 `;
 
-export { ButtonGroup, FloatButton, RotateButton };
+const Scale3dButton = styled.button`
+  ${animationMoema1}
+  ${animationMoema2}
+  width: 200px;
+  height: 30px;
+  border: 1px solid #eceff1;
+  border-radius: 35px;
+  cursor: pointer;
+
+  &:hover {
+    color: #eceff1;
+    background-color: #7986cb;
+
+    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+
+    background-color: #3f51b5;
+
+    -webkit-animation: anim-moema-1 0.3s forwards;
+    animation: anim-moema-1 0.3s forwards;
+  }
+  &:hover::before {
+    -webkit-animation: anim-moema-2 0.3s 0.3s forwards;
+    animation: anim-moema-2 0.3s 0.3s forwards;
+  }
+`;
+
+export { ButtonGroup, FloatButton, RotateButton, Scale3dButton };
