@@ -1,4 +1,4 @@
 import Check from './box';
-import { ButtonGroup, FloatButton } from './button';
+import { ButtonGroup, FloatButton, RotateButton } from './button';
 
-export { Check, ButtonGroup, FloatButton };
+export { Check, ButtonGroup, FloatButton, RotateButton };

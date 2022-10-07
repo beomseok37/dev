@@ -1,67 +1,36 @@
 import { NextPage } from 'next';
+import { useState } from 'react';
 
-import Button from 'src/components/base/Button';
-import AppBlock from 'src/components/AppBlock';
 import Page from 'src/components/Page';
 
 import { BUTTON_PAGE_CONTENT } from 'src/constant/page';
 
-import { ButtonGroup, FloatButton } from 'src/styles/pages';
+import { ButtonGroup, FloatButton, RotateButton } from 'src/styles/pages';
 
 const ButtonPage: NextPage = () => {
+  const [button, setButton] = useState('nothing');
+
   return (
     <Page
       header="button"
       pageContentList={[{ content: BUTTON_PAGE_CONTENT, done: true }]}
     >
-      <AppBlock>
-        <ButtonGroup>
-          <Button size="large">Button</Button>
-          <Button>Button</Button>
-          <Button size="small">Button</Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button size="large" color="gray">
-            Button
-          </Button>
-          <Button color="gray">Button</Button>
-          <Button size="small" color="gray">
-            Button
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button size="large" color="pink">
-            Button
-          </Button>
-          <Button color="pink">Button</Button>
-          <Button size="small" color="pink">
-            Button
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button size="large" color="pink" outline>
-            Button
-          </Button>
-          <Button color="pink" outline>
-            Button
-          </Button>
-          <Button size="small" color="pink" outline>
-            Button
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button size="large" fullWidth>
-            Button
-          </Button>
-          <Button color="gray" fullWidth>
-            Button
-          </Button>
-          <Button size="small" color="pink" fullWidth>
-            Button
-          </Button>
-        </ButtonGroup>
-      </AppBlock>
-      <FloatButton>float button</FloatButton>
+      <p>selected: {button}</p>
+      <ButtonGroup>
+        <FloatButton onClick={() => setButton('float button')}>
+          float button
+        </FloatButton>
+      </ButtonGroup>
+      <ButtonGroup>
+        <RotateButton onClick={() => setButton('home')}>
+          <span>Click!</span>
+          <span>home</span>
+        </RotateButton>
+        <RotateButton onClick={() => setButton('base')}>
+          <span>Click!</span>
+          <span>base</span>
+        </RotateButton>
+      </ButtonGroup>
     </Page>
   );
 };
