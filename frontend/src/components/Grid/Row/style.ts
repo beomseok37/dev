@@ -14,6 +14,7 @@ interface props {
   borderRight: string;
   borderTop: string;
   borderBottom: string;
+  boxShadow: string;
 }
 
 const Wrapper = styled.div<props>`
@@ -35,6 +36,7 @@ const Wrapper = styled.div<props>`
   border-bottom: ${({ border, borderBottom }) =>
     border !== 'unset' ? border : borderBottom};
   box-sizing: border-box;
+  box-shadow: ${({ boxShadow }) => boxShadow};
 `;
 
 // eslint-disable-next-line import/prefer-default-export

@@ -18,6 +18,7 @@ interface props {
   borderRight?: string;
   borderTop?: string;
   borderBottom?: string;
+  boxShadow?: string;
 }
 
 function Column({
@@ -36,6 +37,7 @@ function Column({
   borderRight,
   borderTop,
   borderBottom,
+  boxShadow,
 }: props): ReactElement {
   return (
     <Wrapper
@@ -53,6 +55,7 @@ function Column({
       borderRight={borderRight!}
       borderTop={borderTop!}
       borderBottom={borderBottom!}
+      boxShadow={boxShadow!}
     >
       {children}
     </Wrapper>
@@ -74,6 +77,7 @@ Column.defaultProps = {
   borderRight: 'unset',
   borderTop: 'unset',
   borderBottom: 'unset',
+  boxShadow: 'none',
 };
 
 export default Column;
