@@ -7,7 +7,9 @@ import Chat from 'src/components/chat';
 const Home: NextPage = () => {
   return (
     <Page header="home">
-      <p>이 블로그는 frontend의 여러 기술들을 연습하기 위한 사이트이다.</p>
+      <p style={{ padding: '0 0 0 10px' }}>
+        이 블로그는 frontend의 여러 기술들을 연습하기 위한 사이트이다.
+      </p>
       <MiniMe />
       <Chat />
     </Page>
