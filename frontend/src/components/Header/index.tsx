@@ -11,7 +11,7 @@ const Header = ({ pageName }: props): ReactElement => {
   return (
     <Wrapper>
       <Link href="/">
-        <Title>cotton's {pageName} page</Title>
+        <Title>{pageName} page</Title>
       </Link>
     </Wrapper>
   );
