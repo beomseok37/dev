@@ -101,7 +101,7 @@ function MiniMe(): ReactElement {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(user.username !== 'me');
 
   const position: any = {};
   const draw: any = {};
