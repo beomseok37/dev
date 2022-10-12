@@ -7,6 +7,8 @@ import Chart from 'src/components/Chart';
 
 import { ECHARTS_PAGE_CONTENT } from 'src/constant/page';
 
+const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
+
 const Echarts: NextPage = () => {
   const [option1, setOption1] = useState<any>({});
   const [option2, setOption2] = useState<any>({});
@@ -15,42 +17,42 @@ const Echarts: NextPage = () => {
   const [option5, setOption5] = useState<any>({});
   const [option6, setOption6] = useState<any>({});
   async function optionApi() {
-    const fetch1 = fetch('http://localhost:5500/api/v1/chart/1', {
+    const fetch1 = fetch(`${serverURL}/v1/chart/1`, {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const fetch2 = fetch('http://localhost:5500/api/v1/chart/2', {
+    const fetch2 = fetch(`${serverURL}/v1/chart/2`, {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const fetch3 = fetch('http://localhost:5500/api/v1/chart/3', {
+    const fetch3 = fetch(`${serverURL}/v1/chart/3`, {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const fetch4 = fetch('http://localhost:5500/api/v1/chart/4', {
+    const fetch4 = fetch(`${serverURL}/v1/chart/4`, {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const fetch5 = fetch('http://localhost:5500/api/v1/chart/5', {
+    const fetch5 = fetch(`${serverURL}/v1/chart/5`, {
       method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const fetch6 = fetch('http://localhost:5500/api/v1/chart/6', {
+    const fetch6 = fetch(`${serverURL}/v1/chart/6`, {
       method: 'GET',
       mode: 'cors',
       headers: {
