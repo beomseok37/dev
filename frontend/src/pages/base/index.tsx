@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
 import Page from 'src/components/Page';
-import ImageCard from 'src/components/ImageCard';
+import BaseCard from 'src/components/BaseCard';
 
 import { BASE_PAGE_CONTENT } from 'src/constant/page';
 
@@ -14,9 +14,9 @@ const Base: NextPage = () => {
       pageContentList={[{ content: BASE_PAGE_CONTENT, done: true }]}
     >
       <GridWrapper>
-        <ImageCard page="box" />
-        <ImageCard page="button" />
-        <ImageCard page="dropdown-menu" />
+        <BaseCard page="box" />
+        <BaseCard page="button" />
+        <BaseCard page="dropdown-menu" />
       </GridWrapper>
     </Page>
   );

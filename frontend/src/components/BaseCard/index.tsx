@@ -7,7 +7,7 @@ interface Props {
   page: string;
 }
 
-const ImageCard = ({ page }: Props): ReactElement => {
+const BaseCard = ({ page }: Props): ReactElement => {
   return (
     <Link href={`/base/${page}`}>
       <Wrapper>{page}</Wrapper>
@@ -15,4 +15,4 @@ const ImageCard = ({ page }: Props): ReactElement => {
   );
 };
 
-export default ImageCard;
+export default BaseCard;
