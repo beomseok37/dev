@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/app.ts",
     "pm2": "pm2 restart --name \"backend\" -- start",
-    "dev": "nodemon --exec ts-node -r ./tsconfig.json --files src/app.ts"
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts"
   },
   "dependencies": {
     "class-transformer": "^0.5.1",
