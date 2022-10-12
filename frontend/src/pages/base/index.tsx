@@ -17,6 +17,7 @@ const Base: NextPage = () => {
         <BaseCard page="box" />
         <BaseCard page="button" />
         <BaseCard page="dropdown-menu" />
+        <BaseCard page="echarts" />
       </GridWrapper>
     </Page>
   );

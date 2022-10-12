@@ -8,6 +8,8 @@ const REACT_HOOKS_PAGE_CONTENT = `react-hooks인 useMemo와 useCallback을 공�
 const ANIMIATION_PAGE_CONTENT = `transform, translate 공부`;
 const DROPDOWN_MENU_PAGE_CONTENT = `dropdown list 만들어보기`;
 const BASE_PAGE_CONTENT = `여러 컴포넌트들을 시도해보는 페이지 입니다.`;
+const ECHARTS_PAGE_CONTENT = `echarts 패키지의 막대 그래프를 연습해보는 페이지 입니다.`;
+
 export {
   BOX_PAGE_CONTENT,
   BUTTON_PAGE_CONTENT,
@@ -17,4 +19,5 @@ export {
   ANIMIATION_PAGE_CONTENT,
   DROPDOWN_MENU_PAGE_CONTENT,
   BASE_PAGE_CONTENT,
+  ECHARTS_PAGE_CONTENT,
 };
