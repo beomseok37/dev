@@ -20,11 +20,9 @@ export default function socketLoader(app: express.Application) {
       socket.broadcast.emit('move', user);
     });
     socket.on('requestConnectedUserInfo', (user) => {
-      console.log('fromClientRequest', user.socketID);
       socket.broadcast.emit('requestUserInfo', user);
     });
     socket.on('sendMyInfo', (user, socketID) => {
-      console.log('fromClientResponse', socketID);
       io.to(socketID).emit('responseConnectedUserInfo', user);
     });
     socket.on('sendMessage', (socketID, who, message, character, time) => {
