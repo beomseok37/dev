@@ -9,6 +9,7 @@ const ANIMATION_PAGE_CONTENT = `transform, translate 등 animation css 공부`;
 const DROPDOWN_MENU_PAGE_CONTENT = `dropdown list 만들어보기`;
 const BASE_PAGE_CONTENT = `여러 컴포넌트, 기술들을 시도해보는 페이지 입니다.`;
 const ECHARTS_PAGE_CONTENT = `echarts 패키지의 막대 그래프를 연습해보는 페이지 입니다.`;
+const EDITOR_PAGE_CONTENT = `LaTeX언어를 기반으로 수식 editor를 구현하는 페이지 입니다.`;
 
 export {
   BOX_PAGE_CONTENT,
@@ -20,4 +21,5 @@ export {
   DROPDOWN_MENU_PAGE_CONTENT,
   BASE_PAGE_CONTENT,
   ECHARTS_PAGE_CONTENT,
+  EDITOR_PAGE_CONTENT,
 };
