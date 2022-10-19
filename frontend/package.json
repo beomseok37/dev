@@ -16,8 +16,6 @@
     "classnames": "^2.3.1",
     "echarts": "^5.4.0",
     "echarts-for-react": "^3.0.2",
-    "mathjax-full": "^3.2.2",
-    "mathjax-react": "^2.0.1",
     "next": "12.2.4",
     "pm2": "^5.2.0",
     "react": "18.2.0",
