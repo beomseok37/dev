@@ -8,7 +8,7 @@ import { BASE_PAGE_CONTENT } from 'src/constant/page';
 import { GridWrapper } from 'src/styles/pages/base';
 
 const Base: NextPage = () => {
-  const baseList = ['box', 'button', 'dropdown-menu', 'echarts', 'editor'];
+  const baseList = ['box', 'button', 'dropdown-menu', 'echarts'];
   return (
     <Page
       header="animation"
