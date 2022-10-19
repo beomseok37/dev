@@ -9,25 +9,25 @@ import { selectUser } from 'src/redux/reducer/user';
 import { Username, FloatButton } from './style';
 
 interface Props {
-  handleOpenSelectModal: () => void;
+  onOpenSelectModal: () => void;
 }
 
-const CharacterProfile = ({ handleOpenSelectModal }: Props): ReactElement => {
+const CharacterProfile = ({ onOpenSelectModal }: Props): ReactElement => {
   const user = useSelector(selectUser);
   return (
     <Row
       width="576px"
       height="50px"
-      background="#506ea5"
+      background="transparent"
       alignItems="center"
       padding="0 20px"
       justifyContent="space-between"
     >
       <Row height="50px" alignItems="center">
-        <CharacterImage character={user.character} />
+        <CharacterImage character={user.character} isAbsolute />
         <Username>{user.username}</Username>
       </Row>
-      <FloatButton onClick={handleOpenSelectModal}>
+      <FloatButton onClick={onOpenSelectModal}>
         <p>Change</p>
         <p>Character</p>
       </FloatButton>

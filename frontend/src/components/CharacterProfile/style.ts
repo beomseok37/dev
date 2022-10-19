@@ -19,7 +19,7 @@ const floatAnimation = css`
 `;
 
 const Username = styled.p`
-  background: #506ea5;
+  background: transparent;
   margin-left: 20px;
 `;
 
