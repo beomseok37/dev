@@ -1,10 +1,9 @@
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
 import Column from 'src/components/Grid/Column';
-import CharacterSetModal from 'src/components/modals/CharacterSetModal';
 import CharacterProfile from 'src/components/CharacterProfile';
 
 import {
@@ -23,7 +22,7 @@ import socket from 'src/socket';
 import { selectUser } from 'src/redux/reducer/user';
 import { changeUserInfoInChat, chatIn } from 'src/redux/reducer/chat';
 
-import { CanvasWrapper } from './style';
+import { CanvasWrapper, Canvas } from './style';
 
 // const chooseBuildDirection = (x: number, y: number, direction: number) => {
 //   if (direction === DIRECTION.FRONT) {
@@ -37,6 +36,10 @@ import { CanvasWrapper } from './style';
 //   }
 //   return { x, y: y - 20 };
 // };
+
+interface Props {
+  onOpenSelectModal: () => void;
+}
 
 const possibleToMove = (direction: ArrowDirection, x: number, y: number) => {
   if (direction === 'ArrowLeft') {
@@ -97,11 +100,10 @@ const makeSocketUserInfo = (
 //   };
 // };
 
-function MiniMe(): ReactElement {
+function MiniMe({ onOpenSelectModal }: Props): ReactElement {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isSelected, setIsSelected] = useState(user.username !== 'me');
 
   const position: any = {};
   const draw: any = {};
@@ -289,97 +291,82 @@ function MiniMe(): ReactElement {
   };
 
   useEffect(() => {
-    if (isSelected) {
-      initDraw();
-      addWindowEventListener();
+    initDraw();
+    addWindowEventListener();
 
-      socket.emit('requestConnectedUserInfo', {
-        socketID: socket.id,
-        username: user.username,
-        x: 250,
-        y: 250,
-        character: user.character,
-        currentLoopIndex: DIRECTION.FRONT,
-        currentDirection: 0,
-      });
+    socket.emit('requestConnectedUserInfo', {
+      socketID: socket.id,
+      username: user.username,
+      x: 250,
+      y: 250,
+      character: user.character,
+      currentLoopIndex: DIRECTION.FRONT,
+      currentDirection: 0,
+    });
 
-      socket.on('requestUserInfo', (requestUser) => {
-        socket.emit(
-          'sendMyInfo',
-          makeSocketUserInfo(
-            socket.id,
-            user.username,
-            position.x,
-            position.y,
-            user.character,
-            position.currentLoopIndex,
-            position.currentDirection
-          ),
-          requestUser.socketID
-        );
-        const index = checkIndex(requestUser.socketID);
-        if (index === connectedUsers.length) {
-          connectedUsers.push(requestUser);
-        } else {
-          connectedUsers[index] = requestUser;
-        }
-      });
-
-      socket.on('responseConnectedUserInfo', (connectedUser) => {
-        connectedUsers.push(connectedUser);
-      });
-
-      socket.on('move', (socketUserInfo) => {
-        connectedUsers[checkIndex(socketUserInfo.socketID)] = socketUserInfo;
-      });
-
-      socket.on('broadcastDisconnect', (socketID) => {
-        let userIndex = 0;
-        Array(connectedUsers.length)
-          .fill('')
-          .forEach((sth, index) => {
-            if (connectedUsers[index].socketID === socketID) {
-              userIndex = index;
-            }
-          });
-        connectedUsers.splice(userIndex, 1);
-      });
-
-      socket.on(
-        'broadcastMessage',
-        (socketID, who, message, character, time) => {
-          dispatch(chatIn({ who, message, socketID, character, time }));
-        }
+    socket.on('requestUserInfo', (requestUser) => {
+      socket.emit(
+        'sendMyInfo',
+        makeSocketUserInfo(
+          socket.id,
+          user.username,
+          position.x,
+          position.y,
+          user.character,
+          position.currentLoopIndex,
+          position.currentDirection
+        ),
+        requestUser.socketID
       );
+      const index = checkIndex(requestUser.socketID);
+      if (index === connectedUsers.length) {
+        connectedUsers.push(requestUser);
+      } else {
+        connectedUsers[index] = requestUser;
+      }
+    });
 
-      socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
-        dispatch(changeUserInfoInChat({ socketID, who, character }));
-      });
-    }
+    socket.on('responseConnectedUserInfo', (connectedUser) => {
+      connectedUsers.push(connectedUser);
+    });
+
+    socket.on('move', (socketUserInfo) => {
+      connectedUsers[checkIndex(socketUserInfo.socketID)] = socketUserInfo;
+    });
+
+    socket.on('broadcastDisconnect', (socketID) => {
+      let userIndex = 0;
+      Array(connectedUsers.length)
+        .fill('')
+        .forEach((sth, index) => {
+          if (connectedUsers[index].socketID === socketID) {
+            userIndex = index;
+          }
+        });
+      connectedUsers.splice(userIndex, 1);
+    });
+
+    socket.on('broadcastMessage', (socketID, who, message, character, time) => {
+      dispatch(chatIn({ who, message, socketID, character, time }));
+    });
+
+    socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
+      dispatch(changeUserInfoInChat({ socketID, who, character }));
+    });
     return () => {
       removeWindowEventListener();
       socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSelected]);
+  }, []);
 
-  const handleSave = () => {
-    setIsSelected(true);
-  };
-
-  const handleOpenSelectModal = () => {
-    setIsSelected(false);
-  };
-
-  return isSelected ? (
+  return (
     <Column width="700px" alignItems="center" padding="40px">
-      <CharacterProfile handleOpenSelectModal={handleOpenSelectModal} />
+      <CharacterProfile onOpenSelectModal={onOpenSelectModal} />
       <CanvasWrapper>
-        <canvas ref={canvasRef} tabIndex={0} />
+        <Canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
     </Column>
-  ) : (
-    <CharacterSetModal handleSave={handleSave} />
   );
 }
 
