@@ -113,7 +113,7 @@ const RotateButton = styled.button`
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
   }
-  span:nth-child(1) {
+  span:nth-of-type(1) {
     // box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
     //   7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
 
@@ -124,7 +124,7 @@ const RotateButton = styled.button`
     -moz-transform-origin: 50% 50% -20px;
     transform-origin: 50% 50% -20px;
   }
-  span:nth-child(2) {
+  span:nth-of-type(2) {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
       7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 
@@ -136,7 +136,7 @@ const RotateButton = styled.button`
     -moz-transform-origin: 50% 50% -20px;
     transform-origin: 50% 50% -20px;
   }
-  &:hover span:nth-child(1) {
+  &:hover span:nth-of-type(1) {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
       7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 
@@ -144,7 +144,7 @@ const RotateButton = styled.button`
     -moz-transform: rotateX(0deg);
     transform: rotateX(0deg);
   }
-  &:hover span:nth-child(2) {
+  &:hover span:nth-of-type(2) {
     // box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     //   7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 
