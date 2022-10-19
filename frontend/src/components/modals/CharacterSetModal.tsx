@@ -13,7 +13,7 @@ import {
 
 import socket from 'src/socket';
 
-import { Wrapper, Background } from './style';
+import ModalCommon from './Common';
 
 interface Props {
   handleSave: () => void;
@@ -54,23 +54,27 @@ function CharacterSetModal({ handleSave }: Props): ReactElement {
   };
 
   return (
-    <>
-      <Background />
-      <Wrapper>
-        <CharacterSelector
-          characterBind={characterBind}
-          handleFocus={handleFocus}
-        />
-        <UsernameSelector
-          usernameBind={usernameBind}
-          handleFocus={handleFocus}
-          ref={usernameInputRef}
-        />
-        <Button onClick={handleClick} margin="8px">
-          save
-        </Button>
-      </Wrapper>
-    </>
+    <ModalCommon
+      width={600}
+      height={300}
+      justifyContent="space-evenly"
+      alignItems="center"
+      flexDirection="column"
+      background="#506ea5"
+    >
+      <CharacterSelector
+        characterBind={characterBind}
+        handleFocus={handleFocus}
+      />
+      <UsernameSelector
+        usernameBind={usernameBind}
+        handleFocus={handleFocus}
+        ref={usernameInputRef}
+      />
+      <Button onClick={handleClick} margin="8px">
+        save
+      </Button>
+    </ModalCommon>
   );
 }
 

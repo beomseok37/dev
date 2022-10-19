@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
 import Column from 'src/components/Grid/Column';
-import CharacterSetModal from 'src/components/CharacterSetModal';
+import CharacterSetModal from 'src/components/modals/CharacterSetModal';
 import CharacterProfile from 'src/components/CharacterProfile';
 
 import {
