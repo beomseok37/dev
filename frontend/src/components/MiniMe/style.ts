@@ -6,5 +6,7 @@ const CanvasWrapper = styled.div`
   background: url('/image/living-room.png') no-repeat center center;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export { CanvasWrapper };
+const Canvas = styled.canvas`
+  outline: none;
+`;
+export { CanvasWrapper, Canvas };

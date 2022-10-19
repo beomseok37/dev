@@ -11,7 +11,7 @@ interface StateType {
 }
 
 const initialState: StateType = {
-  user: { username: 'me', character: CHARACTERURL1 },
+  user: { username: 'undefined', character: CHARACTERURL1 },
 };
 
 export const userSlice = createSlice({

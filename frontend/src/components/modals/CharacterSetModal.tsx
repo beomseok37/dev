@@ -13,13 +13,17 @@ import {
 
 import socket from 'src/socket';
 
-import { Wrapper, Background } from './style';
+import ModalCommon from './Common';
 
 interface Props {
-  handleSave: () => void;
+  onClose: () => void;
+  onCloseSelectModal: () => void;
 }
 
-function CharacterSetModal({ handleSave }: Props): ReactElement {
+function CharacterSetModal({
+  onCloseSelectModal,
+  onClose,
+}: Props): ReactElement {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -42,7 +46,7 @@ function CharacterSetModal({ handleSave }: Props): ReactElement {
     }
     dispatch(changeCharacter(characterBind[0]));
     dispatch(changeUsername(usernameBind[0]));
-    handleSave();
+    onCloseSelectModal();
   };
 
   const handleFocus = () => {
@@ -54,23 +58,28 @@ function CharacterSetModal({ handleSave }: Props): ReactElement {
   };
 
   return (
-    <>
-      <Background />
-      <Wrapper>
-        <CharacterSelector
-          characterBind={characterBind}
-          handleFocus={handleFocus}
-        />
-        <UsernameSelector
-          usernameBind={usernameBind}
-          handleFocus={handleFocus}
-          ref={usernameInputRef}
-        />
-        <Button onClick={handleClick} margin="8px">
-          save
-        </Button>
-      </Wrapper>
-    </>
+    <ModalCommon
+      width={600}
+      height={300}
+      justifyContent="space-evenly"
+      alignItems="center"
+      flexDirection="column"
+      background="#506ea5"
+      onClose={onClose}
+    >
+      <CharacterSelector
+        characterBind={characterBind}
+        handleFocus={handleFocus}
+      />
+      <UsernameSelector
+        usernameBind={usernameBind}
+        handleFocus={handleFocus}
+        ref={usernameInputRef}
+      />
+      <Button onClick={handleClick} margin="8px">
+        save
+      </Button>
+    </ModalCommon>
   );
 }
 
