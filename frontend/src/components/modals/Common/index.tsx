@@ -11,6 +11,10 @@ interface Props {
   width: number;
   height: number;
   background?: string;
+  top?: number;
+  animation?: string;
+  animationTiming?: string;
+  onClose: () => void;
 }
 
 function ModalCommon({
@@ -22,10 +26,14 @@ function ModalCommon({
   width,
   height,
   background,
+  top,
+  animation,
+  animationTiming,
+  onClose,
 }: Props): ReactElement {
   return (
     <>
-      <Background />
+      <Background onClick={onClose} />
       <Wrapper
         display={display!}
         justifyContent={justifyContent!}
@@ -34,6 +42,9 @@ function ModalCommon({
         width={width}
         height={height}
         background={background!}
+        top={top!}
+        animation={animation!}
+        animationTiming={animationTiming!}
       >
         {children}
       </Wrapper>
@@ -47,6 +58,9 @@ ModalCommon.defaultProps = {
   alignItems: 'unset',
   flexDirection: 'row',
   background: '#fff',
+  top: 200,
+  animation: 'unset',
+  animationTiming: 'linear',
 };
 
 export default ModalCommon;

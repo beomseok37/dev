@@ -9,6 +9,9 @@ interface WrapperProps {
   width: number;
   height: number;
   background: string;
+  top: number;
+  animation: string;
+  animationTiming: string;
 }
 
 const slideDownAnimation = css`
@@ -26,13 +29,17 @@ const slideDownAnimation = css`
 
 const Wrapper = styled.div<WrapperProps>`
   ${slideDownAnimation}
-  animation: slideDown 0.5s;
-  animation-timing-function: ease-out;
+  ${({ animation, animationTiming }) =>
+    animation !== 'unset' &&
+    `
+  animation: ${animation} 0.5s;
+  animation-timing-function: ${animationTiming};
+  `}
 
   position: fixed;
   z-index: 2;
   margin: 0 auto;
-  top: 200px;
+  top: ${({ top }) => top}px;
   left: 0;
   right: 0;
   border-radius: 20px;
