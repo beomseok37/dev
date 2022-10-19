@@ -1,18 +1,61 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
-import { Wrapper, Title } from './style';
+import CharacterImage from 'src/components/CharacterImage';
+import CharacterSetModal from 'src/components/modals/CharacterSetModal';
+
+import { selectUser } from 'src/redux/reducer/user';
+
+import useHover from 'src/hooks/useHover';
+
+import MinimeModal from 'src/components/modals/MinimeModal';
+
+import { Wrapper, Title, Button, Balloon } from './style';
 
 interface props {
   pageName: string;
 }
 
 const Header = ({ pageName }: props): ReactElement => {
+  const user = useSelector(selectUser);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSelected, setIsSelected] = useState(user.username !== 'undefined');
+  const [characterImageHoverRef, isCharacterImageHoverRef] =
+    useHover<HTMLDivElement>();
+
+  const handleOpenModal = () => setIsOpen(true);
+  const handleCloseModal = () => setIsOpen(false);
+  const handleCloseSelectModal = () => setIsSelected(true);
+  const handleOpenSelectModal = () => setIsSelected(false);
+
   return (
     <Wrapper>
       <Link href="/">
         <Title>{pageName} page</Title>
       </Link>
+      <Button onClick={handleOpenModal}>
+        <CharacterImage
+          character={user.character}
+          border="1px solid #000"
+          ref={characterImageHoverRef}
+          isAbsolute
+        />
+        {isCharacterImageHoverRef && <Balloon>미니미 입장</Balloon>}
+      </Button>
+      {isOpen &&
+        (isSelected ? (
+          <MinimeModal
+            onOpenSelectModal={handleOpenSelectModal}
+            onClose={handleCloseModal}
+          />
+        ) : (
+          <CharacterSetModal
+            onCloseSelectModal={handleCloseSelectModal}
+            onClose={handleCloseModal}
+          />
+        ))}
     </Wrapper>
   );
 };
