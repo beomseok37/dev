@@ -121,7 +121,7 @@ const global = css`
     width: 100%;
     height: 100%;
     line-height: 1;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   ol,
   ul {

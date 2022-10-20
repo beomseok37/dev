@@ -20,7 +20,7 @@ function Page({ children, header, pageContentList }: props): ReactElement {
   return (
     <Row height="100%" width="100%">
       <SideBar />
-      <Column width="100%">
+      <Column width="100%" padding="0 0 0 300px">
         <Header pageName={header} />
         <HorizontalLine />
         {pageContentList!.map((pageContent, index) => (

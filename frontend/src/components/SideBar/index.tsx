@@ -30,6 +30,7 @@ function SideBar(): ReactElement {
       background="#fff"
       borderRight="1px solid #ddd"
       boxShadow="0 10px 10px #aaa"
+      position="fixed"
       transition
     >
       <ImageWrapper>
