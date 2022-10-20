@@ -17,8 +17,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   top: 0px;
-  height: 5rem;
-  padding: 0 1rem;
+  height: 50px;
+  padding: 10px;
 `;
 
 const Title = styled.a`
