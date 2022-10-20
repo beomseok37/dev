@@ -1,11 +1,16 @@
 /* eslint-disable prefer-destructuring */
 import { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
 import Page from 'src/components/Page';
-import Chart from 'src/components/Chart';
+import Loading from 'src/components/Loading';
 
 import { ECHARTS_PAGE_CONTENT } from 'src/constant/page';
+
+const DynamicChart = dynamic(() => import('src/components/Chart'), {
+  suspense: true,
+});
 
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -92,12 +97,14 @@ const Echarts: NextPage = () => {
       header="box"
       pageContentList={[{ content: ECHARTS_PAGE_CONTENT, done: true }]}
     >
-      {option1 && <Chart option={option1} />}
-      {option2 && <Chart option={option2} />}
-      {option3 && <Chart option={option3} />}
-      {option4 && <Chart option={option4} />}
-      {option5 && <Chart option={option5} />}
-      {option6 && <Chart option={option6} />}
+      <Suspense fallback={<Loading isCenter />}>
+        {option1 && <DynamicChart option={option1} />}
+        {option2 && <DynamicChart option={option2} />}
+        {option3 && <DynamicChart option={option3} />}
+        {option4 && <DynamicChart option={option4} />}
+        {option5 && <DynamicChart option={option5} />}
+        {option6 && <DynamicChart option={option6} />}
+      </Suspense>
     </Page>
   );
 };
