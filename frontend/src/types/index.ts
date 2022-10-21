@@ -11,6 +11,12 @@ import ServerToClientType from './serverToClient';
 import ClientToServerType from './clientToServer';
 import PositionType from './position';
 import ChatType from './chat';
+import {
+  ArrowType,
+  ParameterType,
+  ComponentType,
+  ComponentObjectType,
+} from './xArrow';
 
 export type {
   ButtonColorType,
@@ -26,4 +32,8 @@ export type {
   ClientToServerType,
   PositionType,
   ChatType,
+  ArrowType,
+  ParameterType,
+  ComponentType,
+  ComponentObjectType,
 };
