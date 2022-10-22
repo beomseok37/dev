@@ -7,5 +7,17 @@ const GridWrapper = styled.div`
   padding: 30px;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export { GridWrapper };
+const HorizontalLine = styled.hr`
+  width: 98%;
+  border: thin solid #ddd;
+  margin: 0 1% 20px 1%;
+`;
+
+const Title = styled.p`
+  color: #666;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+`;
+
+export { GridWrapper, HorizontalLine, Title };

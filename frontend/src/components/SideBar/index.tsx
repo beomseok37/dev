@@ -19,7 +19,7 @@ import {
   IconWrapper,
 } from './style';
 
-const menuList = ['home', 'base', 'redux', 'react-hooks', 'animation'];
+const menuList = ['home', 'study'];
 
 function SideBar(): ReactElement {
   return (

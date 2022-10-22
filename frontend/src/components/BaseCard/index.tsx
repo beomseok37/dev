@@ -5,12 +5,23 @@ import { Wrapper } from './style';
 
 interface Props {
   page: string;
+  backgroundColor: string;
+  hoverBackgroundColor: string;
 }
 
-const BaseCard = ({ page }: Props): ReactElement => {
+const BaseCard = ({
+  page,
+  backgroundColor,
+  hoverBackgroundColor,
+}: Props): ReactElement => {
   return (
     <Link href={`/base/${page}`}>
-      <Wrapper>{page}</Wrapper>
+      <Wrapper
+        backgroundColor={backgroundColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+      >
+        {page}
+      </Wrapper>
     </Link>
   );
 };
