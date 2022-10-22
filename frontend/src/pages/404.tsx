@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import Column from 'src/components/Grid/Column';
 
-import { P, Button } from 'src/styles/pages/404';
+import { P, Button, Span } from 'src/styles/pages/404';
 
 const Custom404Page: NextPage = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const Custom404Page: NextPage = () => {
     <Column justifyContent="center" alignItems="center" height="100%">
       <P>페이지가 없네요😥</P>
       <Button onClick={handleClick}>
-        <span>이전 페이지로</span>
+        <Span>이전 페이지로</Span>
       </Button>
     </Column>
   );

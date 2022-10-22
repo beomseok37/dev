@@ -48,7 +48,6 @@ const Button = styled.button`
   width: 100px;
   height: 40px;
   background: hsl(214, 79%, 65%);
-  color: #fff;
   margin-top: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -61,4 +60,8 @@ const Button = styled.button`
   }
 `;
 
-export { P, Button };
+const Span = styled.span`
+  color: #fff;
+`;
+
+export { P, Button, Span };
