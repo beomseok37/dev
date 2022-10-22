@@ -41,6 +41,7 @@ const Anchor2 = styled.button`
 
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    background: #fff;
   }
   span:nth-of-type(1) {
     -webkit-transform: rotateX(90deg);
