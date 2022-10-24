@@ -2,7 +2,9 @@ import { ReactElement } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 
 import Minime from 'src/components/MiniMe';
-import ModalCommon from '../Common';
+import ModalCommon from 'src/components/modals/Common';
+
+import socket from 'src/socket';
 
 import { Button } from './style';
 
@@ -12,6 +14,10 @@ interface Props {
 }
 
 function MinimeModal({ onClose, onOpenSelectModal }: Props): ReactElement {
+  const handleClose = () => {
+    socket.emit('broadcastDisconnect', socket.id);
+    onClose();
+  };
   return (
     <ModalCommon
       width={700}
@@ -22,10 +28,10 @@ function MinimeModal({ onClose, onOpenSelectModal }: Props): ReactElement {
       top={100}
       animation="slideDown"
       animationTiming="ease-out"
-      onClose={onClose}
+      onClose={handleClose}
     >
       <Minime onOpenSelectModal={onOpenSelectModal} />
-      <Button onClick={onClose}>
+      <Button onClick={handleClose}>
         <RiCloseCircleLine size={20} />
       </Button>
     </ModalCommon>

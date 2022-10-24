@@ -20,8 +20,8 @@ interface ChangeType {
   character: string;
 }
 
-export const chatSlice = createSlice({
-  name: 'chat',
+export const wholeChatSlice = createSlice({
+  name: 'wholeChatSlice',
   initialState,
   reducers: {
     chatIn: (state, action: PayloadAction<ChatType>) => {
@@ -46,9 +46,12 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { chatIn, changeUserInfoInChat, resetCount } = chatSlice.actions;
+export const { chatIn, changeUserInfoInChat, resetCount } =
+  wholeChatSlice.actions;
 
-export const selectChatList = (state: RootState) => state.chat.chatList;
-export const selectNewChatCount = (state: RootState) => state.chat.newChatCount;
+export const selectWholeChatList = (state: RootState) =>
+  state.wholeChat.chatList;
+export const selectNewWholeChatCount = (state: RootState) =>
+  state.wholeChat.newChatCount;
 
-export default chatSlice.reducer;
+export default wholeChatSlice.reducer;

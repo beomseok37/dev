@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
@@ -20,7 +20,6 @@ import {
 import socket from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
-import { changeUserInfoInChat, chatIn } from 'src/redux/reducer/chat';
 
 import { CanvasWrapper, Canvas } from './style';
 
@@ -102,7 +101,6 @@ const makeSocketUserInfo = (
 
 function MiniMe({ onOpenSelectModal }: Props): ReactElement {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const position: any = {};
@@ -346,13 +344,6 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
       connectedUsers.splice(userIndex, 1);
     });
 
-    socket.on('broadcastMessage', (socketID, who, message, character, time) => {
-      dispatch(chatIn({ who, message, socketID, character, time }));
-    });
-
-    socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
-      dispatch(changeUserInfoInChat({ socketID, who, character }));
-    });
     return () => {
       removeWindowEventListener();
       socket.removeAllListeners();

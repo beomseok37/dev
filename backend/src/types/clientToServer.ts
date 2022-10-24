@@ -13,4 +13,5 @@ export default interface ClientToServerType {
     time: string,
   ) => void;
   changeCharacterInfo: (socketID: string, who: string, character: string) => void;
+  broadcastDisconnect: (socketID: string) => void;
 }
