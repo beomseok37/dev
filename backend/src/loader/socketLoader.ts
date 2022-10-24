@@ -31,6 +31,9 @@ export default function socketLoader(app: express.Application) {
     socket.on('changeCharacterInfo', (socketID, who, character) => {
       socket.broadcast.emit('broadcastChangedCharacterInfo', socketID, who, character);
     });
+    socket.on('broadcastDisconnect', (socketID) => {
+      socket.broadcast.emit('broadcastDisconnect', socketID);
+    });
     socket.on('disconnect', () => {
       console.log('disconnect');
       socket.broadcast.emit('broadcastDisconnect', socket.id);
