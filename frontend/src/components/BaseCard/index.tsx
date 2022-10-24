@@ -15,7 +15,7 @@ const BaseCard = ({
   hoverBackgroundColor,
 }: Props): ReactElement => {
   return (
-    <Link href={`/base/${page}`}>
+    <Link href={`/study/${page}`}>
       <Wrapper
         backgroundColor={backgroundColor}
         hoverBackgroundColor={hoverBackgroundColor}
