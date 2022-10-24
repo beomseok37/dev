@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import Image from 'next/image';
@@ -22,6 +23,10 @@ import {
 const menuList = ['home', 'study'];
 
 function SideBar(): ReactElement {
+  const router = useRouter();
+  const handleClickLogo = () => {
+    router.push('/');
+  };
   return (
     <Column
       width={SIDE_BAR_OPEN_WIDTH}
@@ -34,7 +39,13 @@ function SideBar(): ReactElement {
       transition
     >
       <ImageWrapper>
-        <Image src="/image/road.jpg" width={300} height={300} />
+        <Image
+          src="/image/road.jpg"
+          width={300}
+          height={300}
+          onClick={handleClickLogo}
+          style={{ cursor: 'pointer' }}
+        />
       </ImageWrapper>
       <BlogTitle>Cotton dev</BlogTitle>
       <HorizontalLine />
