@@ -13,7 +13,7 @@ import Row from 'src/components/Grid/Row';
 import CharacterImage from 'src/components/CharacterImage';
 import Column from 'src/components/Grid/Column';
 
-import { selectChatList, chatIn } from 'src/redux/reducer/chat';
+import { selectWholeChatList, chatIn } from 'src/redux/reducer/chat';
 import { selectUser } from 'src/redux/reducer/user';
 
 import socket from 'src/socket';
@@ -36,7 +36,7 @@ interface Props {
 
 const ChatArea = ({ open }: Props): ReactElement => {
   const user = useSelector(selectUser);
-  const chatList = useSelector(selectChatList);
+  const chatList = useSelector(selectWholeChatList);
   const dispatch = useDispatch();
   const chatListRef = useRef<HTMLDivElement>(null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
