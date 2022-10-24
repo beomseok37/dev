@@ -28,11 +28,11 @@ function MinimeModal({ onClose, onOpenSelectModal }: Props): ReactElement {
       top={100}
       animation="slideDown"
       animationTiming="ease-out"
-      onClose={handleClose}
+      onClose={() => {}}
     >
       <Minime onOpenSelectModal={onOpenSelectModal} />
       <Button onClick={handleClose}>
-        <RiCloseCircleLine size={20} />
+        <RiCloseCircleLine size={26} />
       </Button>
     </ModalCommon>
   );
