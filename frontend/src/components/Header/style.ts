@@ -21,11 +21,8 @@ const Wrapper = styled.div`
   padding: 10px;
 `;
 
-const Title = styled.a`
+const Title = styled.p`
   font-size: 28px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Button = styled.button`
@@ -38,13 +35,13 @@ const Balloon = styled.div`
   ${slideLeftAnimation}
   animation: slideLeft 0.5s;
   position: absolute;
-  bottom: -42px;
+  bottom: -45px;
   left: -45px;
   width: 80px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
   border-radius: 10px;
   background: #fff;
   border: 2px solid #000;
@@ -56,7 +53,7 @@ const Balloon = styled.div`
     border: 8px solid transparent;
     border-bottom-color: #000;
     border-top: 0;
-    margin-left: 34px;
+    margin-left: 47px;
     margin-top: -8px;
   }
 `;
