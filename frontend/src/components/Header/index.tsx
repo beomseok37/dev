@@ -1,5 +1,4 @@
 import { ReactElement, useState } from 'react';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 import CharacterImage from 'src/components/CharacterImage';
@@ -32,9 +31,7 @@ const Header = ({ pageName }: props): ReactElement => {
 
   return (
     <Wrapper>
-      <Link href="/">
-        <Title>{pageName} page</Title>
-      </Link>
+      <Title>{pageName} page</Title>
       <Button onClick={handleOpenModal}>
         <CharacterImage
           character={user.character}
