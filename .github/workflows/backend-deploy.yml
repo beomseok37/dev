@@ -1,0 +1,22 @@
+name: backend-deploy
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  deploy-backend-server:
+    name: deploy backend in server
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh connect to server
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          port: ${{secrets.PORT}}
+          script: |
+            ~/deploy-dev-backend.sh
