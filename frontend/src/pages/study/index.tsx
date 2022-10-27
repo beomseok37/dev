@@ -9,7 +9,7 @@ import { GridWrapper, HorizontalLine, Title } from 'src/styles/pages/base';
 const Base: NextPage = () => {
   const componentList = ['dropdown-menu', 'echarts', 'xarrows'];
   const cssList = ['button', 'animation'];
-  const studyList = ['react-hooks', 'redux'];
+  const studyList = ['react-hooks', 'redux', 'github-api'];
   return (
     <Page header="animation">
       <Column padding="10px">

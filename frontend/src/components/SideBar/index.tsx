@@ -40,9 +40,10 @@ function SideBar(): ReactElement {
     >
       <ImageWrapper>
         <Image
-          src="/image/road.jpg"
+          src="https://github.com/beomseok37.png"
           width={300}
           height={300}
+          alt="beomseok37's GitHub Avatar"
           onClick={handleClickLogo}
           style={{ cursor: 'pointer' }}
         />
