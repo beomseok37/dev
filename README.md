@@ -26,14 +26,14 @@ frontend tech 연습 프로젝트 입니다.
 
 ### Frontend
 
-- [ ] 첫 페이지 GitHub MarkDown 렌더링
+- [x] ~~첫 페이지 GitHub MarkDown 렌더링~~ -> github api 페이지를 따로 만듦
 - [ ] 마이페이지 구성
 - [ ] 미니미 모달 채팅 방 디자인 및 구현
 - [ ] 네이버, GitHub 연동 페이지 구현
 
 ### Backend
 
-- [ ] github api 연결
+- [x] github api 연결
 - [ ] 모달 채팅 방 전체 채팅 방 socket rooms를 통해 분리 및 각각 연결
 - [ ] 연동 관련 로직 및 api 설정
 - [ ] db 연결
