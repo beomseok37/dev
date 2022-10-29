@@ -74,6 +74,10 @@ const MenuList = styled.div`
   ${growDown}
   animation: growDown 0.25s ease-in-out forwards;
   transform-origin: top center;
+  height: 180px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 `;
 
 const Menu1 = styled.p`
