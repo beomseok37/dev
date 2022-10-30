@@ -53,7 +53,7 @@ const GitHubApiPage: NextPage = () => {
       pageContentList={[{ content: GITHUB_API_PAGE_CONTENT, done: true }]}
     >
       <Column padding="10px">
-        <Row padding="20px" height="300px">
+        <Row padding="20px" borderBottom="1px solid #888">
           <Column>
             <Row
               alignItems="center"
