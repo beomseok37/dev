@@ -62,7 +62,6 @@ const Background = styled.div`
 const DropdownMenuWrapper = styled.div<DropdownMenuWrapperProps>`
   z-index: ${({ isDropdown }) => (isDropdown ? '1' : 'unset')};
   width: fit-content;
-  height: 250px;
 `;
 
 const MenuBase = styled.p`
@@ -78,6 +77,7 @@ const MenuList = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
+  position: absolute;
 `;
 
 const Menu1 = styled.p`
