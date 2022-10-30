@@ -10,6 +10,7 @@ import Row from 'src/components/Grid/Row';
 import Input from 'src/components/base/Input';
 import Button from 'src/components/base/Button';
 import DropdownMenu from 'src/components/DropdownMenu';
+import Loading from 'src/components/Loading';
 
 import { GITHUB_API_PAGE_CONTENT } from 'src/constant/page';
 
@@ -20,7 +21,12 @@ const GitHubApiPage: NextPage = () => {
   const [username, setUsername] = useState('');
   const [repoList, setRepoList] = useState<string[]>([]);
   const [repo, setRepo] = useState('');
+  const [isRepoListLoading, setIsRepoListLoading] = useState(false);
+  const [isReadmeLoading, setIsReadmeLoading] = useState(false);
+
   const getRepoList = async () => {
+    setIsRepoListLoading(true);
+    setRepoList([]);
     const fetchedRepoList = await axios.get(
       `${serverURL}/v1/github/repos/${username}`
     );
@@ -28,6 +34,8 @@ const GitHubApiPage: NextPage = () => {
   };
 
   const getReadme = useCallback(async () => {
+    setIsReadmeLoading(true);
+    setReadme('');
     const fetchedReadme = await axios.get(
       `${serverURL}/v1/github/${username}/${repo}`
     );
@@ -73,20 +81,26 @@ const GitHubApiPage: NextPage = () => {
             </Row>
             <Button onClick={() => getRepoList()}>찾기</Button>
           </Column>
-          {repoList.length !== 0 && (
-            <DropdownMenu
-              bind={[repo, setRepo]}
-              menuList={repoList}
-              version={1}
-            />
-          )}
+          {isRepoListLoading &&
+            (repoList.length !== 0 ? (
+              <DropdownMenu
+                bind={[repo, setRepo]}
+                menuList={repoList}
+                version={1}
+              />
+            ) : (
+              <Loading />
+            ))}
         </Row>
 
-        {readme && (
-          <div
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(readme) }}
-          />
-        )}
+        {isReadmeLoading &&
+          (readme ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(readme) }}
+            />
+          ) : (
+            <Loading />
+          ))}
       </Column>
     </Page>
   );
