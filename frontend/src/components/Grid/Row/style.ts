@@ -6,6 +6,7 @@ interface props {
   justifyContent: string;
   alignItems: string;
   transition: boolean;
+  margin: string;
   padding: string;
   background: string;
   position: string;
@@ -24,6 +25,7 @@ const Wrapper = styled.div<props>`
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
   ${({ transition }) => transition && `transition: all ease 0.8s;`}
+  margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
   background: ${({ background }) => background};
   position: ${({ position }) => position};

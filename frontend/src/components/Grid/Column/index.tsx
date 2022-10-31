@@ -10,6 +10,7 @@ interface props {
   alignItems?: string;
   transition?: boolean;
   background?: string;
+  margin?: string;
   padding?: string;
   position?: string;
   onClick?: () => void;
@@ -29,6 +30,7 @@ function Column({
   alignItems,
   transition,
   background,
+  margin,
   padding,
   position,
   onClick,
@@ -47,6 +49,7 @@ function Column({
       alignItems={alignItems!}
       transition={transition!}
       background={background!}
+      margin={margin!}
       padding={padding!}
       position={position!}
       onClick={onClick!}
@@ -69,6 +72,7 @@ Column.defaultProps = {
   alignItems: 'unset',
   transition: false,
   background: 'unset',
+  margin: 'unset',
   padding: 'unset',
   position: 'unset',
   onClick: () => {},

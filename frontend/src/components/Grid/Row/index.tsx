@@ -10,6 +10,7 @@ interface props {
   alignItems?: string;
   transition?: boolean;
   background?: string;
+  margin?: string;
   padding?: string;
   position?: string;
   onClick?: () => void;
@@ -29,6 +30,7 @@ function Row({
   alignItems,
   transition,
   background,
+  margin,
   padding,
   position,
   onClick,
@@ -47,6 +49,7 @@ function Row({
       alignItems={alignItems!}
       transition={transition!}
       padding={padding!}
+      margin={margin!}
       background={background!}
       position={position!}
       onClick={onClick!}
@@ -68,6 +71,7 @@ Row.defaultProps = {
   justifyContent: 'unset',
   alignItems: 'unset',
   transition: false,
+  margin: 'unset',
   padding: 'unset',
   background: 'unset',
   position: 'unset',

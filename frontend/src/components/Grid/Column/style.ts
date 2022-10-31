@@ -7,6 +7,7 @@ interface props {
   alignItems: string;
   transition: boolean;
   background: string;
+  margin: string;
   padding: string;
   position: string;
   border: string;
@@ -27,6 +28,7 @@ const Wrapper = styled.div<props>`
   align-items: ${({ alignItems }) => alignItems};
   ${({ transition }) => transition && `transition: all ease 0.8s;`}
   background: ${({ background }) => background};
+  margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
   position: ${({ position }) => position};
   border-left: ${({ border, borderLeft }) =>
