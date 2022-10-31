@@ -14,6 +14,8 @@ import Loading from 'src/components/Loading';
 
 import { GITHUB_API_PAGE_CONTENT } from 'src/constant/page';
 
+import { Readme, ReadmeWrapper } from 'src/styles/pages/github-api';
+
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const GitHubApiPage: NextPage = () => {
@@ -61,7 +63,7 @@ const GitHubApiPage: NextPage = () => {
       pageContentList={[{ content: GITHUB_API_PAGE_CONTENT, done: true }]}
     >
       <Column padding="10px">
-        <Row padding="20px" borderBottom="1px solid #888">
+        <Row padding="20px">
           <Column>
             <Row
               alignItems="center"
@@ -81,23 +83,42 @@ const GitHubApiPage: NextPage = () => {
             </Row>
             <Button onClick={() => getRepoList()}>찾기</Button>
           </Column>
-          {isRepoListLoading &&
-            (repoList.length !== 0 ? (
-              <DropdownMenu
-                bind={[repo, setRepo]}
-                menuList={repoList}
-                version={1}
-              />
-            ) : (
-              <Loading />
-            ))}
+          {isRepoListLoading && (
+            <Row
+              alignItems="center"
+              justifyContent="space-between"
+              margin="0 0 0 10px"
+              width="280px"
+              height="fit-content"
+            >
+              {repoList.length !== 0 ? (
+                <>
+                  <p>repository</p>
+                  <DropdownMenu
+                    bind={[repo, setRepo]}
+                    menuList={repoList}
+                    version={1}
+                  />
+                </>
+              ) : (
+                <Loading />
+              )}
+            </Row>
+          )}
         </Row>
 
         {isReadmeLoading &&
           (readme ? (
-            <div
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(readme) }}
-            />
+            <>
+              <Readme />
+              <ReadmeWrapper>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(readme),
+                  }}
+                />
+              </ReadmeWrapper>
+            </>
           ) : (
             <Loading />
           ))}
