@@ -7,7 +7,7 @@ import Column from 'src/components/Grid/Column';
 import { GridWrapper, HorizontalLine, Title } from 'src/styles/pages/base';
 
 const Base: NextPage = () => {
-  const componentList = ['dropdown-menu', 'echarts', 'xarrows'];
+  const componentList = ['dropdown-menu', 'echarts', 'xarrows', 'editor'];
   const cssList = ['button', 'animation'];
   const studyList = ['react-hooks', 'redux', 'github-api'];
   return (
