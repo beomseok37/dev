@@ -212,7 +212,6 @@ function Editor(): ReactElement {
         );
       }
     });
-    console.log('userInput', userInput);
 
     if (document.activeElement !== textAreaRef.current) {
       setCursorPosition(cursorPosition.current);
@@ -233,10 +232,6 @@ function Editor(): ReactElement {
   //   });
   //   setTotalEquation(parsedTotalEquation);
   // }, [userInput]);
-
-  useEffect(() => {
-    console.log('totalEquation', totalEquation);
-  }, [totalEquation]);
 
   useEffect(() => {
     setUserInputByButtonClick(metric);

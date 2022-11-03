@@ -1,9 +1,14 @@
 import { NextPage } from 'next';
+// import dynamic from 'next/dynamic';
+// import Script from 'next/script';
+// import { Suspense } from 'react';
 
 import Page from 'src/components/Page';
-import Editor from 'src/components/Editor/index';
+// import Loading from 'src/components/Loading';
 
 import { EDITOR_PAGE_CONTENT } from 'src/constant/page';
+
+// const DynamicEditor = dynamic(() => import('src/components/Editor'));
 
 const EditorPage: NextPage = () => {
   return (
@@ -11,7 +16,10 @@ const EditorPage: NextPage = () => {
       header="equation editor"
       pageContentList={[{ content: EDITOR_PAGE_CONTENT, done: true }]}
     >
-      <Editor />
+      {/* <Suspense fallback={<Loading />}>
+          <DynamicEditor />
+        </Suspense> */}
+      😥
     </Page>
   );
 };
