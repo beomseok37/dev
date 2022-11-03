@@ -11,7 +11,7 @@ const Base: NextPage = () => {
   const cssList = ['button', 'animation'];
   const studyList = ['react-hooks', 'redux', 'github-api'];
   return (
-    <Page header="animation">
+    <Page header="study👨‍💻">
       <Column padding="10px">
         <Title>Component</Title>
         <GridWrapper>

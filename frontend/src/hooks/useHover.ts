@@ -10,19 +10,20 @@ function useHover<T>(): [MutableRefObject<T>, boolean] {
   const handleMouseOver = () => setValue(true);
   const handleMouseOut = () => setValue(false);
   useEffect(
-    // eslint-disable-next-line consistent-return
     () => {
-      if (ref.current) {
-        ref.current.addEventListener('mouseover', handleMouseOver);
-        ref.current.addEventListener('mouseout', handleMouseOut);
+      const hoverRef = ref.current;
+      if (hoverRef) {
+        hoverRef.addEventListener('mouseover', handleMouseOver);
+        hoverRef.addEventListener('mouseout', handleMouseOut);
       }
       return () => {
-        if (ref.current) {
-          ref.current.removeEventListener('mouseover', handleMouseOver);
-          ref.current.removeEventListener('mouseout', handleMouseOut);
+        if (hoverRef) {
+          hoverRef.removeEventListener('mouseover', handleMouseOver);
+          hoverRef.removeEventListener('mouseout', handleMouseOut);
         }
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [ref.current] // Recall only if ref changes
   );
   return [ref, value];

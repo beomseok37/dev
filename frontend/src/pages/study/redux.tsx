@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
 
 import Page from 'src/components/Page';
 import ReduxCounter from 'src/components/ReduxCounter';
