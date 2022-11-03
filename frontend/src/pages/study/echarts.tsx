@@ -94,7 +94,7 @@ const Echarts: NextPage = () => {
 
   return (
     <Page
-      header="box"
+      header="echarts"
       pageContentList={[{ content: ECHARTS_PAGE_CONTENT, done: true }]}
     >
       <Suspense fallback={<Loading isCenter />}>
