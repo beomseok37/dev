@@ -68,7 +68,8 @@ const GitHubApiPage: NextPage = () => {
             <Row
               alignItems="center"
               justifyContent="space-between"
-              width="200px"
+              width="220px"
+              padding="5px"
             >
               <p>username</p>
               <Input value={username} onChange={handleChangeUsername} />
@@ -76,7 +77,8 @@ const GitHubApiPage: NextPage = () => {
             <Row
               alignItems="center"
               justifyContent="space-between"
-              width="200px"
+              width="220px"
+              padding="5px"
             >
               <p>repository</p>
               <Input value={repo} onChange={handleChangeRepo} />
