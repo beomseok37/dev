@@ -21,7 +21,7 @@ const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 const GitHubApiPage: NextPage = () => {
   const [readme, setReadme] = useState('');
   const [username, setUsername] = useState('');
-  const [repoList, setRepoList] = useState<string[]>([]);
+  const [repoList, setRepoList] = useState([]);
   const [repo, setRepo] = useState('');
   const [isRepoListLoading, setIsRepoListLoading] = useState(false);
   const [isReadmeLoading, setIsReadmeLoading] = useState(false);
