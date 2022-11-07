@@ -34,7 +34,7 @@ interface Props {
   open: boolean;
 }
 
-const ChatArea = ({ open }: Props): ReactElement => {
+function ChatArea({ open }: Props): ReactElement {
   const user = useSelector(selectUser);
   const chatList = useSelector(selectWholeChatList);
   const dispatch = useDispatch();
@@ -174,6 +174,6 @@ const ChatArea = ({ open }: Props): ReactElement => {
       </Row>
     </Wrapper>
   );
-};
+}
 
 export default ChatArea;

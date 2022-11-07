@@ -9,11 +9,11 @@ interface Props {
   hoverBackgroundColor: string;
 }
 
-const BaseCard = ({
+function BaseCard({
   page,
   backgroundColor,
   hoverBackgroundColor,
-}: Props): ReactElement => {
+}: Props): ReactElement {
   return (
     <Link href={`/study/${page}`}>
       <Wrapper
@@ -24,6 +24,6 @@ const BaseCard = ({
       </Wrapper>
     </Link>
   );
-};
+}
 
 export default BaseCard;

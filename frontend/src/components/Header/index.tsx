@@ -16,7 +16,7 @@ interface props {
   pageName: string;
 }
 
-const Header = ({ pageName }: props): ReactElement => {
+function Header({ pageName }: props): ReactElement {
   const user = useSelector(selectUser);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +55,6 @@ const Header = ({ pageName }: props): ReactElement => {
         ))}
     </Wrapper>
   );
-};
+}
 
 export default Header;

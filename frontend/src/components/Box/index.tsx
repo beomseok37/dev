@@ -1,9 +1,9 @@
-import React from 'react';
+import { ReactElement } from 'react';
 
 import { Wrapper } from './style';
 
-const Box = (): React.ReactElement => {
+function Box(): ReactElement {
   return <Wrapper>This is Box Component</Wrapper>;
-};
+}
 
 export default Box;

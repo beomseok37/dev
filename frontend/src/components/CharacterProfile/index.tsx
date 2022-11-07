@@ -12,7 +12,7 @@ interface Props {
   onOpenSelectModal: () => void;
 }
 
-const CharacterProfile = ({ onOpenSelectModal }: Props): ReactElement => {
+function CharacterProfile({ onOpenSelectModal }: Props): ReactElement {
   const user = useSelector(selectUser);
   return (
     <Row
@@ -33,6 +33,6 @@ const CharacterProfile = ({ onOpenSelectModal }: Props): ReactElement => {
       </FloatButton>
     </Row>
   );
-};
+}
 
 export default CharacterProfile;

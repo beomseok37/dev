@@ -7,7 +7,7 @@ import ChatArea from './ChatArea';
 import ChatButton from './ChatButton';
 import ChatCloseButton from './ChatCloseButotn';
 
-const Chat = (): ReactElement => {
+function Chat(): ReactElement {
   const [open, setOpen] = useState(false);
   const [first, setFirst] = useState(true);
 
@@ -33,6 +33,6 @@ const Chat = (): ReactElement => {
       {!open && <ChatButton handleOpen={handleOpen} first={first} />}
     </>
   );
-};
+}
 
 export default Chat;

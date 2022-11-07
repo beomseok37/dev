@@ -11,7 +11,7 @@ interface Props {
   first: boolean;
 }
 
-const ChatButton = ({ handleOpen, first }: Props): ReactElement => {
+function ChatButton({ handleOpen, first }: Props): ReactElement {
   const newChatCount = useSelector(selectNewWholeChatCount);
 
   return (
@@ -20,6 +20,6 @@ const ChatButton = ({ handleOpen, first }: Props): ReactElement => {
       {newChatCount !== 0 && <Count>{newChatCount}</Count>}
     </Wrapper>
   );
-};
+}
 
 export default ChatButton;

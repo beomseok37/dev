@@ -1,11 +1,11 @@
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 
 import { ButtonColorType, ButtonSizeType } from 'src/types';
 
 import { Button } from './style';
 
 interface props {
-  children: React.ReactElement | string;
+  children: ReactElement | string;
   size?: ButtonSizeType;
   color?: ButtonColorType;
   outline?: boolean;
@@ -16,7 +16,7 @@ interface props {
   margin?: string;
 }
 
-const MyButton = ({
+function MyButton({
   children,
   size,
   color,
@@ -25,7 +25,7 @@ const MyButton = ({
   leftMargin,
   margin,
   ...rest
-}: props): React.ReactElement => {
+}: props): ReactElement {
   return (
     <Button
       type="button"
@@ -41,7 +41,7 @@ const MyButton = ({
       {children}
     </Button>
   );
-};
+}
 
 MyButton.defaultProps = {
   size: 'medium',

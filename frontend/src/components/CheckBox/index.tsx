@@ -10,7 +10,7 @@ interface props {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const CheckBox = ({ checked, children, onChange }: props): ReactElement => {
+function CheckBox({ checked, children, onChange }: props): ReactElement {
   return (
     <Wrapper>
       <label>
@@ -21,7 +21,7 @@ const CheckBox = ({ checked, children, onChange }: props): ReactElement => {
       <span>{children}</span>
     </Wrapper>
   );
-};
+}
 
 CheckBox.defaultProps = {
   checked: false,

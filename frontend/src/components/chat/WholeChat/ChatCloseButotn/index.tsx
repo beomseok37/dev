@@ -7,12 +7,12 @@ interface Props {
   handleClose: () => void;
 }
 
-const ChatCloseButton = ({ handleClose }: Props): ReactElement => {
+function ChatCloseButton({ handleClose }: Props): ReactElement {
   return (
     <Wrapper onClick={handleClose}>
       <BsFillArrowRightCircleFill size={30} />
     </Wrapper>
   );
-};
+}
 
 export default ChatCloseButton;
