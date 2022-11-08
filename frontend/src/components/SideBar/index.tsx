@@ -12,7 +12,6 @@ import { SIDE_BAR_OPEN_WIDTH, SIDE_BAR_HEIGHT } from 'src/constant/sideBar';
 
 import {
   Anchor2,
-  // AnchorWrapper,
   ImageWrapper,
   HorizontalLine,
   BlogTitle,
@@ -88,13 +87,6 @@ function SideBar(): ReactElement {
             <span>{menu}</span>
           </Anchor2>
         </Link>
-        // <AnchorWrapper key={menu}>
-        // <Link href={menu === 'home' ? '/' : `/${menu}`}>
-        //   <Anchor>
-        //     {menu}
-        //   </Anchor>
-        // </Link>
-        // </AnchorWrapper>
       ))}
     </Column>
   );

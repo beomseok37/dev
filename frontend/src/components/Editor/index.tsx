@@ -53,7 +53,6 @@ const equationButtonList = [
 
 const equationList = [
   { replacement: '{\\times}', pattern: '*' },
-  // { value: '\\bmod', userInput: 'mod', replacement: '\\bmod', pattern: 'mod' },
   { replacement: '(', pattern: 'same' },
   { replacement: ')', pattern: 'same' },
   {
@@ -218,20 +217,6 @@ function Editor(): ReactElement {
     }
     setTotalEquation(parsedTotalEquation);
   }, [userInput]);
-
-  // useEffect(() => {
-  //   let parsedTotalEquation = userInput;
-  //   equationButtonList.forEach((equationButton) => {
-  //     const index = parsedTotalEquation.indexOf(equationButton.pattern);
-  //     if (equationButton.pattern !== 'same' && index > -1) {
-  //       parsedTotalEquation =
-  //         parsedTotalEquation.slice(0, index) +
-  //         equationButton.replacement +
-  //         parsedTotalEquation.slice(index);
-  //     }
-  //   });
-  //   setTotalEquation(parsedTotalEquation);
-  // }, [userInput]);
 
   useEffect(() => {
     setUserInputByButtonClick(metric);
