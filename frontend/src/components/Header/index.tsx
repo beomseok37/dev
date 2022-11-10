@@ -32,7 +32,7 @@ function Header({ pageName }: props): ReactElement {
   return (
     <Wrapper>
       <Title>{pageName} page</Title>
-      <Button onClick={handleOpenModal}>
+      <Button onClick={handleOpenModal} aria-label="미니미 시작 버튼">
         <CharacterImage
           character={user.character}
           border="1px solid #000"

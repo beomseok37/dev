@@ -247,6 +247,7 @@ function Editor(): ReactElement {
           <Button
             key={equationButton.value + index.toString()}
             onClick={() => setUserInputByButtonClick(equationButton.userInput)}
+            aria-label="수식 버튼"
           >
             <MathComponent tex={equationButton.value} />
           </Button>

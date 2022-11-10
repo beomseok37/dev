@@ -27,7 +27,7 @@ function CharacterProfile({ onOpenSelectModal }: Props): ReactElement {
         <CharacterImage character={user.character} isAbsolute />
         <Username>{user.username}</Username>
       </Row>
-      <FloatButton onClick={onOpenSelectModal}>
+      <FloatButton onClick={onOpenSelectModal} aria-label="캐릭터 변경 버튼">
         <p>Change</p>
         <p>Character</p>
       </FloatButton>

@@ -82,7 +82,7 @@ function SideBar(): ReactElement {
       <HorizontalLine />
       {menuList.map((menu) => (
         <Link key={menu} href={menu === 'home' ? '/' : `/${menu}`}>
-          <Anchor2>
+          <Anchor2 aria-label="메뉴 이동 버튼">
             <span>{menu}</span>
             <span>{menu}</span>
           </Anchor2>

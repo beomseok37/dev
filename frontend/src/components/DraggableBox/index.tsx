@@ -35,7 +35,7 @@ function DraggableBox({
       <Draggable onDrag={updateXarrow} onStop={updateXarrow}>
         <Box id={component.id} onClick={onClick}>
           {component.id}
-          <Button onClick={handleModalShow}>
+          <Button onClick={handleModalShow} aria-label="파라미터 리셋 버튼">
             <GrPowerReset />
           </Button>
         </Box>

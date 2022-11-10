@@ -31,7 +31,7 @@ function MinimeModal({ onClose, onOpenSelectModal }: Props): ReactElement {
       onClose={() => {}}
     >
       <Minime onOpenSelectModal={onOpenSelectModal} />
-      <Button onClick={handleClose}>
+      <Button onClick={handleClose} aria-label="미니미 모달 제거 버튼">
         <RiCloseCircleLine size={26} />
       </Button>
     </ModalCommon>

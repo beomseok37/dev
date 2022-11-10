@@ -14,7 +14,7 @@ const Custom404Page: NextPage = () => {
   return (
     <Column justifyContent="center" alignItems="center" height="100%">
       <P>페이지가 없네요😥</P>
-      <Button onClick={handleClick}>
+      <Button onClick={handleClick} aria-label="이전 페이지 이동 버튼">
         <Span>이전 페이지로</Span>
       </Button>
     </Column>

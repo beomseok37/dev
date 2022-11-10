@@ -9,7 +9,7 @@ interface Props {
 
 function ChatCloseButton({ handleClose }: Props): ReactElement {
   return (
-    <Wrapper onClick={handleClose}>
+    <Wrapper onClick={handleClose} aria-label="전체 채팅 close 버튼">
       <BsFillArrowRightCircleFill size={30} />
     </Wrapper>
   );

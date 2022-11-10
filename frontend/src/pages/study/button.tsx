@@ -29,18 +29,27 @@ const ButtonPage: NextPage = () => {
       </ButtonGroup>
       <ButtonGroup>
         <p>구르는 버튼</p>
-        <RotateButton onClick={() => setButton('home')}>
+        <RotateButton
+          onClick={() => setButton('home')}
+          aria-label="구르는 버튼"
+        >
           <span>Click!</span>
           <span>home</span>
         </RotateButton>
-        <RotateButton onClick={() => setButton('base')}>
+        <RotateButton
+          onClick={() => setButton('base')}
+          aria-label="구르는 버튼"
+        >
           <span>Click!</span>
           <span>base</span>
         </RotateButton>
       </ButtonGroup>
       <ButtonGroup>
         <p>animation button1</p>
-        <Scale3dButton onClick={() => setButton('scale 3d button')}>
+        <Scale3dButton
+          onClick={() => setButton('scale 3d button')}
+          aria-label="커지는 버튼"
+        >
           scale 3d button
         </Scale3dButton>
       </ButtonGroup>
