@@ -229,6 +229,7 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
     connectedUsers.forEach((otherUser) => {
       const otherCharacter = document.createElement('img');
       otherCharacter.src = otherUser.character;
+      otherCharacter.alt = '다른 유저의 캐릭터';
       drawFrame(
         otherCharacter,
         calculateSX(otherUser.currentDirection, otherUser.currentLoopIndex),
@@ -260,6 +261,7 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
     draw.ctx.font = 'bold';
     draw.character = document.createElement('img');
     draw.character.src = user.character;
+    draw.character.alt = '유저의 캐릭터';
 
     draw.character.onload = () => {
       window.requestAnimationFrame(moveLoop);

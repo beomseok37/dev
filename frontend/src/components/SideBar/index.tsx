@@ -65,7 +65,12 @@ function SideBar(): ReactElement {
         <Link href="https://blog.beomseok.dev">
           <a target="_blank">
             <IconWrapper>
-              <Image src="/image/tistory-logo.svg" width={37} height={37} />
+              <Image
+                src="/image/tistory-logo.svg"
+                width={37}
+                height={37}
+                alt="beomseok's tistory blog"
+              />
             </IconWrapper>
           </a>
         </Link>
