@@ -19,6 +19,7 @@ function BaseCard({
       <Wrapper
         backgroundColor={backgroundColor}
         hoverBackgroundColor={hoverBackgroundColor}
+        aria-label={`${page} 페이지 이동`}
       >
         {page}
       </Wrapper>

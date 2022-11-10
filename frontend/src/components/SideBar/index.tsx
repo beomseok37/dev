@@ -56,14 +56,14 @@ function SideBar(): ReactElement {
         alignItems="center"
       >
         <Link href="https://github.com/beomseok37">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok37 깃허브 이동">
             <IconWrapper>
               <IoLogoGithub size={32} color="#000" />
             </IconWrapper>
           </a>
         </Link>
         <Link href="https://blog.beomseok.dev">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok tistory 이동">
             <IconWrapper>
               <Image
                 src="/image/tistory-logo.svg"
@@ -75,7 +75,7 @@ function SideBar(): ReactElement {
           </a>
         </Link>
         <Link href="mailto:bmtosss@gmail.com">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok에게 메일 보내기">
             <IconWrapper>
               <BlackBackground>
                 <IoMailOutline size={20} color="#fff" />
