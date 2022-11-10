@@ -69,6 +69,7 @@ function CharacterSelector({
                 width="1100px"
                 height="80px"
                 layout="fixed"
+                alt="캐릭터 이미지"
               />
             </ImageWrapper>
           </Column>

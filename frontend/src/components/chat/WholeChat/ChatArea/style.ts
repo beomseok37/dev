@@ -58,8 +58,8 @@ const Button = styled.button<ButtonProps>`
   ${({ isInputEmpty }) =>
     isInputEmpty
       ? `
-    background: #ddd;
-    color:#fff;
+    background: #eee;
+    color:#000;
   `
       : `
       background:#fef01b;

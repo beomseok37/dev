@@ -13,6 +13,7 @@ const EditorInput = forwardRef(({ userInput, onChange }: Props, ref) => {
       value={userInput}
       onChange={onChange}
       ref={ref as MutableRefObject<HTMLTextAreaElement>}
+      aria-label="수식 입력 창"
     />
   );
 });

@@ -56,21 +56,26 @@ function SideBar(): ReactElement {
         alignItems="center"
       >
         <Link href="https://github.com/beomseok37">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok37 깃허브 이동">
             <IconWrapper>
               <IoLogoGithub size={32} color="#000" />
             </IconWrapper>
           </a>
         </Link>
         <Link href="https://blog.beomseok.dev">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok tistory 이동">
             <IconWrapper>
-              <Image src="/image/tistory-logo.svg" width={37} height={37} />
+              <Image
+                src="/image/tistory-logo.svg"
+                width={37}
+                height={37}
+                alt="beomseok's tistory blog"
+              />
             </IconWrapper>
           </a>
         </Link>
         <Link href="mailto:bmtosss@gmail.com">
-          <a target="_blank">
+          <a target="_blank" aria-label="beomseok에게 메일 보내기">
             <IconWrapper>
               <BlackBackground>
                 <IoMailOutline size={20} color="#fff" />
@@ -82,7 +87,7 @@ function SideBar(): ReactElement {
       <HorizontalLine />
       {menuList.map((menu) => (
         <Link key={menu} href={menu === 'home' ? '/' : `/${menu}`}>
-          <Anchor2>
+          <Anchor2 aria-label="메뉴 이동 버튼">
             <span>{menu}</span>
             <span>{menu}</span>
           </Anchor2>

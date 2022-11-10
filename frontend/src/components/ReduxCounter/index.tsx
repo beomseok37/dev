@@ -26,8 +26,12 @@ function ReduxCounter(): ReactElement {
     <Column padding="36px" height="fit-content">
       <Count>count: {count}</Count>
       <Row padding="20px">
-        <Button onClick={() => dispatch(increment())}>+</Button>
-        <Button onClick={() => dispatch(decrement())}>-</Button>
+        <Button onClick={() => dispatch(increment())} aria-label="더하기 버튼">
+          +
+        </Button>
+        <Button onClick={() => dispatch(decrement())} aria-label="빼기 버튼">
+          -
+        </Button>
       </Row>
       <Row>
         <Input onChange={handleChange} type="number" value={amount} />

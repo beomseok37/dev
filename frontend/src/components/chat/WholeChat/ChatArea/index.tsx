@@ -165,6 +165,7 @@ function ChatArea({ open }: Props): ReactElement {
           onKeyUp={handleKeyUp}
           onKeyDown={handleKeyDown}
           ref={chatInputRef}
+          aria-label="텍스트 입력창"
         />
         <ButtonWrapper>
           <Button onClick={handleClick} isInputEmpty={newChat === ''}>

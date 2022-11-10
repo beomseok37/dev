@@ -38,10 +38,14 @@ function Todo({ todo }: props): ReactElement {
         <Title>{todo.work}</Title>
       </Row>
       <Row>
-        <IconButton done check={todo.check}>
+        <IconButton done check={todo.check} aria-label="done 버튼">
           <BsCheckCircle onClick={handleCheck} />
         </IconButton>
-        <IconButton onClick={handleRemove} check={todo.check}>
+        <IconButton
+          onClick={handleRemove}
+          check={todo.check}
+          aria-label="cancel 버튼"
+        >
           <ImCancelCircle />
         </IconButton>
       </Row>

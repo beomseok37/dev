@@ -34,7 +34,7 @@ const DropdownMenuPage: NextPage = () => {
       <p style={{ marginTop: '20px' }}>
         reference by{' '}
         <Link href="https://codinhood.com/micro/10-dropdown-menu-animations-css-transform">
-          <a>CODINHOOD</a>
+          <a aria-label="CODINHOOD">CODINHOOD</a>
         </Link>
       </p>
     </Page>
