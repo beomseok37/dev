@@ -84,6 +84,7 @@ function ChatArea({ open }: Props): ReactElement {
     ) {
       chatSocket.emit(
         'sendMessage',
+        'main',
         userInfoSocket.id,
         user.username,
         newChat,

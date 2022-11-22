@@ -7,7 +7,7 @@ import ChatArea from './ChatArea';
 import ChatButton from './ChatButton';
 import ChatCloseButton from './ChatCloseButotn';
 
-function Chat(): ReactElement {
+function MainChat(): ReactElement {
   const [open, setOpen] = useState(false);
   const [first, setFirst] = useState(true);
 
@@ -35,4 +35,4 @@ function Chat(): ReactElement {
   );
 }
 
-export default Chat;
+export default MainChat;
