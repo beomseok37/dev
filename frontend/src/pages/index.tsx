@@ -10,7 +10,7 @@ import Loading from 'src/components/Loading';
 
 import { chatIn, changeUserInfoInChat } from 'src/redux/reducer/chat';
 
-import socket from 'src/socket';
+import { chatSocket, userInfoSocket } from 'src/socket';
 
 const ReactGitHubCalendar = dynamic(() => import('react-ts-github-calendar'), {
   ssr: false,
@@ -20,15 +20,21 @@ const Home: NextPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.on('broadcastMessage', (socketID, who, message, character, time) => {
-      dispatch(chatIn({ who, message, socketID, character, time }));
-    });
+    chatSocket.on(
+      'broadcastMessage',
+      (socketID, who, message, character, time) => {
+        dispatch(chatIn({ who, message, socketID, character, time }));
+      }
+    );
 
-    socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
-      dispatch(changeUserInfoInChat({ socketID, who, character }));
-    });
+    userInfoSocket.on(
+      'broadcastChangedCharacterInfo',
+      (socketID, who, character) => {
+        dispatch(changeUserInfoInChat({ socketID, who, character }));
+      }
+    );
     return () => {
-      socket.removeAllListeners();
+      userInfoSocket.removeAllListeners();
     };
   }, [dispatch]);
 

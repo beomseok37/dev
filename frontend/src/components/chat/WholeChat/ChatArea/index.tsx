@@ -16,7 +16,7 @@ import Column from 'src/components/Grid/Column';
 import { selectWholeChatList, chatIn } from 'src/redux/reducer/chat';
 import { selectUser } from 'src/redux/reducer/user';
 
-import socket from 'src/socket';
+import { chatSocket, userInfoSocket } from 'src/socket';
 
 import {
   Wrapper,
@@ -82,9 +82,9 @@ function ChatArea({ open }: Props): ReactElement {
         newChat
       )
     ) {
-      socket.emit(
+      chatSocket.emit(
         'sendMessage',
-        socket.id,
+        userInfoSocket.id,
         user.username,
         newChat,
         user.character,
@@ -92,7 +92,7 @@ function ChatArea({ open }: Props): ReactElement {
       );
       dispatch(
         chatIn({
-          socketID: socket.id,
+          socketID: userInfoSocket.id,
           who: user.username,
           message: newChat,
           character: user.character,
@@ -123,7 +123,7 @@ function ChatArea({ open }: Props): ReactElement {
     <Wrapper open={open}>
       <ChatListWrapper ref={chatListRef}>
         {chatList.map((chat, index) => {
-          const isMine = chat.socketID === socket.id;
+          const isMine = chat.socketID === userInfoSocket.id;
           const checkSameUser =
             index === 0
               ? false

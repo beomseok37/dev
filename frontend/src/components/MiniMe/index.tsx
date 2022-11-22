@@ -17,7 +17,7 @@ import {
   CYCLE_LOOP,
 } from 'src/constant/miniMe';
 
-import socket from 'src/socket';
+import { userInfoSocket, minimeSocket } from 'src/socket';
 
 import { selectUser } from 'src/redux/reducer/user';
 
@@ -203,10 +203,10 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
           position.currentLoopIndex = 0;
         }
       }
-      socket.emit(
+      minimeSocket.emit(
         'move',
         makeSocketUserInfo(
-          socket.id,
+          userInfoSocket.id,
           user.username,
           position.x,
           position.y,
@@ -294,8 +294,8 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
     initDraw();
     addWindowEventListener();
 
-    socket.emit('requestConnectedUserInfo', {
-      socketID: socket.id,
+    userInfoSocket.emit('requestConnectedUserInfo', {
+      socketID: userInfoSocket.id,
       username: user.username,
       x: 250,
       y: 250,
@@ -304,11 +304,11 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
       currentDirection: 0,
     });
 
-    socket.on('requestUserInfo', (requestUser) => {
-      socket.emit(
+    userInfoSocket.on('requestUserInfo', (requestUser) => {
+      userInfoSocket.emit(
         'sendMyInfo',
         makeSocketUserInfo(
-          socket.id,
+          userInfoSocket.id,
           user.username,
           position.x,
           position.y,
@@ -326,15 +326,15 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
       }
     });
 
-    socket.on('responseConnectedUserInfo', (connectedUser) => {
+    userInfoSocket.on('responseConnectedUserInfo', (connectedUser) => {
       connectedUsers.push(connectedUser);
     });
 
-    socket.on('move', (socketUserInfo) => {
+    minimeSocket.on('move', (socketUserInfo) => {
       connectedUsers[checkIndex(socketUserInfo.socketID)] = socketUserInfo;
     });
 
-    socket.on('broadcastDisconnect', (socketID) => {
+    userInfoSocket.on('broadcastDisconnect', (socketID) => {
       let userIndex = 0;
       Array(connectedUsers.length)
         .fill('')
@@ -348,7 +348,8 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
 
     return () => {
       removeWindowEventListener();
-      socket.removeAllListeners();
+      userInfoSocket.removeAllListeners();
+      minimeSocket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

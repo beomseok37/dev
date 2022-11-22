@@ -11,7 +11,7 @@ import {
   changeUsername,
 } from 'src/redux/reducer/user';
 
-import socket from 'src/socket';
+import { userInfoSocket } from 'src/socket';
 
 import ModalCommon from './Common';
 
@@ -37,9 +37,9 @@ function CharacterSetModal({
       characterBind[0] !== user.character ||
       usernameBind[0] !== user.username
     ) {
-      socket.emit(
+      userInfoSocket.emit(
         'changeCharacterInfo',
-        socket.id,
+        userInfoSocket.id,
         usernameBind[0],
         characterBind[0]
       );
