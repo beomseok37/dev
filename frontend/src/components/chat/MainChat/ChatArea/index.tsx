@@ -13,7 +13,7 @@ import Row from 'src/components/Grid/Row';
 import CharacterImage from 'src/components/CharacterImage';
 import Column from 'src/components/Grid/Column';
 
-import { selectWholeChatList, chatIn } from 'src/redux/reducer/chat';
+import { selectMainChatList, mainChatIn } from 'src/redux/reducer/chat';
 import { selectUser } from 'src/redux/reducer/user';
 
 import { chatSocket, userInfoSocket } from 'src/socket';
@@ -36,7 +36,7 @@ interface Props {
 
 function ChatArea({ open }: Props): ReactElement {
   const user = useSelector(selectUser);
-  const chatList = useSelector(selectWholeChatList);
+  const chatList = useSelector(selectMainChatList);
   const dispatch = useDispatch();
   const chatListRef = useRef<HTMLDivElement>(null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
@@ -82,24 +82,15 @@ function ChatArea({ open }: Props): ReactElement {
         newChat
       )
     ) {
-      chatSocket.emit(
-        'sendMessage',
-        'main',
-        userInfoSocket.id,
-        user.username,
-        newChat,
-        user.character,
-        hourMinute
-      );
-      dispatch(
-        chatIn({
-          socketID: userInfoSocket.id,
-          who: user.username,
-          message: newChat,
-          character: user.character,
-          time: hourMinute,
-        })
-      );
+      const newMessage = {
+        socketID: userInfoSocket.id,
+        who: user.username,
+        message: newChat,
+        character: user.character,
+        time: hourMinute,
+      };
+      chatSocket.emit('sendMainMessage', newMessage);
+      dispatch(mainChatIn(newMessage));
       setNewChat('');
       handleFocus();
     }
@@ -143,7 +134,7 @@ function ChatArea({ open }: Props): ReactElement {
                 </Chat>
               ) : (
                 <Row>
-                  <CharacterImage character={chat.character} />
+                  <CharacterImage character={chat.character!} />
                   <Column>
                     <Who>{chat.who}</Who>
                     <Row>
