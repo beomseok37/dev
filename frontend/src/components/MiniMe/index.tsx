@@ -5,6 +5,7 @@ import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
 import Column from 'src/components/Grid/Column';
 import CharacterProfile from 'src/components/CharacterProfile';
+import MinimeChat from 'src/components/chat/MinimeChat';
 
 import {
   DIRECTION,
@@ -119,12 +120,20 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
   draw.character = null;
 
   const keyDownHandler = (e: KeyboardEvent) => {
+    if (document.activeElement !== canvasRef.current) {
+      return;
+    }
+
     if (document.activeElement?.tagName !== 'TEXTAREA') {
       const key = e.key === 'ㅋ' ? 'z' : e.key;
       keyPress[key] = true;
     }
   };
   const keyUpHandler = (e: KeyboardEvent) => {
+    if (document.activeElement !== canvasRef.current) {
+      return;
+    }
+
     if (document.activeElement?.tagName !== 'TEXTAREA') {
       const key = e.key === 'ㅋ' ? 'z' : e.key;
       keyPress[key] = false;
@@ -291,6 +300,7 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
   };
 
   useEffect(() => {
+    canvasRef.current?.focus();
     initDraw();
     addWindowEventListener();
 
@@ -360,6 +370,7 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
       <CanvasWrapper>
         <Canvas ref={canvasRef} tabIndex={0} />
       </CanvasWrapper>
+      <MinimeChat />
     </Column>
   );
 }

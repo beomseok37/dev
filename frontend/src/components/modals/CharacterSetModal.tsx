@@ -11,8 +11,9 @@ import {
   changeUsername,
 } from 'src/redux/reducer/user';
 
-import { userInfoSocket } from 'src/socket';
+import { chatSocket, userInfoSocket } from 'src/socket';
 
+import { changeMyInfoInChat, minimeChatIn } from 'src/redux/reducer/chat';
 import ModalCommon from './Common';
 
 interface Props {
@@ -44,9 +45,23 @@ function CharacterSetModal({
         characterBind[0]
       );
     }
+    dispatch(
+      changeMyInfoInChat({
+        socketID: userInfoSocket.id,
+        who: usernameBind[0],
+      })
+    );
     dispatch(changeCharacter(characterBind[0]));
     dispatch(changeUsername(usernameBind[0]));
     onCloseSelectModal();
+
+    const newMessage = {
+      socketID: 'I am not user',
+      who: usernameBind[0],
+      message: `${usernameBind[0]}님이 입장하셨습니다.`,
+    };
+    chatSocket.emit('sendMinimeMessage', newMessage);
+    dispatch(minimeChatIn(newMessage));
   };
 
   const handleFocus = () => {
