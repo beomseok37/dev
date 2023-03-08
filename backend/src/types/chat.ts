@@ -3,5 +3,5 @@ export default interface ChatType {
   who: string;
   message: string;
   character?: string;
-  time?: string;
+  time: string;
 }

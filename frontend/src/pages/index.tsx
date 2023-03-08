@@ -1,34 +1,35 @@
 import type { NextPage } from 'next';
-import { useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import dynamic from 'next/dynamic';
 
 import Page from 'src/components/Page';
-import Row from 'src/components/Grid/Row';
-import WholeChat from 'src/components/chat/WholeChat';
-import Loading from 'src/components/Loading';
+import MainChat from 'src/components/chat/MainChat';
 
-import { chatIn, changeUserInfoInChat } from 'src/redux/reducer/chat';
+import { mainChatIn, changeUserInfoInChat } from 'src/redux/reducer/chat';
 
-import socket from 'src/socket';
-
-const ReactGitHubCalendar = dynamic(() => import('react-ts-github-calendar'), {
-  ssr: false,
-});
+import { chatSocket, userInfoSocket } from 'src/socket';
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.on('broadcastMessage', (socketID, who, message, character, time) => {
-      dispatch(chatIn({ who, message, socketID, character, time }));
-    });
+    chatSocket.on(
+      'broadcastMainMessage',
+      ({ socketID, who, message, character, time }) => {
+        if (character) {
+          dispatch(mainChatIn({ who, message, socketID, character, time }));
+        }
+      }
+    );
 
-    socket.on('broadcastChangedCharacterInfo', (socketID, who, character) => {
-      dispatch(changeUserInfoInChat({ socketID, who, character }));
-    });
+    userInfoSocket.on(
+      'broadcastChangedCharacterInfo',
+      (socketID, who, character) => {
+        dispatch(changeUserInfoInChat({ socketID, who, character }));
+      }
+    );
     return () => {
-      socket.removeAllListeners();
+      userInfoSocket.removeAllListeners();
     };
   }, [dispatch]);
 
@@ -37,16 +38,7 @@ const Home: NextPage = () => {
       <p style={{ padding: '0 0 0 10px' }}>
         이 블로그는 frontend의 여러 기술들을 연습하기 위한 사이트이다.
       </p>
-      <Row padding="20px 0 0 20px">
-        <Suspense fallback={<Loading />}>
-          <ReactGitHubCalendar
-            userName="beomseok37"
-            global_stats={false}
-            tooltips
-          />
-        </Suspense>
-      </Row>
-      <WholeChat />
+      <MainChat />
     </Page>
   );
 };

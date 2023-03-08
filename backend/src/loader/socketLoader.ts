@@ -13,20 +13,22 @@ export default function socketLoader(app: express.Application) {
       credentials: true,
     },
   });
+  const minime = io.of('/minime');
+  const chat = io.of('/chat');
+  const userInfo = io.of('/user-info');
 
-  io.on('connection', (socket) => {
-    console.log('connection', socket.id);
-    socket.on('move', (user: SocketUserInfoType) => {
+  minime.on('connection', (socket) => {
+    socket.on('move', (user) => {
       socket.broadcast.emit('move', user);
     });
+  });
+
+  userInfo.on('connection', (socket) => {
     socket.on('requestConnectedUserInfo', (user) => {
       socket.broadcast.emit('requestUserInfo', user);
     });
     socket.on('sendMyInfo', (user, socketID) => {
-      io.to(socketID).emit('responseConnectedUserInfo', user);
-    });
-    socket.on('sendMessage', (socketID, who, message, character, time) => {
-      socket.broadcast.emit('broadcastMessage', socketID, who, message, character, time);
+      userInfo.to(socketID).emit('responseConnectedUserInfo', user);
     });
     socket.on('changeCharacterInfo', (socketID, who, character) => {
       socket.broadcast.emit('broadcastChangedCharacterInfo', socketID, who, character);
@@ -35,8 +37,16 @@ export default function socketLoader(app: express.Application) {
       socket.broadcast.emit('broadcastDisconnect', socketID);
     });
     socket.on('disconnect', () => {
-      console.log('disconnect');
       socket.broadcast.emit('broadcastDisconnect', socket.id);
+    });
+  });
+
+  chat.on('connection', (socket) => {
+    socket.on('sendMainMessage', (mainChat) => {
+      socket.broadcast.emit('broadcastMainMessage', mainChat);
+    });
+    socket.on('sendMinimeMessage', (minimeChat) => {
+      socket.broadcast.emit('broadcastMinimeMessage', minimeChat);
     });
   });
 

@@ -4,7 +4,7 @@ import { RiCloseCircleLine } from 'react-icons/ri';
 import Minime from 'src/components/MiniMe';
 import ModalCommon from 'src/components/modals/Common';
 
-import socket from 'src/socket';
+import { userInfoSocket } from 'src/socket';
 
 import { Button } from './style';
 
@@ -15,7 +15,7 @@ interface Props {
 
 function MinimeModal({ onClose, onOpenSelectModal }: Props): ReactElement {
   const handleClose = () => {
-    socket.emit('broadcastDisconnect', socket.id);
+    userInfoSocket.emit('broadcastDisconnect', userInfoSocket.id);
     onClose();
   };
   return (

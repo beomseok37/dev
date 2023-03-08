@@ -5,36 +5,61 @@ import type { RootState } from 'src/redux/store';
 import { ChatType } from 'src/types';
 
 interface StateType {
-  chatList: ChatType[];
+  mainChatList: ChatType[];
+  minimeChatList: ChatType[];
   newChatCount: number;
 }
 
 const initialState: StateType = {
-  chatList: [],
+  mainChatList: [],
+  minimeChatList: [],
   newChatCount: 0,
 };
 
 interface ChangeType {
   socketID: string;
   who: string;
-  character: string;
+  character?: string;
 }
 
 export const wholeChatSlice = createSlice({
   name: 'wholeChatSlice',
   initialState,
   reducers: {
-    chatIn: (state, action: PayloadAction<ChatType>) => {
-      state.chatList.push(action.payload);
+    mainChatIn: (state, action: PayloadAction<ChatType>) => {
+      state.mainChatList.push(action.payload);
       state.newChatCount += 1;
     },
+    minimeChatIn: (state, action: PayloadAction<ChatType>) => {
+      state.minimeChatList.push(action.payload);
+    },
     changeUserInfoInChat: (state, action: PayloadAction<ChangeType>) => {
-      state.chatList = state.chatList.map((chat) => {
+      state.mainChatList = state.mainChatList.map((chat) => {
         if (chat.socketID === action.payload.socketID) {
           return {
             ...chat,
             who: action.payload.who,
             character: action.payload.character,
+          };
+        }
+        return chat;
+      });
+      state.minimeChatList = state.minimeChatList.map((chat) => {
+        if (chat.socketID === action.payload.socketID) {
+          return {
+            ...chat,
+            who: action.payload.who,
+          };
+        }
+        return chat;
+      });
+    },
+    changeMyInfoInChat: (state, action: PayloadAction<ChangeType>) => {
+      state.minimeChatList = state.minimeChatList.map((chat) => {
+        if (chat.socketID === action.payload.socketID) {
+          return {
+            ...chat,
+            who: action.payload.who,
           };
         }
         return chat;
@@ -46,12 +71,19 @@ export const wholeChatSlice = createSlice({
   },
 });
 
-export const { chatIn, changeUserInfoInChat, resetCount } =
-  wholeChatSlice.actions;
+export const {
+  mainChatIn,
+  minimeChatIn,
+  changeUserInfoInChat,
+  resetCount,
+  changeMyInfoInChat,
+} = wholeChatSlice.actions;
 
-export const selectWholeChatList = (state: RootState) =>
-  state.wholeChat.chatList;
-export const selectNewWholeChatCount = (state: RootState) =>
+export const selectMainChatList = (state: RootState) =>
+  state.wholeChat.mainChatList;
+export const selectNewMainChatCount = (state: RootState) =>
   state.wholeChat.newChatCount;
+export const selectMinimeChatList = (state: RootState) =>
+  state.wholeChat.minimeChatList;
 
 export default wholeChatSlice.reducer;

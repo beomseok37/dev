@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { BsChatDotsFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 
-import { selectNewWholeChatCount } from 'src/redux/reducer/chat';
+import { selectNewMainChatCount } from 'src/redux/reducer/chat';
 
 import { Wrapper, Count } from './style';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 function ChatButton({ handleOpen, first }: Props): ReactElement {
-  const newChatCount = useSelector(selectNewWholeChatCount);
+  const newChatCount = useSelector(selectNewMainChatCount);
 
   return (
     <Wrapper
