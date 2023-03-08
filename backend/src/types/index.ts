@@ -1,5 +1,5 @@
 import ServerToClientType from './serverToClient';
 import ClientToServerType from './clientToServer';
-import SocketUserInfoType from './socketUserInfo';
+import { SocketUserInfoType, SocketChatType } from './socketUserInfo';
 
-export { ServerToClientType, ClientToServerType, SocketUserInfoType };
+export { ServerToClientType, ClientToServerType, SocketUserInfoType, SocketChatType };
