@@ -6,7 +6,7 @@ import CounterType from './counter';
 import PageContentType from './pageContent';
 import ArrowDirection from './arrowDirection';
 import UserType from './user';
-import SocketUserInfoType from './socketUserInfo';
+import SocketUserInfoType from './socketUserInfoType';
 import ServerToClientType from './serverToClient';
 import ClientToServerType from './clientToServer';
 import PositionType from './position';

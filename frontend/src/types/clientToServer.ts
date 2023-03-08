@@ -1,17 +1,13 @@
 /* eslint-disable no-unused-vars */
-import SocketUserInfoType from './socketUserInfo';
+import SocketUserInfoType from './socketUserInfoType';
+import ChatType from './chat';
 
 export default interface ClientToServerType {
   move: (user: SocketUserInfoType) => void;
   requestConnectedUserInfo: (user: SocketUserInfoType) => void;
   sendMyInfo: (user: SocketUserInfoType, socketID: string) => void;
-  sendMessage: (
-    socketID: string,
-    who: string,
-    message: string,
-    character: string,
-    time: string
-  ) => void;
+  sendMainMessage: (mainChat: ChatType) => void;
+  sendMinimeMessage: (minimeChat: ChatType) => void;
   changeCharacterInfo: (
     socketID: string,
     who: string,
