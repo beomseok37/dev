@@ -30,6 +30,7 @@ frontend tech 연습 프로젝트 입니다.
 - [ ] 마이페이지 구성
 - [x] 미니미 모달 채팅 방 디자인 및 구현
 - [ ] 네이버, GitHub 연동 페이지 구현
+- [ ] \_document.tsx의 meta tag 관련 에러 해결
 
 ### Backend
 
