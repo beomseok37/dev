@@ -12,16 +12,11 @@ function PageContent({ done, content }: props): ReactElement {
   return (
     <Row height="fit-content" padding="1rem">
       {done ? (
-        <>
-          <ImCheckboxChecked size={12} />
-          <p>공부한 내용:</p>
-        </>
+        <ImCheckboxChecked size={12} />
       ) : (
-        <>
-          <ImCheckboxUnchecked size={12} />
-          <p>공부할 내용:</p>
-        </>
+        <ImCheckboxUnchecked size={12} />
       )}
+      <p>페이지 설명:</p>
       <p>{content}</p>
     </Row>
   );

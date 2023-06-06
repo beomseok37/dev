@@ -11,6 +11,7 @@ const ECHARTS_PAGE_CONTENT = `echarts 패키지의 막대 그래프를 연습해
 const EDITOR_PAGE_CONTENT = `LaTeX언어를 기반으로 수식 editor를 구현하는 페이지 입니다.`;
 const XARROW_PAGE_CONTENT = `xarrow 패키지 기반 컴포넌트 간 연결을 구현해보는 페이지 입니다.`;
 const GITHUB_API_PAGE_CONTENT = `github api를 이용해 beomseok37의 readme를 가져오는 api를 구현해보는 페이지 입니다.`;
+const TOASTIFY_CONTENT = `toastify 구현 페이지입니다.`;
 
 export {
   BOX_PAGE_CONTENT,
@@ -24,4 +25,5 @@ export {
   EDITOR_PAGE_CONTENT,
   XARROW_PAGE_CONTENT,
   GITHUB_API_PAGE_CONTENT,
+  TOASTIFY_CONTENT,
 };
