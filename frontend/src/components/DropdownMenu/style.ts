@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-interface DropdownMenuWrapperProps {
-  isDropdown: boolean;
-}
-
 interface MenuProps {
   index: number;
 }
@@ -59,8 +55,8 @@ const Background = styled.div`
   inset: 0px;
 `;
 
-const DropdownMenuWrapper = styled.div<DropdownMenuWrapperProps>`
-  z-index: ${({ isDropdown }) => (isDropdown ? '1' : 'unset')};
+const DropdownMenuWrapper = styled.div`
+  z-index: 1;
   width: fit-content;
 `;
 
@@ -69,7 +65,7 @@ const MenuBase = styled.p`
   border: 1px solid #ccc;
 `;
 
-const MenuList = styled.div`
+const MenuList1 = styled.div`
   ${growDown}
   animation: growDown 0.25s ease-in-out forwards;
   transform-origin: top center;
@@ -77,6 +73,10 @@ const MenuList = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
+  position: absolute;
+`;
+
+const MenuList2 = styled.div`
   position: absolute;
 `;
 
@@ -93,4 +93,12 @@ const Menu2 = styled.p<MenuProps>`
   animation: scaleZ ${({ index }) => `${index * 60}ms`} ease-in-out forwards;
 `;
 
-export { Background, DropdownMenuWrapper, MenuBase, MenuList, Menu1, Menu2 };
+export {
+  Background,
+  DropdownMenuWrapper,
+  MenuBase,
+  MenuList1,
+  MenuList2,
+  Menu1,
+  Menu2,
+};

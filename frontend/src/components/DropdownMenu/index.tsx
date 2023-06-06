@@ -11,7 +11,8 @@ import {
   Background,
   DropdownMenuWrapper,
   MenuBase,
-  MenuList,
+  MenuList1,
+  MenuList2,
   Menu1,
   Menu2,
 } from './style';
@@ -24,44 +25,44 @@ interface props {
 
 function DropdownMenu({ bind, menuList, version }: props): ReactElement {
   const [menuState, setMenuState] = bind;
-  const [isDropdown, setIsDropdown] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuBaseRef = useRef<HTMLDivElement>(null);
   const handleClickBase = () => {
-    setIsDropdown(!isDropdown);
+    setIsDropdownOpen(!isDropdownOpen);
   };
   const handleCloseDropdownMenu = () => {
-    setIsDropdown(false);
+    setIsDropdownOpen(false);
   };
   const handleClickMenu = (e: MouseEvent<HTMLParagraphElement>) => {
     setMenuState(e.currentTarget.innerText);
-    setIsDropdown(false);
+    setIsDropdownOpen(false);
   };
 
   return (
     <>
-      {isDropdown && <Background onClick={handleCloseDropdownMenu} />}
+      {isDropdownOpen && <Background onClick={handleCloseDropdownMenu} />}
       {version === 1 ? (
-        <DropdownMenuWrapper isDropdown={isDropdown}>
+        <DropdownMenuWrapper>
           <MenuBase onClick={handleClickBase} ref={menuBaseRef}>
             {menuState}
           </MenuBase>
-          {isDropdown && (
-            <MenuList>
+          {isDropdownOpen && (
+            <MenuList1>
               {menuList.map((menu, index) => (
                 <Menu1 key={menu + index.toString()} onClick={handleClickMenu}>
                   {menu}
                 </Menu1>
               ))}
-            </MenuList>
+            </MenuList1>
           )}
         </DropdownMenuWrapper>
       ) : (
-        <DropdownMenuWrapper isDropdown={isDropdown}>
+        <DropdownMenuWrapper>
           <MenuBase onClick={handleClickBase} ref={menuBaseRef}>
             {menuState}
           </MenuBase>
-          {isDropdown && (
-            <>
+          {isDropdownOpen && (
+            <MenuList2>
               {menuList.map((menu, index) => (
                 <Menu2
                   key={menu + index.toString()}
@@ -71,7 +72,7 @@ function DropdownMenu({ bind, menuList, version }: props): ReactElement {
                   {menu}
                 </Menu2>
               ))}
-            </>
+            </MenuList2>
           )}
         </DropdownMenuWrapper>
       )}
