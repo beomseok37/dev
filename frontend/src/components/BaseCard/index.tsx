@@ -5,17 +5,19 @@ import { Wrapper } from './style';
 
 interface Props {
   page: string;
+  category: string;
   backgroundColor: string;
   hoverBackgroundColor: string;
 }
 
 function BaseCard({
   page,
+  category,
   backgroundColor,
   hoverBackgroundColor,
 }: Props): ReactElement {
   return (
-    <Link href={`/study/${page}`}>
+    <Link href={`/study/${category}/${page}`}>
       <Wrapper
         backgroundColor={backgroundColor}
         hoverBackgroundColor={hoverBackgroundColor}
