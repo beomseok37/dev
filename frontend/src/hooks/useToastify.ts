@@ -1,16 +1,18 @@
 import { useRef, useState } from 'react';
 
-function useToastify() {
-  const toastCount = useRef(0);
-  const [toastList, setToastList] = useState<string[]>([]);
+import { ToastType } from 'src/types';
 
-  const addToast = () => {
-    setToastList([...toastList, `alarm${toastCount.current.toString()}`]);
-    toastCount.current += 1;
+function useToastify() {
+  const toastRef = useRef(1);
+  const [toastList, setToastList] = useState<ToastType[]>([]);
+
+  const addToast = (content: string) => {
+    setToastList([...toastList, { content, key: toastRef.current }]);
+    toastRef.current += 1;
   };
 
-  const removeToast = (deleteToast: string) => {
-    setToastList(toastList.filter((toast) => toast !== deleteToast));
+  const removeToast = () => {
+    setToastList(toastList.slice(1));
   };
 
   return { toastList, addToast, removeToast };

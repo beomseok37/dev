@@ -17,6 +17,7 @@ import {
   ComponentType,
   ComponentObjectType,
 } from './xArrow';
+import { ToastifyPositionType, ToastType } from './toastify';
 
 export type {
   ButtonColorType,
@@ -36,4 +37,6 @@ export type {
   ParameterType,
   ComponentType,
   ComponentObjectType,
+  ToastifyPositionType,
+  ToastType,
 };

@@ -1,21 +1,34 @@
 import Toast from 'src/components/Toastify/Toast';
 
+import { ToastifyPositionType, ToastType } from 'src/types';
+
 import { Wrapper } from './style';
 
 interface Props {
-  toastList: string[];
-  // eslint-disable-next-line no-unused-vars
-  removeToast: (deleteToast: string) => void;
+  position: ToastifyPositionType;
+  background: string;
+  seconds: string;
+  toastList: ToastType[];
+  removeToast: () => void;
 }
-function Toastify({ toastList, removeToast }: Props) {
+function Toastify({
+  position,
+  background,
+  seconds,
+  toastList,
+  removeToast,
+}: Props) {
   return (
-    <Wrapper>
-      {toastList.map((value, index) => (
+    <Wrapper position={position}>
+      {toastList.map(({ content, key }, index) => (
         <Toast
-          key={value}
-          value={value}
+          key={key}
+          content={content}
           index={index}
-          removeToast={() => removeToast(value)}
+          removeToast={() => removeToast()}
+          position={position}
+          background={background}
+          seconds={seconds}
         />
       ))}
     </Wrapper>

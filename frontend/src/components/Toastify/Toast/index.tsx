@@ -5,15 +5,28 @@ import Row from 'src/components/Grid/Row';
 import { Wrapper, Bar } from './style';
 
 interface Props {
-  value: string;
   index: number;
   removeToast: () => void;
+  position: string;
+  background: string;
+  seconds: string;
+  content: string;
 }
-function Toast({ value, index, removeToast }: Props) {
+function Toast({
+  index,
+  removeToast,
+  position,
+  background,
+  seconds,
+  content,
+}: Props) {
   const [isAnimating, setIsAnimating] = useState(true);
 
   const handleWholeAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
-    if (e.animationName === 'moveRight') {
+    if (position.split('-')[0] === 'Left' && e.animationName === 'leftEnd') {
+      removeToast();
+    }
+    if (position.split('-')[0] === 'Right' && e.animationName === 'rightEnd') {
       removeToast();
     }
   };
@@ -23,15 +36,18 @@ function Toast({ value, index, removeToast }: Props) {
       index={index}
       isAnimating={isAnimating}
       onAnimationEnd={handleWholeAnimationEnd}
+      position={position}
+      background={background}
     >
       <Bar
         onAnimationEnd={() => {
           setIsAnimating(false);
         }}
+        seconds={seconds}
       />
       <Row>
         <IoRocket color="#fff" style={{ marginRight: '10px' }} />
-        {value}
+        {content}
       </Row>
       <IoCloseCircleOutline
         color="#fff"
