@@ -17,13 +17,17 @@ import {
   Menu2,
 } from './style';
 
-interface props {
-  bind: [string, Dispatch<SetStateAction<string>>];
-  menuList: string[];
+interface props<T> {
+  bind: [T, Dispatch<SetStateAction<T>>];
+  menuList: T[];
   version: number;
 }
 
-function DropdownMenu({ bind, menuList, version }: props): ReactElement {
+function DropdownMenu<T = string>({
+  bind,
+  menuList,
+  version,
+}: props<T>): ReactElement {
   const [menuState, setMenuState] = bind;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuBaseRef = useRef<HTMLDivElement>(null);
@@ -34,7 +38,7 @@ function DropdownMenu({ bind, menuList, version }: props): ReactElement {
     setIsDropdownOpen(false);
   };
   const handleClickMenu = (e: MouseEvent<HTMLParagraphElement>) => {
-    setMenuState(e.currentTarget.innerText);
+    setMenuState(e.currentTarget.innerText as T);
     setIsDropdownOpen(false);
   };
 
@@ -44,13 +48,13 @@ function DropdownMenu({ bind, menuList, version }: props): ReactElement {
       {version === 1 ? (
         <DropdownMenuWrapper>
           <MenuBase onClick={handleClickBase} ref={menuBaseRef}>
-            {menuState}
+            {menuState as string}
           </MenuBase>
           {isDropdownOpen && (
             <MenuList1>
               {menuList.map((menu, index) => (
                 <Menu1 key={menu + index.toString()} onClick={handleClickMenu}>
-                  {menu}
+                  {menu as string}
                 </Menu1>
               ))}
             </MenuList1>
@@ -59,7 +63,7 @@ function DropdownMenu({ bind, menuList, version }: props): ReactElement {
       ) : (
         <DropdownMenuWrapper>
           <MenuBase onClick={handleClickBase} ref={menuBaseRef}>
-            {menuState}
+            {menuState as string}
           </MenuBase>
           {isDropdownOpen && (
             <MenuList2>
@@ -69,7 +73,7 @@ function DropdownMenu({ bind, menuList, version }: props): ReactElement {
                   index={index}
                   onClick={handleClickMenu}
                 >
-                  {menu}
+                  {menu as string}
                 </Menu2>
               ))}
             </MenuList2>
