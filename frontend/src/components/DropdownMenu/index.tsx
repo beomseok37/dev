@@ -1,11 +1,12 @@
 import {
   Dispatch,
-  MouseEvent,
   ReactElement,
   SetStateAction,
   useRef,
   useState,
 } from 'react';
+
+import { ToastifyPositionType } from 'src/types';
 
 import {
   Background,
@@ -23,7 +24,7 @@ interface props<T> {
   version: number;
 }
 
-function DropdownMenu<T = string>({
+function DropdownMenu<T extends string | ToastifyPositionType>({
   bind,
   menuList,
   version,
@@ -37,8 +38,8 @@ function DropdownMenu<T = string>({
   const handleCloseDropdownMenu = () => {
     setIsDropdownOpen(false);
   };
-  const handleClickMenu = (e: MouseEvent<HTMLParagraphElement>) => {
-    setMenuState(e.currentTarget.innerText as T);
+  const handleClickMenu = (menu: T) => {
+    setMenuState(menu);
     setIsDropdownOpen(false);
   };
 
@@ -48,12 +49,17 @@ function DropdownMenu<T = string>({
       {version === 1 ? (
         <DropdownMenuWrapper>
           <MenuBase onClick={handleClickBase} ref={menuBaseRef}>
-            {menuState as string}
+            {menuState}
           </MenuBase>
           {isDropdownOpen && (
             <MenuList1>
               {menuList.map((menu, index) => (
-                <Menu1 key={menu + index.toString()} onClick={handleClickMenu}>
+                <Menu1
+                  key={menu + index.toString()}
+                  onClick={() => {
+                    handleClickMenu(menu);
+                  }}
+                >
                   {menu as string}
                 </Menu1>
               ))}
@@ -71,7 +77,9 @@ function DropdownMenu<T = string>({
                 <Menu2
                   key={menu + index.toString()}
                   index={index}
-                  onClick={handleClickMenu}
+                  onClick={() => {
+                    handleClickMenu(menu);
+                  }}
                 >
                   {menu as string}
                 </Menu2>
