@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
 import Page from 'src/components/Page';
-import PracticeAnimation from 'src/components/PracticeAnimation';
+import PracticeAnimation from 'src/components/study/css/PracticeAnimation';
 
 import { ANIMATION_PAGE_CONTENT } from 'src/constant/page';
 

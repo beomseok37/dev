@@ -2,8 +2,8 @@ import { Dispatch, ReactElement, SetStateAction } from 'react';
 import Image from 'next/image';
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from 'react-icons/io';
 
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
 
 import {
   CHARACTERURL1,

@@ -8,9 +8,12 @@ import Loading from 'src/components/Loading';
 
 import { ECHARTS_PAGE_CONTENT } from 'src/constant/page';
 
-const DynamicChart = dynamic(() => import('src/components/Chart'), {
-  suspense: true,
-});
+const DynamicChart = dynamic(
+  () => import('src/components/study/component/Chart'),
+  {
+    suspense: true,
+  }
+);
 
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 

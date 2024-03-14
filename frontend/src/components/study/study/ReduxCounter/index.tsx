@@ -1,8 +1,8 @@
 import { FormEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 
 import {
   selectCount,

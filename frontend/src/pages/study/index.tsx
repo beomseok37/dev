@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 
 import Page from 'src/components/Page';
 import BaseCard from 'src/components/BaseCard';
-import Column from 'src/components/Grid/Column';
+import Column from 'src/components/base/Grid/Column';
 
 import { GridWrapper, HorizontalLine, Title } from 'src/styles/pages/base';
 

@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 
-import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 
 import { SIDE_BAR_OPEN_WIDTH, SIDE_BAR_HEIGHT } from 'src/constant/sideBar';
 

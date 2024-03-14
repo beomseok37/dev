@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 
 import Page from 'src/components/Page';
-import ReduxCounter from 'src/components/ReduxCounter';
-import ReduxTodoList from 'src/components/ReduxTodoList';
+import ReduxCounter from 'src/components/study/study/ReduxCounter';
+import ReduxTodoList from 'src/components/study/study/ReduxTodoList';
 
 import {
   REDUX_COUNT_CONTENT,

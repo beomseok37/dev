@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
 import SideBar from 'src/components/SideBar';
 import Header from 'src/components/Header';
 import PageContent from 'src/components/PageContent';

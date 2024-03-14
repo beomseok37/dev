@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import Page from 'src/components/Page';
-import DropdownMenu from 'src/components/DropdownMenu';
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
+import DropdownMenu from 'src/components/study/component/DropdownMenu';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
 
 import { DROPDOWN_MENU_PAGE_CONTENT } from 'src/constant/page';
 

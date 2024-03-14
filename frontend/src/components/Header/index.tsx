@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import CharacterImage from 'src/components/CharacterImage';
+import CharacterImage from 'src/components/MiniMe/CharacterImage';
 import CharacterSetModal from 'src/components/modals/CharacterSetModal';
 
 import { selectUser } from 'src/redux/reducer/user';

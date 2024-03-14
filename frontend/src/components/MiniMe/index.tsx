@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { ArrowDirection, SocketUserInfoType } from 'src/types';
 
-import Column from 'src/components/Grid/Column';
-import CharacterProfile from 'src/components/CharacterProfile';
+import Column from 'src/components/base/Grid/Column';
+import CharacterProfile from 'src/components/MiniMe/CharacterProfile';
 import MinimeChat from 'src/components/chat/MinimeChat';
 
 import {

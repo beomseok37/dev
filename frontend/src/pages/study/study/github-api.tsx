@@ -5,11 +5,11 @@ import axios from 'axios';
 import * as DOMPurify from 'dompurify';
 
 import Page from 'src/components/Page';
-import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 import Input from 'src/components/base/Input';
 import Button from 'src/components/base/Button';
-import DropdownMenu from 'src/components/DropdownMenu';
+import DropdownMenu from 'src/components/study/component/DropdownMenu';
 import Loading from 'src/components/Loading';
 
 import { GITHUB_API_PAGE_CONTENT } from 'src/constant/page';

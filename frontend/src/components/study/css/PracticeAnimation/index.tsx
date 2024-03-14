@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import Column from 'src/components/Grid/Column';
+import Column from 'src/components/base/Grid/Column';
 import AnimationButton from './AnimationButton';
 import ThreeDimensionCube from './ThreeDimensionCube';
 

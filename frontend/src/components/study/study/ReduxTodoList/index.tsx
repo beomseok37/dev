@@ -1,8 +1,8 @@
 import { ChangeEvent, ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 import Input from 'src/components/base/Input';
 import Button from 'src/components/base/Button';
 import { selectTodoList, add, removeAll } from 'src/redux/reducer/todo';

@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-import Column from 'src/components/Grid/Column';
+import Column from 'src/components/base/Grid/Column';
 
 import { P, Button, Span } from 'src/styles/pages/404';
 

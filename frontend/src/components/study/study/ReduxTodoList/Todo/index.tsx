@@ -7,7 +7,7 @@ import {
 } from 'react-icons/im';
 import { BsCheckCircle } from 'react-icons/bs';
 
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 
 import { TodoType } from 'src/types';
 

@@ -1,7 +1,7 @@
 import { ChangeEvent, ReactElement, useRef } from 'react';
-import Column from 'src/components/Grid/Column';
+import Column from 'src/components/base/Grid/Column';
 
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 import Input from 'src/components/base/Input';
 import {
   AnimationButtonWrapper,

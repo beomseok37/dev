@@ -1,6 +1,5 @@
-import Toast from 'src/components/Toastify/Toast';
-
 import { ToastifyPositionType, ToastType } from 'src/types';
+import Toast from '../Toast';
 
 import { Wrapper } from './style';
 

@@ -1,8 +1,8 @@
 import { ReactElement, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import UsernameSelector from 'src/components/UsernameSelector';
-import CharacterSelector from 'src/components/CharacterSelector';
+import UsernameSelector from 'src/components/MiniMe/UsernameSelector';
+import CharacterSelector from 'src/components/MiniMe/CharacterSelector';
 import Button from 'src/components/base/Button';
 
 import {

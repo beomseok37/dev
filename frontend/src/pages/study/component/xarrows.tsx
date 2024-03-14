@@ -3,8 +3,8 @@ import { MouseEvent, useState, useEffect } from 'react';
 import Xarrow, { Xwrapper } from 'react-xarrows';
 
 import Page from 'src/components/Page';
-import DraggableBox from 'src/components/DraggableBox';
-import Row from 'src/components/Grid/Row';
+import DraggableBox from 'src/components/study/component/DraggableBox';
+import Row from 'src/components/base/Grid/Row';
 
 import { XARROW_PAGE_CONTENT } from 'src/constant/page';
 

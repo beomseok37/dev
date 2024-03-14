@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
-import Column from 'src/components/Grid/Column';
-import Row from 'src/components/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 import Button from 'src/components/base/Button';
 
 import { MoveBox, Rotate, Scene } from './style';

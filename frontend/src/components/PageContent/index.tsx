@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im';
 
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 
 interface props {
   done?: boolean;

@@ -1,7 +1,7 @@
 import { AnimationEvent, useState } from 'react';
 import { IoCloseCircleOutline, IoRocket } from 'react-icons/io5';
 
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 import { Wrapper, Bar } from './style';
 
 interface Props {

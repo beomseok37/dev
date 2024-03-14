@@ -7,9 +7,12 @@ import Loading from 'src/components/Loading';
 
 import { EDITOR_PAGE_CONTENT } from 'src/constant/page';
 
-const DynamicEditor = dynamic(() => import('src/components/Editor'), {
-  ssr: false,
-});
+const DynamicEditor = dynamic(
+  () => import('src/components/study/component/Editor'),
+  {
+    ssr: false,
+  }
+);
 
 const EditorPage: NextPage = () => {
   return (

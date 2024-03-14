@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 
 import { selectMinimeChatList } from 'src/redux/reducer/chat';
 import { userInfoSocket } from 'src/socket';

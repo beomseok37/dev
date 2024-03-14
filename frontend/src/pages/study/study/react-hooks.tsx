@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
 
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
 import Page from 'src/components/Page';
-import AppWithUseMemo from 'src/components/practice-hook/with-useMemo/App';
-import AppWithoutUseMemo from 'src/components/practice-hook/without-useMemo/App';
-import AppWithUseCallback from 'src/components/practice-hook/with-useCallback/App';
-import AppWithoutUseCallback from 'src/components/practice-hook/without-useCallback/App';
+import AppWithUseMemo from 'src/components/study/study/practice-hook/with-useMemo/App';
+import AppWithoutUseMemo from 'src/components/study/study/practice-hook/without-useMemo/App';
+import AppWithUseCallback from 'src/components/study/study/practice-hook/with-useCallback/App';
+import AppWithoutUseCallback from 'src/components/study/study/practice-hook/without-useCallback/App';
 
 import { REACT_HOOKS_PAGE_CONTENT } from 'src/constant/page';
 

@@ -1,9 +1,9 @@
 import { ChangeEvent, ReactElement, useRef, useState, useEffect } from 'react';
 import { MathComponent } from 'mathjax-react';
 
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
-import DropdownMenu from 'src/components/DropdownMenu';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
+import DropdownMenu from 'src/components/study/component/DropdownMenu';
 import EditorInput from './EditorInput';
 
 import { Button } from './style';

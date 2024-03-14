@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-import Row from 'src/components/Grid/Row';
-import CharacterImage from 'src/components/CharacterImage';
+import Row from 'src/components/base/Grid/Row';
+import CharacterImage from 'src/components/MiniMe/CharacterImage';
 
 import { selectUser } from 'src/redux/reducer/user';
 

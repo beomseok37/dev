@@ -6,8 +6,8 @@ import {
   useEffect,
 } from 'react';
 
-import Row from 'src/components/Grid/Row';
-import Column from 'src/components/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
+import Column from 'src/components/base/Grid/Column';
 import Input from 'src/components/base/Input';
 
 import { Title } from './style';

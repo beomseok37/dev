@@ -9,9 +9,9 @@ import {
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Row from 'src/components/Grid/Row';
-import CharacterImage from 'src/components/CharacterImage';
-import Column from 'src/components/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
+import CharacterImage from 'src/components/MiniMe/CharacterImage';
+import Column from 'src/components/base/Grid/Column';
 
 import { selectMainChatList, mainChatIn } from 'src/redux/reducer/chat';
 import { selectUser } from 'src/redux/reducer/user';

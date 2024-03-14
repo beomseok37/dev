@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from 'react';
 
-import Column from 'src/components/Grid/Column';
+import Column from 'src/components/base/Grid/Column';
 import Page from 'src/components/Page';
 import Button from 'src/components/base/Button';
-import Toastify from 'src/components/Toastify/ToastList';
-import DropdownMenu from 'src/components/DropdownMenu';
+import Toastify from 'src/components/study/component/Toastify/ToastList';
+import DropdownMenu from 'src/components/study/component/DropdownMenu';
 import Input from 'src/components/base/Input';
-import Row from 'src/components/Grid/Row';
+import Row from 'src/components/base/Grid/Row';
 
 import useToastify from 'src/hooks/useToastify';
 
