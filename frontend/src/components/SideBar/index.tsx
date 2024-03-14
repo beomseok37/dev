@@ -62,7 +62,7 @@ function SideBar(): ReactElement {
             </IconWrapper>
           </a>
         </Link>
-        <Link href="https://blog.beomseok.dev">
+        <Link href="https://beomseok37.tistory.com">
           <a target="_blank" aria-label="beomseok tistory 이동">
             <IconWrapper>
               <Image
