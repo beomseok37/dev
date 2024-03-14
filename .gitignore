@@ -129,4 +129,6 @@ sketch
 # and uncomment the following lines
 # .pnp.*
 
+*/dist
+
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,react,yarn,macos,visualstudiocode,dotenv
