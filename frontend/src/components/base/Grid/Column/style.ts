@@ -5,7 +5,6 @@ interface props {
   height: string;
   justifyContent: string;
   alignItems: string;
-  transition: boolean;
   background: string;
   margin: string;
   padding: string;
@@ -15,7 +14,6 @@ interface props {
   borderRight: string;
   borderTop: string;
   borderBottom: string;
-  boxShadow: string;
 }
 
 const Wrapper = styled.div<props>`
@@ -26,7 +24,6 @@ const Wrapper = styled.div<props>`
   height: ${({ height }) => height};
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
-  ${({ transition }) => transition && `transition: all ease 0.8s;`}
   background: ${({ background }) => background};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
@@ -39,7 +36,6 @@ const Wrapper = styled.div<props>`
     border !== 'unset' ? border : borderTop};
   border-bottom: ${({ border, borderBottom }) =>
     border !== 'unset' ? border : borderBottom};
-  box-shadow: ${({ boxShadow }) => boxShadow};
 `;
 
 // eslint-disable-next-line import/prefer-default-export

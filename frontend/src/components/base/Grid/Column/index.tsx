@@ -8,7 +8,6 @@ interface props {
   height?: string;
   justifyContent?: string;
   alignItems?: string;
-  transition?: boolean;
   background?: string;
   margin?: string;
   padding?: string;
@@ -19,7 +18,6 @@ interface props {
   borderRight?: string;
   borderTop?: string;
   borderBottom?: string;
-  boxShadow?: string;
 }
 
 function Column({
@@ -28,7 +26,6 @@ function Column({
   height,
   justifyContent,
   alignItems,
-  transition,
   background,
   margin,
   padding,
@@ -39,7 +36,6 @@ function Column({
   borderRight,
   borderTop,
   borderBottom,
-  boxShadow,
 }: props): ReactElement {
   return (
     <Wrapper
@@ -47,7 +43,6 @@ function Column({
       height={height!}
       justifyContent={justifyContent!}
       alignItems={alignItems!}
-      transition={transition!}
       background={background!}
       margin={margin!}
       padding={padding!}
@@ -58,7 +53,6 @@ function Column({
       borderRight={borderRight!}
       borderTop={borderTop!}
       borderBottom={borderBottom!}
-      boxShadow={boxShadow!}
     >
       {children}
     </Wrapper>
@@ -70,7 +64,6 @@ Column.defaultProps = {
   height: 'unset',
   justifyContent: 'unset',
   alignItems: 'unset',
-  transition: false,
   background: 'unset',
   margin: 'unset',
   padding: 'unset',
@@ -81,7 +74,6 @@ Column.defaultProps = {
   borderRight: 'unset',
   borderTop: 'unset',
   borderBottom: 'unset',
-  boxShadow: 'none',
 };
 
 export default Column;

@@ -8,7 +8,6 @@ interface props {
   height?: string;
   justifyContent?: string;
   alignItems?: string;
-  transition?: boolean;
   background?: string;
   margin?: string;
   padding?: string;
@@ -19,7 +18,6 @@ interface props {
   borderRight?: string;
   borderTop?: string;
   borderBottom?: string;
-  boxShadow?: string;
 }
 
 function Row({
@@ -28,7 +26,6 @@ function Row({
   height,
   justifyContent,
   alignItems,
-  transition,
   background,
   margin,
   padding,
@@ -39,7 +36,6 @@ function Row({
   borderRight,
   borderTop,
   borderBottom,
-  boxShadow,
 }: props): ReactElement {
   return (
     <Wrapper
@@ -47,7 +43,6 @@ function Row({
       height={height!}
       justifyContent={justifyContent!}
       alignItems={alignItems!}
-      transition={transition!}
       padding={padding!}
       margin={margin!}
       background={background!}
@@ -58,7 +53,6 @@ function Row({
       borderRight={borderRight!}
       borderTop={borderTop!}
       borderBottom={borderBottom!}
-      boxShadow={boxShadow!}
     >
       {children}
     </Wrapper>
@@ -70,7 +64,6 @@ Row.defaultProps = {
   height: 'unset',
   justifyContent: 'unset',
   alignItems: 'unset',
-  transition: false,
   margin: 'unset',
   padding: 'unset',
   background: 'unset',
@@ -81,7 +74,6 @@ Row.defaultProps = {
   borderRight: 'unset',
   borderTop: 'unset',
   borderBottom: 'unset',
-  boxShadow: 'none',
 };
 
 export default Row;
