@@ -8,8 +8,6 @@ import PageContent from 'src/components/PageContent';
 
 import { PageContentType } from 'src/types';
 
-import { HorizontalLine } from './style';
-
 interface props {
   children: ReactNode;
   header: string;
@@ -22,7 +20,6 @@ function Page({ children, header, pageContentList }: props): ReactElement {
       <SideBar />
       <Column width="100%" padding="0 0 0 300px">
         <Header pageName={header} />
-        <HorizontalLine />
         {pageContentList!.map((pageContent, index) => (
           <PageContent
             key={pageContent.content + index.toString()}

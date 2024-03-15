@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import CharacterImage from 'src/components/MiniMe/CharacterImage';
 import CharacterSetModal from 'src/components/modals/CharacterSetModal';
+import Column from 'src/components/base/Grid/Column';
+import Row from 'src/components/base/Grid/Row';
 
 import { selectUser } from 'src/redux/reducer/user';
 
@@ -31,28 +33,32 @@ function Header({ pageName }: props): ReactElement {
 
   return (
     <Wrapper>
-      <Title>{pageName} page</Title>
-      <Button onClick={handleOpenModal} aria-label="미니미 시작 버튼">
-        <CharacterImage
-          character={user.character}
-          border="1px solid #000"
-          ref={characterImageHoverRef}
-          isAbsolute
-        />
-        {isCharacterImageHoverRef && <Balloon>미니미 입장</Balloon>}
-      </Button>
-      {isOpen &&
-        (isSelected ? (
-          <MinimeModal
-            onOpenSelectModal={handleOpenSelectModal}
-            onClose={handleCloseModal}
-          />
-        ) : (
-          <CharacterSetModal
-            onCloseSelectModal={handleCloseSelectModal}
-            onClose={handleCloseModal}
-          />
-        ))}
+      <Column width="100%">
+        <Row justifyContent="space-between" alignItems="center">
+          <Title>{pageName}</Title>
+          <Button onClick={handleOpenModal} aria-label="미니미 시작 버튼">
+            <CharacterImage
+              character={user.character}
+              border="1px solid #000"
+              ref={characterImageHoverRef}
+              isAbsolute
+            />
+            {isCharacterImageHoverRef && <Balloon>미니미 입장</Balloon>}
+          </Button>
+          {isOpen &&
+            (isSelected ? (
+              <MinimeModal
+                onOpenSelectModal={handleOpenSelectModal}
+                onClose={handleCloseModal}
+              />
+            ) : (
+              <CharacterSetModal
+                onCloseSelectModal={handleCloseSelectModal}
+                onClose={handleCloseModal}
+              />
+            ))}
+        </Row>
+      </Column>
     </Wrapper>
   );
 }

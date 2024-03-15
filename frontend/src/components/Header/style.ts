@@ -13,12 +13,16 @@ const slideLeftAnimation = css`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: fixed;
   top: 0px;
+  width: calc(99% - 300px);
   height: 50px;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
+
+  background: white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 10px 0px 10px #aaa;
+  z-index: 2;
 `;
 
 const Title = styled.p`

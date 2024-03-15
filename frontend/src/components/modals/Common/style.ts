@@ -37,7 +37,7 @@ const Wrapper = styled.div<WrapperProps>`
   `}
 
   position: fixed;
-  z-index: 2;
+  // z-index: 4;
   margin: 0 auto;
   top: ${({ top }) => top}px;
   left: 0;
@@ -58,7 +58,7 @@ const Wrapper = styled.div<WrapperProps>`
 
 const Background = styled.div`
   position: fixed;
-  z-index: 1;
+  // z-index: 3;
   inset: 0;
   background: #888;
   opacity: 0.8;
