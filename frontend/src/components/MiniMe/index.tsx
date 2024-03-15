@@ -120,6 +120,15 @@ function MiniMe({ onOpenSelectModal }: Props): ReactElement {
   draw.character = null;
 
   const keyDownHandler = (e: KeyboardEvent) => {
+    if (
+      e.key === 'ArrowDown' ||
+      e.key === 'ArrowUp' ||
+      e.key === 'ArrowLeft' ||
+      e.key === 'ArrowRight'
+    ) {
+      e.preventDefault();
+    }
+
     if (document.activeElement !== canvasRef.current) {
       return;
     }

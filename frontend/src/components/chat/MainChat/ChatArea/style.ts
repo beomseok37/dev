@@ -18,6 +18,7 @@ const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   position: fixed;
+  z-index: 2;
   right: ${({ open }) => (open ? '0' : '-400px')};
   width: 400px;
   height: 100%;
