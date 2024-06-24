@@ -1,19 +1,15 @@
 import Image from 'next/image';
 import { BsChatDotsFill } from 'react-icons/bs';
-
-import { useSelector } from 'react-redux';
-import { selectUser } from 'src/redux/reducer/user';
+import { SiNotion } from 'react-icons/si';
 
 import Column from 'src/components/base/Grid/Column';
-import CharacterImage from 'src/components/MiniMe/CharacterImage';
 import SlideInByScroll from 'src/components/SlideInByScroll';
 import Row from 'src/components/base/Grid/Row';
 
-import { Blank, P, Callout, Code } from './style';
+import Link from 'next/link';
+import { Blank, P, Callout, Code, PortfolioButton } from './style';
 
 function HomeComponent() {
-  const user = useSelector(selectUser);
-
   return (
     <Column padding="30px">
       <Blank size={60} />
@@ -25,8 +21,17 @@ function HomeComponent() {
         </P>
         <Blank size={20} />
         <P fontSize="medium">
-          이외에도 사용자들의 상호작용을 위한 요소가 존재합니다!
+          이외에도 사용자들의 상호작용을 위한 요소가 존재합니다.
         </P>
+        <Blank size={10} />
+        <Row alignItems="center">
+          <P>포트폴리오 이동 ➡️</P>
+          <Link href="https://shadow-numeric-4ae.notion.site/ba39ed70189945cd9d949590685c79f9?pvs=4">
+            <PortfolioButton>
+              <SiNotion size={25} />
+            </PortfolioButton>
+          </Link>
+        </Row>
       </SlideInByScroll>
       <Blank size={80} />
 
@@ -59,13 +64,7 @@ function HomeComponent() {
             alt="이름 입력 모달"
           />
           <Row alignItems="center">
-            <P>오른쪽 위 캐릭터</P>
-            <CharacterImage
-              character={user.character}
-              border="1px solid #000"
-              isAbsolute
-            />
-            <P>를 누르면 캐릭터 선택창으로 이동가능합니다.</P>
+            <P>오른쪽 위 캐릭터를 누르면 캐릭터 선택창으로 이동가능합니다.</P>
           </Row>
         </Row>
       </SlideInByScroll>

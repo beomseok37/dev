@@ -43,4 +43,9 @@ const Code = styled.div`
   font-size: 14px;
 `;
 
-export { P, Blank, Callout, Code };
+const PortfolioButton = styled.div`
+  margin-left: 4px;
+  cursor: pointer;
+`;
+
+export { P, Blank, Callout, Code, PortfolioButton };
